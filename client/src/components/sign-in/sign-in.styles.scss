@@ -1,0 +1,21 @@
+.login-form{
+    width: 30vw;
+    padding: 30px 50px;
+    margin: 10vh auto 0;
+    background-color: white;
+    text-align: center;
+    .brand{
+        font-family: 'Playball',cursive;
+        font-size: 60px;
+        margin: auto;
+    }
+    .button{
+        display: flex;
+        flex-direction: column;
+    }
+    .signup{
+        text-decoration: none;
+        font-size: 24px;
+        color: #ff4949;
+    }
+}

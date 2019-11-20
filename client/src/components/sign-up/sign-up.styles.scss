@@ -1,0 +1,18 @@
+.regist-form{
+    width: 30vw;
+    padding: 30px 50px;
+    margin: 10vh auto 0;
+    background-color: white;
+    text-align: center;
+    .social-login{
+        display: flex;
+        justify-content: space-between;
+    }
+    .divider{
+        margin-top: 20px;
+    }
+    .button {
+        display: flex;
+        flex-direction: column;
+    }
+}
