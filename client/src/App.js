@@ -16,7 +16,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={SignInPage} />
           <Route exact path="/signup" component={SignUpPage} />
-          <Route path="/feeds" component={FeedPage} />
+          <Route path="/feed" component={FeedPage} />
         </Switch>
       </BrowserRouter>
     </div>

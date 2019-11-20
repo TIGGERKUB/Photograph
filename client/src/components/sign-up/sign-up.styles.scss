@@ -7,6 +7,10 @@
     .social-login{
         display: flex;
         justify-content: space-between;
+        .icon{
+            margin: auto;
+            padding-right: 10px;
+        }
     }
     .divider{
         margin-top: 20px;
@@ -14,5 +18,6 @@
     .button {
         display: flex;
         flex-direction: column;
+        
     }
 }

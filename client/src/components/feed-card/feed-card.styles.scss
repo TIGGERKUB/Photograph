@@ -1,0 +1,36 @@
+.card-container {
+    background: #fff;
+    max-width: 420px;
+    margin: 60px auto;
+    padding-top: 10px;
+    box-shadow: 0 5px 10px rgba(154, 160, 185, .05),
+        0 15px 40px rgba(166, 173, 201, .2);
+
+    .header-container {
+        margin: auto 20px;
+        .header {
+            display: flex;
+            .avatar {
+                vertical-align: middle;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 10px;
+            }
+            .option{
+                color: grey;
+                cursor: pointer;
+            }
+        }
+    }
+    .footer-container{
+        padding: 10px;
+        text-align: left;
+        .love{
+            cursor: pointer;
+        }
+        .comment{
+            cursor: pointer;
+        }
+    }
+}

@@ -8,18 +8,18 @@ import "./header.styles.scss";
 const Header = () => {
   return (
     <div className="header">
-      <Link className="brand" to="/feeds">Photograph</Link>
+      <Link className="brand" to="/feed">Photograph</Link>
       <div className="options">
-        <Link className="option" to="/feeds">
+        <Link className="option" to="/feed">
           <IoIosSearch />
         </Link>
-        <Link className="option" to="/feeds">
+        <Link className="option" to="/feed">
           <IoIosNotificationsOutline />
         </Link>
-        <Link className="option" to="/feeds">
+        <Link className="option" to="/feed">
           <AiOutlineSetting />
         </Link>
-        <Link className="option" to="/feeds">
+        <Link className="option" to="/feed">
           <AiOutlineUser />
         </Link>
       </div>

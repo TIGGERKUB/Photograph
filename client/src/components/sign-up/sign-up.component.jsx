@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Divider from "@material-ui/core/Divider";
+import { FaFacebookF, FaTwitter, FaGoogle } from "react-icons/fa";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -28,13 +29,13 @@ const SignUp = () => {
       <p>or sign in with social network</p>
       <div className="social-login">
         <CustomButton type="button" isFacebookSignIn>
-          Facebook
+          <FaFacebookF className="icon"/>  Facebook
         </CustomButton>
         <CustomButton type="button" isTwitterSignIn>
-          Twitter
+          <FaTwitter className="icon"/>  Twitter
         </CustomButton>
         <CustomButton type="button" isGoogleSignIn>
-          Google
+          <FaGoogle className='icon'/> Google
         </CustomButton>
       </div>
       <Divider className="divider" />
