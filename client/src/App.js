@@ -5,7 +5,9 @@ import Header from './components/header/header.component'
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
 import SignUpPage from './pages/sign-up-page/sign-up-page.component'
 import FeedPage from "./pages/feedpage/feedpage.component";
+import SearchPage from "./pages/search-page/search-page.component";
 
+import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
 function App() {
@@ -16,7 +18,8 @@ function App() {
         <Switch>
           <Route exact path="/" component={SignInPage} />
           <Route exact path="/signup" component={SignUpPage} />
-          <Route path="/feed" component={FeedPage} />
+          <Route exact path="/feed" component={FeedPage} />
+          <Route exact path="/search" component={SearchPage}/>
         </Switch>
       </BrowserRouter>
     </div>

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Divider from "@material-ui/core/Divider";
-import { FaFacebookF, FaTwitter, FaGoogle } from "react-icons/fa";
+import {Divider,Icon} from 'semantic-ui-react'
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -29,16 +28,16 @@ const SignUp = () => {
       <p>or sign in with social network</p>
       <div className="social-login">
         <CustomButton type="button" isFacebookSignIn>
-          <FaFacebookF className="icon"/>  Facebook
+          <Icon name="facebook f" className="icon" /> Facebook
         </CustomButton>
         <CustomButton type="button" isTwitterSignIn>
-          <FaTwitter className="icon"/>  Twitter
+          <Icon name="twitter" className="icon" /> Twitter
         </CustomButton>
         <CustomButton type="button" isGoogleSignIn>
-          <FaGoogle className='icon'/> Google
+          <Icon name="google" className="icon" /> Google
         </CustomButton>
       </div>
-      <Divider className="divider" />
+      <Divider horizontal>Or</Divider>
       <FormInput
         type="text"
         name="username"

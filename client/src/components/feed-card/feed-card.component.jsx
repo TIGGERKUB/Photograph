@@ -2,7 +2,6 @@ import React from "react";
 import { Image, Icon } from "semantic-ui-react";
 import { GoPrimitiveDot } from "react-icons/go";
 
-import "semantic-ui-css/semantic.min.css";
 import "./feed-card.styles.scss";
 
 const FeedCard = () => {

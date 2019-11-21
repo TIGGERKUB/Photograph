@@ -1,10 +1,9 @@
-import React, { createRef, Component } from "react";
+import React, { createRef} from "react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { Grid, Rail, Ref, Sticky } from "semantic-ui-react";
 
 import FeedCard from "../../components/feed-card/feed-card.component";
 
-import "semantic-ui-css/semantic.min.css";
 import "./feedpage.styles.scss";
 
 class Feedpage extends React.Component {

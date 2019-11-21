@@ -10,7 +10,7 @@ const Header = () => {
     <div className="header">
       <Link className="brand" to="/feed">Photograph</Link>
       <div className="options">
-        <Link className="option" to="/feed">
+        <Link className="option" to="/search">
           <IoIosSearch />
         </Link>
         <Link className="option" to="/feed">
@@ -19,7 +19,7 @@ const Header = () => {
         <Link className="option" to="/feed">
           <AiOutlineSetting />
         </Link>
-        <Link className="option" to="/feed">
+        <Link className="option" to="/profile">
           <AiOutlineUser />
         </Link>
       </div>
