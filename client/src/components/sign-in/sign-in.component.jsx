@@ -23,7 +23,7 @@ const SignIn = () => {
 
   return (
     <div className="login-form">
-      <h2 className="brand">Photograph</h2>
+      <h2 className="login-brand">Photograph</h2>
       <form onClick={handleSubmit}>
         <FormInput
           type="text"
@@ -42,11 +42,11 @@ const SignIn = () => {
           required
         />
       </form>
-      <div className="button">
+      <div className="login-button">
         <CustomButton type="submit">SIGN IN</CustomButton>
       </div>
       <span>Create an account </span>
-      <Link className="signup" to="/signup">
+      <Link className="signup-link" to="/signup">
         Sign up
       </Link>
     </div>

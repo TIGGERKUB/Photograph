@@ -1,0 +1,24 @@
+.outline-button {
+    min-width: 80px;
+    width: auto;
+    height: 50px;
+    letter-spacing: 0.5px;
+    line-height: 30px;
+    padding: 0 15px 0 15px;
+    font-size: 15px;
+    background-color: transparent;
+    color: black;
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed';
+    font-weight: bolder;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: black;
+        color: white;
+    }
+}

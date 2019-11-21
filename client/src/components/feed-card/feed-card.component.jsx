@@ -14,7 +14,7 @@ const FeedCard = () => {
             className="avatar" alt="avatar"
           />
           <span>Musicrvy</span>
-          <div className="option">
+          <div className="dots">
             <GoPrimitiveDot />
             <GoPrimitiveDot />
             <GoPrimitiveDot />

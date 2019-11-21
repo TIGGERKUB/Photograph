@@ -38,30 +38,32 @@ const SignUp = () => {
         </CustomButton>
       </div>
       <Divider horizontal>Or</Divider>
-      <FormInput
-        type="text"
-        name="username"
-        value={username}
-        handleChange={handleChange}
-        label="Username"
-        required
-      />
-      <FormInput
-        type="email"
-        name="email"
-        value={email}
-        handleChange={handleChange}
-        label="Email"
-        required
-      />
-      <FormInput
-        type="password"
-        name="password"
-        value={password}
-        handleChange={handleChange}
-        label="Password"
-        required
-      />
+      <form onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="username"
+          value={username}
+          handleChange={handleChange}
+          label="Username"
+          required
+        />
+        <FormInput
+          type="email"
+          name="email"
+          value={email}
+          handleChange={handleChange}
+          label="Email"
+          required
+        />
+        <FormInput
+          type="password"
+          name="password"
+          value={password}
+          handleChange={handleChange}
+          label="Password"
+          required
+        />
+      </form>
       <div className="button">
         <CustomButton type="submit">Sign Up</CustomButton>
       </div>

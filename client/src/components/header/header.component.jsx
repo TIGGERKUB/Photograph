@@ -21,7 +21,9 @@ const Header = ({ hidden }) => {
         <Link className="option" to="/search">
           <IoIosSearch />
         </Link>
-        <NotificationIcon />
+        <div className="option">
+          <NotificationIcon />
+        </div>
         {hidden ? null : <NotificationDropdown />}
         <Link className="option" to="/feed">
           <AiOutlineSetting />

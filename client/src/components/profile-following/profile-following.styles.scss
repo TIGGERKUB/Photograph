@@ -1,0 +1,15 @@
+.profile-following-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    cursor: pointer;
+
+    .profile-following-title {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .profile-following-count {
+        font-size: 24px;
+    }
+}
