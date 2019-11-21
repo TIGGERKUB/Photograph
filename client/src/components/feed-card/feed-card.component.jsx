@@ -11,14 +11,14 @@ const FeedCard = () => {
         <div className="header">
           <img
             src="https://i.ibb.co/1mJrMgn/alex-harvey-y0-I85-D5-QKvs-unsplash.jpg"
-            className="avatar"
+            className="avatar" alt="avatar"
           />
           <span>Musicrvy</span>
-          <a className="option">
+          <div className="option">
             <GoPrimitiveDot />
             <GoPrimitiveDot />
             <GoPrimitiveDot />
-          </a>
+          </div>
         </div>
       </div>
       <Image src="https://i.ibb.co/h7W260X/pixasquare-4ojhpg-Kp-S68-unsplash.jpg" />
