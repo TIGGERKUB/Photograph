@@ -14,17 +14,19 @@ const SignIn = () => {
   const { username, password } = userCredential;
   const handleSubmit = event => {
     event.preventDefault();
+    
     setUserCredentials({ username: "", password: "" });
   };
   const handleChange = event => {
     const { value, name } = event.target;
+    
     setUserCredentials({ ...userCredential, [name]: value });
   };
 
   return (
     <div className="login-form">
       <h2 className="login-brand">Photograph</h2>
-      <form onClick={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <FormInput
           type="text"
           name="username"
@@ -41,10 +43,10 @@ const SignIn = () => {
           label="Password"
           required
         />
-      </form>
-      <div className="login-button">
+        <div className="login-button">
         <CustomButton type="submit">SIGN IN</CustomButton>
       </div>
+      </form>
       <span>Create an account </span>
       <Link className="signup-link" to="/signup">
         Sign up

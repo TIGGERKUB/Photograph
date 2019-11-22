@@ -1,14 +1,16 @@
 import React from 'react'
-import './popular-preview.styles.scss'
-import PopularPicture from '../popular-picture/popular-picture.component';
+
+import Picture from '../Picture/Picture.component';
+
+import "./popular-preview.styles.scss";
 
 const PopularPreview = ({ items }) => (
-  <div className="collection-preview">
-      <div className="preview">
+  <div className="popular-container">
+      <div className="popular-preview">
         {items
           .filter((item, index) => index < 3)
           .map(({ id, ...otherItemProps }) => (
-            <PopularPicture key={id} {...otherItemProps} />
+            <Picture key={id} {...otherItemProps} />
           ))}
       </div>
   </div>

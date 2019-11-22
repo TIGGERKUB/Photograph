@@ -1,4 +1,10 @@
-.edit-profile-btn{
-    display: flex;
-    margin: 20px auto auto 100px;
+.profile-container {
+    margin-top: 60px;
+    .profile-edit-btn {
+        display: flex;
+        margin: 20px auto auto 100px;
+    }   
+}
+.profile-gallery-container {
+    padding: 40px;
 }
