@@ -1,6 +1,5 @@
 import React from "react";
-import { Container, Grid, Divider } from "semantic-ui-react";
-import SHOP_DATA from '../data/test-data'
+import { Container, Grid } from "semantic-ui-react";
 
 import ButtonOutline from "../../components/button-outline/button-outline.component";
 import ProfileImg from "../../components/profile-img/profile-img.component";
@@ -8,17 +7,13 @@ import ProfileHeader from "../../components/profile-header/profile-header.compon
 import ProfileFollower from "../../components/profile-follower/profile-follower.component";
 import ProfileFollwing from "../../components/profile-following/profile-following.component";
 import ProfileBio from "../../components/profile-bio/profile-bio.component";
-import ProfileGallery from "../../components/profile-gallery/profile-gallery.component";
+import ProfilePane from "../../components/profile-pane/profile-pane.component";
 
 import "./profile.styles.scss";
 
 class ProfilePage extends React.Component{
-  state = {
-    galleryPictures: SHOP_DATA
-  }
   
   render(){
-    const {galleryPictures} = this.state;
     return (
       <Container className="profile-container">
         <Grid>
@@ -51,14 +46,7 @@ class ProfilePage extends React.Component{
             </div>
           </Grid.Column>
         </Grid>
-
-        <Divider></Divider>
-
-        <Container className="profile-gallery-container">
-          {galleryPictures.map(({id,...otherProps}) => (
-            <ProfileGallery key={id} {...otherProps}/>
-          ))}
-        </Container>
+      <ProfilePane/>
       </Container>
     );
   }

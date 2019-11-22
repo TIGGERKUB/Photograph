@@ -1,30 +1,35 @@
 import React from "react";
-import SHOP_DATA from "../data/test-data.js";
-import {Container} from "semantic-ui-react"
+import { Container, Grid } from "semantic-ui-react";
+import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import SearchBox from "../../components/search-box/search-box.component";
-import PopularPreview from "../../components/popular-preview/popular-preview.component";
+import Picture from "../../components/Picture/Picture.component";
+
+import { selectPicture } from "../../redux/data/data.selector";
 
 import "./search-page.styles.scss";
 
-class SearchPage extends React.Component {
-  state = {
-    PopularPictures: SHOP_DATA
-  }
-  render() {
-    const {PopularPictures} = this.state;
-    return (
-      <div>
-        <SearchBox />
-        <h2 className="title-popular">Popular</h2>
-        <Container textAlign="center">
-          {PopularPictures.map(({ id, ...otherProps }) => (
-            <PopularPreview key={id} {...otherProps} />
+const SearchPage = ({ collections }) => {
+  return (
+    <div>
+      <SearchBox />
+      <h2 className="title-popular">Popular</h2>
+      <Container textAlign="center">
+        <Grid relaxed columns={3}>
+          {collections.womens.items.map(item => (
+            <Grid.Column>
+              <Picture key={item.id} item={item} />
+            </Grid.Column>
           ))}
-        </Container>
-      </div>
-    )
-  }
+        </Grid>
+      </Container>
+    </div>
+  );
 };
 
-export default SearchPage;
+const mapStateToProps = createStructuredSelector({
+  collections: selectPicture
+});
+
+export default connect(mapStateToProps)(SearchPage);

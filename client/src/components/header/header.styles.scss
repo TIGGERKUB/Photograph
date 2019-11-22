@@ -26,5 +26,10 @@
             color: black;
             text-decoration: none;
         }
+        .logout{
+            &:hover{
+                color: red;
+            }
+        }
     }
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
-import { AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
+import {FiLogOut} from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
@@ -25,11 +26,11 @@ const Header = ({ hidden }) => {
           <NotificationIcon />
         </div>
         {hidden ? null : <NotificationDropdown />}
-        <Link className="option" to="/feed">
-          <AiOutlineSetting />
-        </Link>
         <Link className="option" to="/profile">
           <AiOutlineUser />
+        </Link>
+        <Link className="option logout" to="/">
+          <FiLogOut/>
         </Link>
       </div>
     </div>
