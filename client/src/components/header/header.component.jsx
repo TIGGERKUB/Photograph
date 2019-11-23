@@ -28,16 +28,7 @@ const Header = ({ hidden,isAuthenticated }) => {
           <div className="option">
             <NotificationIcon />
           </div>
-          {hidden ? null : <NotificationDropdown />}
-          <Link className="option" to="/feed">
-            <AiOutlineSetting />
-          </Link>
-          <Link className="option" to="/profile">
-            <AiOutlineUser />
-          </Link>
-        </div>
-<<<<<<< HEAD
-=======
+        
         {hidden ? null : <NotificationDropdown />}
         <Link className="option" to="/profile">
           <AiOutlineUser />
@@ -45,7 +36,7 @@ const Header = ({ hidden,isAuthenticated }) => {
         <Link className="option logout" to="/">
           <FiLogOut/>
         </Link>
->>>>>>> 2cd0b6b1ca5dfe7e4cea279f86d7055cb60563fc
+        </div>
       </div>
   )}
 
