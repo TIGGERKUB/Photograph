@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Divider,Icon} from 'semantic-ui-react'
 import { connect } from 'react-redux';
-import {Redirect } from "react-router-dom";
+import {Redirect,withRouter } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -10,7 +10,7 @@ import {register} from '../../redux/user/user.actions';
 
 import "./sign-up.styles.scss";
 
-const SignUp = (register,isAuthenticated,error) => {
+const SignUp = ({register,isAuthenticated,error}) => {
   const [userCredential, setUserCredentials] = useState({
     username: "",
     email: "",
@@ -20,6 +20,7 @@ const SignUp = (register,isAuthenticated,error) => {
   const handleSubmit = event => {
     event.preventDefault();
     register(email,username, password);
+    console.log('sad');
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -32,13 +33,16 @@ const SignUp = (register,isAuthenticated,error) => {
            <p>{error.message}</p>
         );
     }
-  // let authRedirect = null;
-  //   if (isAuthenticated) {
-  //      authRedirect = <Redirect to="/feed" />
-  //   }
+  let authRedirect = null;
+   if (isAuthenticated) {
+    // authRedirect = console.log('isAuthenticated : ' +isAuthenticated);
+       authRedirect = <Redirect to="/feed" />
+      // authRedirect.history.push("/feed");
+    }
   return (
     <div className="regist-form">
-      {/* {authRedirect} */}
+      {/* {isAuthenticated?(<Redirect to ="/feed"/>):null} */}
+      {authRedirect}
       {errorMessage}
       <h2>Sign Up</h2>
       <p>or sign in with social network</p>
@@ -78,11 +82,11 @@ const SignUp = (register,isAuthenticated,error) => {
           handleChange={handleChange}
           label="Password"
           required
-        />
-      </form>
-      <div className="button">
+        /><div className="button">
         <CustomButton type="submit">Sign Up</CustomButton>
       </div>
+      </form>
+      
     </div>
   );
 };
@@ -105,8 +109,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(SignUp);
+)(SignUp));
 

@@ -63,7 +63,6 @@ export const register = (email,username,password) => {
     }
 }
 
-
 export const auth = (authData,url) => {
     return dispatch => {
         dispatch(authStart());
