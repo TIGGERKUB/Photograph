@@ -1,6 +1,7 @@
 import React from "react";
 import { IoIosSearch } from "react-icons/io";
-import { AiOutlineSetting, AiOutlineUser } from "react-icons/ai";
+import { AiOutlineUser } from "react-icons/ai";
+import {FiLogOut} from 'react-icons/fi'
 import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
@@ -35,6 +36,16 @@ const Header = ({ hidden,isAuthenticated }) => {
             <AiOutlineUser />
           </Link>
         </div>
+<<<<<<< HEAD
+=======
+        {hidden ? null : <NotificationDropdown />}
+        <Link className="option" to="/profile">
+          <AiOutlineUser />
+        </Link>
+        <Link className="option logout" to="/">
+          <FiLogOut/>
+        </Link>
+>>>>>>> 2cd0b6b1ca5dfe7e4cea279f86d7055cb60563fc
       </div>
   )}
 
