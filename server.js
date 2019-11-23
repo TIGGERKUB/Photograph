@@ -11,8 +11,8 @@ app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 
 
-var Users = require('./routes/Users');
-app.use('/users',Users);
+var Auth = require('./app/routers/auth');
+app.use('/auth',Auth);
 
 var server=app.listen(port, () => {
     console.log("We have started our server on port : " +port);
