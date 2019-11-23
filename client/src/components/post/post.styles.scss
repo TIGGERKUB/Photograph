@@ -1,0 +1,18 @@
+.add {
+    position: absolute;
+    font-size: 60px;
+    right: -10vw;
+    margin-top: 90vh;
+    cursor: pointer;
+    &:hover{
+        color: #29a19c;
+    }
+}
+.post-form{
+    padding: 40px;
+}
+.post-btn-container{
+    margin-top:20px;
+    position: relative;
+    float: right;
+}

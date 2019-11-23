@@ -2,12 +2,12 @@ import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 
 import ButtonOutline from "../../components/button-outline/button-outline.component";
-import ProfileImg from "../../components/profile-img/profile-img.component";
-import ProfileHeader from "../../components/profile-header/profile-header.component";
-import ProfileFollower from "../../components/profile-follower/profile-follower.component";
-import ProfileFollwing from "../../components/profile-following/profile-following.component";
-import ProfileBio from "../../components/profile-bio/profile-bio.component";
-import ProfilePane from "../../components/profile-pane/profile-pane.component";
+import ProfileImg from "../../components/profile/profile-img/profile-img.component";
+import ProfileHeader from "../../components/profile/profile-header/profile-header.component";
+import ProfileFollower from "../../components/profile/profile-follower/profile-follower.component";
+import ProfileFollwing from "../../components/profile/profile-following/profile-following.component";
+import ProfileBio from "../../components/profile/profile-bio/profile-bio.component";
+import ProfilePane from "../../components/profile/profile-pane/profile-pane.component";
 
 import "./profile.styles.scss";
 

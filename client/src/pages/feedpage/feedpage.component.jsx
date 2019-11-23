@@ -1,8 +1,8 @@
 import React, { createRef} from "react";
-import { IoIosAddCircleOutline } from "react-icons/io";
 import { Grid, Rail, Ref, Sticky } from "semantic-ui-react";
 
 import FeedCard from "../../components/feed-card/feed-card.component";
+import Post from '../../components/post/post.component'
 
 import "./feedpage.styles.scss";
 
@@ -21,7 +21,7 @@ class Feedpage extends React.Component {
 
               <Rail position="right">
                 <Sticky context={this.contextRef}>
-                  <IoIosAddCircleOutline className="add" />
+                  <Post/>
                 </Sticky>
               </Rail>
             </Grid.Column>

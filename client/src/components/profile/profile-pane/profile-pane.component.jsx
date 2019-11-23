@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { Tab, Container, Grid } from "semantic-ui-react";
 
-import Picture from "../Picture/Picture.component";
+import Picture from "../../Picture/Picture.component";
 
-import { selectCollectionsForPreview } from "../../redux/data/data.selector";
+import { selectCollectionsForPreview } from "../../../redux/data/data.selector";
 
 import "./profile-pane.styles.scss";
 
