@@ -4,15 +4,22 @@
     right: -10vw;
     margin-top: 90vh;
     cursor: pointer;
-    &:hover{
+
+    &:hover {
         color: #29a19c;
     }
 }
-.post-form{
+
+.caption-container {
     padding: 40px;
-}
-.post-btn-container{
-    margin-top:20px;
-    position: relative;
-    float: right;
+    display: flex;
+    flex-direction: column;
+    .caption-box{
+        padding: 12px;
+        border-radius: 10px;
+        outline: none;
+    }
+    .post-btn-container {
+        margin-top: 20px;
+    }
 }

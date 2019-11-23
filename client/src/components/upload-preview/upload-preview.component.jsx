@@ -1,4 +1,5 @@
 import React from "react";
+import PicturePlaceholder from '../picture-placeholder/picture-placeholder.component'
 
 import "./upload-preview.styles.scss";
 
@@ -16,14 +17,15 @@ class Upload extends React.Component {
     });
   }
   render() {
+    const {isUploadProfile} = this.props;
+    
     return (
       <div>
-        <div className="upload-container">
-          <div
-            style={{ backgroundImage: `url(${this.state.file})` }}
-            className="upload-preview"
-          />
-        </div>
+        {isUploadProfile ? (
+          <PicturePlaceholder file={this.state.file} isProfilePlaceholder />
+        ) : (
+          <PicturePlaceholder file={this.state.file} isPlaceholder />
+        )}
         <br />
         <input type="file" onChange={this.handleChange} />
       </div>

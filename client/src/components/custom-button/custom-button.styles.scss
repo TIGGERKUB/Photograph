@@ -47,6 +47,14 @@
             border: none;
         }
     }
+    &.green-btn{
+        background-color: #42b883;
+        color: #ffff;
+        &:hover {
+            background-color: #2c7873;
+            border: none;
+        }
+    }
 
     &.inverted {
         background-color: white;

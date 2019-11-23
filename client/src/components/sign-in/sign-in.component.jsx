@@ -20,7 +20,7 @@ const SignIn = ({login,isAuthenticated,error}) => {
   const handleSubmit = event => {
     event.preventDefault();
     login(username, password);
-    // setUserCredentials({ username: "", password: "" });
+    
   };
   const handleChange = event => {
     const { value, name } = event.target;

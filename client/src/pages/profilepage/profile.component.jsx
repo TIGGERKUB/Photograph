@@ -1,8 +1,8 @@
 import React from "react";
 import { Container, Grid } from "semantic-ui-react";
 
-import ButtonOutline from "../../components/button-outline/button-outline.component";
-import ProfileImg from "../../components/profile/profile-img/profile-img.component";
+import EditProfile from "../../components/profile/edit-profile/edit-profile.component";
+import PicturePlaceholder from '../../components/picture-placeholder/picture-placeholder.component'
 import ProfileHeader from "../../components/profile/profile-header/profile-header.component";
 import ProfileFollower from "../../components/profile/profile-follower/profile-follower.component";
 import ProfileFollwing from "../../components/profile/profile-following/profile-following.component";
@@ -11,9 +11,8 @@ import ProfilePane from "../../components/profile/profile-pane/profile-pane.comp
 
 import "./profile.styles.scss";
 
-class ProfilePage extends React.Component{
-  
-  render(){
+class ProfilePage extends React.Component {
+  render() {
     return (
       <Container className="profile-container">
         <Grid>
@@ -40,13 +39,11 @@ class ProfilePage extends React.Component{
           </Grid.Column>
 
           <Grid.Column width={6}>
-            <ProfileImg />
-            <div className="profile-edit-btn">
-              <ButtonOutline>edit profile</ButtonOutline>
-            </div>
+            <PicturePlaceholder file="https://i.ibb.co/CbYjm3k/woodwatch-7hye-LUn6388-unsplash.jpg" isProfile/>
+            <EditProfile />
           </Grid.Column>
         </Grid>
-      <ProfilePane/>
+        <ProfilePane />
       </Container>
     );
   }

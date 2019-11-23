@@ -6,6 +6,7 @@ const CustomButton = ({
   isFacebookSignIn,
   isTwitterSignIn,
   isGoogleSignIn,
+  isGreen,
   inverted,
   ...otherProps
 }) => (
@@ -13,7 +14,8 @@ const CustomButton = ({
     className={`${inverted ? "inverted" : ""}
     ${isFacebookSignIn ? "facebook-sign-in" : ""}
     ${isTwitterSignIn ? "twitter-sign-in" : ""}
-    ${isGoogleSignIn ? "google-sign-in" : ""} custom-button`}
+    ${isGoogleSignIn ? "google-sign-in" : ""} 
+    ${isGreen ? "green-btn" : ""} custom-button`}
     {...otherProps}
   >
     {children}
