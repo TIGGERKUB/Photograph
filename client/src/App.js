@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Header from "./components/header/header.component";
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
 import SignUpPage from "./pages/sign-up-page/sign-up-page.component";
+import Logout from "./components/logout/logout.component";
 import FeedPage from "./pages/feedpage/feedpage.component";
 import SearchPage from "./pages/search-page/search-page.component";
 import ProfilePage from "./pages/profilepage/profile.component";
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path="/feed" component={FeedPage} />
           <Route exact path="/search" component={SearchPage} />
           <Route exact path="/profile" component={ProfilePage} />
+          <Route exact path="/logout" component={Logout} />
           <Redirect to="/feed" />
         </Switch>
       );

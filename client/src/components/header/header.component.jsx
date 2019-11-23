@@ -33,7 +33,7 @@ const Header = ({ hidden,isAuthenticated }) => {
         <Link className="option" to="/profile">
           <AiOutlineUser />
         </Link>
-        <Link className="option logout" to="/">
+        <Link className="option logout" to="/logout">
           <FiLogOut/>
         </Link>
         </div>

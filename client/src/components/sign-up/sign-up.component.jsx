@@ -33,6 +33,7 @@ const SignUp = ({register,isAuthenticated,error}) => {
            <p>{error.message}</p>
         );
     }
+
   let authRedirect = null;
    if (isAuthenticated) {
     // authRedirect = console.log('isAuthenticated : ' +isAuthenticated);
@@ -41,9 +42,9 @@ const SignUp = ({register,isAuthenticated,error}) => {
     }
   return (
     <div className="regist-form">
-      {/* {isAuthenticated?(<Redirect to ="/feed"/>):null} */}
-      {authRedirect}
       {errorMessage}
+      {authRedirect}
+      
       <h2>Sign Up</h2>
       <p>or sign in with social network</p>
       <div className="social-login">
