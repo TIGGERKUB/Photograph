@@ -1,21 +1,26 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link,Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import {login} from '../../redux/user/user.actions';
+
 import "./sign-in.styles.scss";
 
-const SignIn = () => {
+const SignIn = ({login,isAuthenticated,error}) => {
   const [userCredential, setUserCredentials] = useState({
     username: "",
     password: ""
   });
+
+ 
   const { username, password } = userCredential;
   const handleSubmit = event => {
     event.preventDefault();
-    
-    setUserCredentials({ username: "", password: "" });
+    login(username, password);
+    // setUserCredentials({ username: "", password: "" });
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -23,8 +28,20 @@ const SignIn = () => {
     setUserCredentials({ ...userCredential, [name]: value });
   };
 
+  let errorMessage = null;
+    if ( error ) {
+        errorMessage = (
+           <p>{error.message}</p>
+        );
+    }
+  let authRedirect = null;
+    if ( isAuthenticated ) {
+        authRedirect = <Redirect to="/feed" />
+    }
   return (
     <div className="login-form">
+      {authRedirect}
+      {errorMessage}
       <h2 className="login-brand">Photograph</h2>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -54,4 +71,26 @@ const SignIn = () => {
     </div>
   );
 };
-export default SignIn;
+
+
+const mapStateToProps = state => {
+  return {
+      loading: state.user.loading,
+      error: state.user.error,
+      isAuthenticated: state.user.token !== null,
+      authRedirectPath: state.user.authRedirectPath
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (username, password) => dispatch(login(username, password))
+  };
+};
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignIn);
+

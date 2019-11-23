@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import {Divider,Icon} from 'semantic-ui-react'
+import { connect } from 'react-redux';
+import {Redirect } from "react-router-dom";
 
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
 
+import {register} from '../../redux/user/user.actions';
+
 import "./sign-up.styles.scss";
 
-const SignUp = () => {
+const SignUp = (register,isAuthenticated,error) => {
   const [userCredential, setUserCredentials] = useState({
     username: "",
     email: "",
@@ -15,15 +19,27 @@ const SignUp = () => {
   const { username, email, password } = userCredential;
   const handleSubmit = event => {
     event.preventDefault();
-    setUserCredentials({ username: "", email: "", password: "" });
+    register(email,username, password);
   };
   const handleChange = event => {
     const { value, name } = event.target;
     setUserCredentials({ ...userCredential, [name]: value });
   };
 
+  let errorMessage = null;
+    if ( error ) {
+        errorMessage = (
+           <p>{error.message}</p>
+        );
+    }
+  // let authRedirect = null;
+  //   if (isAuthenticated) {
+  //      authRedirect = <Redirect to="/feed" />
+  //   }
   return (
     <div className="regist-form">
+      {/* {authRedirect} */}
+      {errorMessage}
       <h2>Sign Up</h2>
       <p>or sign in with social network</p>
       <div className="social-login">
@@ -70,4 +86,27 @@ const SignUp = () => {
     </div>
   );
 };
-export default SignUp;
+
+
+
+const mapStateToProps = state => {
+  return {
+      loading: state.user.loading,
+      error: state.user.error,
+      isAuthenticated: state.user.token !== null,
+      authRedirectPath: state.user.authRedirectPath
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    register: (email,username, password) => dispatch(register(email,username, password))
+  };
+};
+
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);
+

@@ -9,33 +9,46 @@ import NotificationDropdown from "../notification-dropdown/notification-dropdown
 
 import "./header.styles.scss";
 import { selectNotificationHidden } from "../../redux/notification/notification.selector";
+import {selectCurrentUser} from "../../redux/user/user.selectors";
 import { connect } from "react-redux";
 
-const Header = ({ hidden }) => {
-  return (
-    <div className="header">
-      <Link className="brand" to="/feed">
-        Photograph
-      </Link>
-      <div className="options">
-        <Link className="option" to="/search">
-          <IoIosSearch />
+const Header = ({ hidden,isAuthenticated }) => {
+  let head_nav = null;
+  if(isAuthenticated){
+    head_nav = (
+        <div className="header">
+        <Link className="brand" to="/feed">
+          Photograph
         </Link>
-        <div className="option">
-          <NotificationIcon />
+        <div className="options">
+          <Link className="option" to="/search">
+            <IoIosSearch />
+          </Link>
+          <div className="option">
+            <NotificationIcon />
+          </div>
+          {hidden ? null : <NotificationDropdown />}
+          <Link className="option" to="/feed">
+            <AiOutlineSetting />
+          </Link>
+          <Link className="option" to="/profile">
+            <AiOutlineUser />
+          </Link>
         </div>
-        {hidden ? null : <NotificationDropdown />}
-        <Link className="option" to="/feed">
-          <AiOutlineSetting />
-        </Link>
-        <Link className="option" to="/profile">
-          <AiOutlineUser />
-        </Link>
       </div>
+  )}
+
+  return (
+    <div>
+      {head_nav}
     </div>
+    
   );
 };
 const mapStateToProps = createStructuredSelector({
-  hidden: selectNotificationHidden
+  hidden: selectNotificationHidden,
+  isAuthenticated: selectCurrentUser
 });
+
+
 export default connect(mapStateToProps)(Header);
