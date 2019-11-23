@@ -10,21 +10,6 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(bodyParser.urlencoded({extended:false}));
 
-// app.get("/test",(req, res) => {
-//     var sql = "SELECT * FROM user"
-//     connection.query(sql,(err, test) => {
-//         if (err) throw err;
-//         return res.json({
-//             data: test
-//         })
-//     })
-// })
-
-// app.get("/test/add",(req, res) => {
-//     const {name,price} = req.query;
-//     console.log(name,price);
-//     res.send('adding Product');
-// })
 
 var Users = require('./routes/Users');
 app.use('/users',Users);
