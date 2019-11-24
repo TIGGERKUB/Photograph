@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 11:47 AM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Generation Time: Nov 24, 2019 at 12:48 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comment` (
   `comment_id` int(8) NOT NULL,
   `comment` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `photo_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -45,7 +45,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `followers` (
   `user_id` int(8) NOT NULL,
   `follower_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `followers` (
 CREATE TABLE `following` (
   `user_id` int(8) NOT NULL,
   `following_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -93,7 +93,7 @@ CREATE TABLE `group_member` (
 
 CREATE TABLE `likes` (
   `like_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `photo_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,7 +121,7 @@ CREATE TABLE `photo` (
 CREATE TABLE `report` (
   `report_id` int(8) NOT NULL,
   `reason` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL,
   `photo_id` int(8) NOT NULL,
   `reporter` int(8) NOT NULL
@@ -146,33 +146,8 @@ CREATE TABLE `user` (
   `phone` varchar(10) NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
   `profile_caption` varchar(255) NOT NULL,
-  `created` date NOT NULL DEFAULT current_timestamp()
+  `created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `first_name`, `last_name`, `gender`, `age`, `birthday`, `phone`, `profile_pic`, `profile_caption`, `created`) VALUES
-(4, 'a', '$2a$10$GQGs78x/q9MCkkQKjTAGKutqKeb0Kg.X2gYaIfoqtcpL7IrCy9a5S', '', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(5, 'b', '$2a$10$Habxvxn26dIB9m2nE9LwAOkYobIlnbWDDTgcBkDjawrgQiDKi3sUm', '', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(6, 'f', '$2a$10$P52eHOexQCTEUbLXmLlyD..KcYe/mhdREfrPB54Fz/swLe9dlxCMS', '', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(7, 'q', '$2a$10$O7AgYl9AM1jhNOcS/yOl4eP2uUcjo8n8CDcYtAZOzKFUDpjMOsaXe', 'q@q.q', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(9, 'g', '$2a$10$Kf/fJqO8fQV7GV1xZtBx9.gJUIVFdqt667DFOt8wtmYx0VMH5k03e', 'g@g.g', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(10, 'k', '$2a$10$Whab.wj777Bn6TPNpZiZz.1yBFYdQLNN2P9wDhJbSY9s.P4ivAU7e', 'k@k.k', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-22'),
-(11, 'yy', '$2a$10$qLpTuGvXx5AHy5rKj/NQGuVLlwLYhPmWobWgiXPUPUEG7g9GZTBIe', 'ytt@ttt.com', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(12, 'dxsfgdsgf', '$2a$10$Ixj7yvoWxoPdthWY4sqMzOYyyDdhWwINylOkhnjjpXWIEzfRwFLPC', 'wqwewqe@dsf.com', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(13, 't', '$2a$10$jN85HClO3wxP26jGqp4eEOCupEZ5XzymtcOeETyx6AWWypHGg/IZ6', 't@t.t', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(14, 'asdsadasd', '$2a$10$vS8zsyr5XHG7UDmwlYl0NeYt8.0Q8emGMv7oi5zBmFtR9ATJ.Hsma', 'asadsad@a.casd', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(15, 'm', '$2a$10$mUPH4Y1uZOssAK5ZAwk3bOG8KMAosoJYbmtyk6C0fsBEk8sdpBgRe', 'm@m.c', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(16, 'h', '$2a$10$PzrNMeoAKBlJhlaAlCheQ.Wvc4oDFFqFau5HXpgUCTPRFS0Y8XCB.', 'h@gh.x', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(17, 'gdfh', '$2a$10$1.7niOEudj4EgvJCOhn8pe.4J3HubXN7RtQaI2eQX3G5Mn4xR.t96', 'dfgdfg@sdf.cv', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(18, 'asdsadsad', '$2a$10$eB5ZlzARvkqoH7.4xBpGJOoyxof.h0lPVuZ8GRsOWeZoHxn3d201y', 'dfgdfg@sdf.sdasdadscv', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(19, 'asdsadssdsdad', '$2a$10$BJSdYUG3UCp0DwvoHDIh7edb52ciPkMY3ggjSzeR..1WFSwxrmlrK', 'dfgdfgsdsd@sdf.sdasdadscv', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(20, 'asdsasssdssdsdad', '$2a$10$ZTkmyae/EmHD3Upr6EE.Qu4qPRyPo2NGiGRs6KxgZnKkVBnaVrEEm', 'dfgdfgsdssssd@sdf.sdasdssadscv', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(21, 'fsaf', '$2a$10$G4lK0DQU6xcYDMcB6nVuOu8RoBv8UHLUMg3Y3xNwfBf9mT0eLA8PC', 'af@ads.cs', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(22, 'asdasdw', '$2a$10$e308DAwbyDVq0lJceZieCurNnr5Fuy/VUVt3VmIqIeTfKM9sWyP7q', 'qweee@qwe.cs', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23'),
-(23, 'ggggg', '$2a$10$R.oox7sJ1qB1bfPXoVJULeQKkec4GOoYO5.GkD39vg7B0V42gda.y', 'ggg@ggg.gg', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-23');
 
 --
 -- Indexes for dumped tables
@@ -285,7 +260,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

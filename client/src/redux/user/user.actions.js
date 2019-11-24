@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthorizationToken from '../../axios/axios.defaults';
+
 import * as actionTypes from './user.types';
 
 export const authStart = () => {
@@ -65,13 +66,10 @@ export const register = (email,username,password) => {
 export const auth = (authData,url) => {
     return dispatch => {
         dispatch(authStart());
-        
         axios.post(url, authData)
             .then(response => {
-              
                 console.log(response);
                 // console.log(response);
-            
                 //const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
                  const expirationDate = new Date(new Date().getTime() + 86400 * 1000);
                  localStorage.setItem('token', response.data.token);

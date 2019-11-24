@@ -1,10 +1,9 @@
+const jwt = require('jsonwebtoken');
 const config = require('../config/config.js');
-const db = require('../config/db.config.js');
-const User = db.user;
 
 verifyToken = (req, res, next) => {
-	let token = req.headers['x-access-token'];
-  
+	let token = req.headers['authorization-access-token'];
+	console.log('check verifyToken = ' + token);
 	if (!token){
 		return res.status(403).send({ 
 			auth: false, message: 'No token provided.' 
@@ -13,12 +12,14 @@ verifyToken = (req, res, next) => {
 
 	jwt.verify(token, config.secret, (err, decoded) => {
 		if (err){
+			console.log('err verifyToken = ' + err);
 			return res.status(500).send({ 
 					auth: false, 
 					message: 'Fail to Authentication. Error -> ' + err 
 				});
 		}
-		req.userId = decoded.id;
+		req.user_id = decoded.user_id;
+		console.log("req.user_id = " + req.user_id);
 		next();
 	});
 }

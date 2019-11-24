@@ -8,7 +8,7 @@ exports.signup = (req, res) => {
 	// Save User to Database
 	console.log("Processing func -> SignUp");
 	const today = new Date();
-	
+
 	User.create({
 		username: req.body.username,
 		email: req.body.email,
@@ -20,7 +20,7 @@ exports.signup = (req, res) => {
 				username: req.body.username
 			}
 		}).then(user => {
-			var token = jwt.sign({ id: user.id }, config.secret, {
+			var token = jwt.sign({ user_id: user.user_id }, config.secret, {
 				expiresIn: 86400 // expires in 24 hours
 			  });
 			console.log('registerd!');
@@ -50,7 +50,7 @@ exports.signin = (req, res) => {
 			return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!" });
 		}
 		
-		var token = jwt.sign({ id: user.id }, config.secret, {
+		var token = jwt.sign({ user_id: user.user_id }, config.secret, {
 		  expiresIn: 86400 // expires in 24 hours
 		});
 		
