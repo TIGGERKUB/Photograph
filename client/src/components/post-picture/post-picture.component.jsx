@@ -3,11 +3,11 @@ import { Modal } from "semantic-ui-react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 
 import Upload from "../upload-preview/upload-preview.component";
-import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomButton from "../custom-button/custom-button.component";
 
-import "./post.styles.scss";
+import "./post-picture.styles.scss";
 
-const Post = () => (
+const PostPicture = () => (
   <Modal trigger={<IoIosAddCircleOutline className="add" />}>
     <Modal.Header>New Post</Modal.Header>
     <Modal.Content image scrolling>
@@ -24,4 +24,4 @@ const Post = () => (
     </Modal.Content>
   </Modal>
 );
-export default Post;
+export default PostPicture;

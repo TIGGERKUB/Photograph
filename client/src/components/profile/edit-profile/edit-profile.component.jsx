@@ -1,5 +1,5 @@
 import React from "react";
-import { Modal, Form,Input } from "semantic-ui-react";
+import { Modal, Form } from "semantic-ui-react";
 
 import ButtonOutline from "../../button-outline/button-outline.component";
 import Upload from "../../upload-preview/upload-preview.component";
@@ -8,13 +8,13 @@ import CustomButton from "../../custom-button/custom-button.component";
 import "./edit-profile.styles.scss";
 
 const EditProfile = () => {
-  const handleSubmit = event => {
-    event.preventDefault();
-  };
-  const handleChange = event => {
-    const { value, name } = event.target;
-    // setUserCredentials({ ...userCredential, [name]: value });
-  };
+  // const handleSubmit = event => {
+  //   event.preventDefault();
+  // };
+  // const handleChange = event => {
+  //   const { value, name } = event.target;
+  //   setUserCredentials({ ...userCredential, [name]: value });
+  // };
   const options = [
     { key: "m", text: "Male", value: "male" },
     { key: "f", text: "Female", value: "female" },
@@ -58,7 +58,7 @@ const EditProfile = () => {
               label="Phone Number"
               placeholder="Phone Number"
             />
-            <br />
+            <br/>
             <CustomButton type="submit" isGreen>
               SAVE
             </CustomButton>

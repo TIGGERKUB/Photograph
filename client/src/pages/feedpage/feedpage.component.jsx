@@ -1,34 +1,39 @@
-import React, { createRef} from "react";
+import React, { createRef } from "react";
 import { Grid, Rail, Ref, Sticky } from "semantic-ui-react";
+import { createStructuredSelector } from "reselect";
+import {connect} from 'react-redux'
 
 import FeedCard from "../../components/feed-card/feed-card.component";
-import Post from '../../components/post/post.component'
+import PostPicture from "../../components/post-picture/post-picture.component";
+
+import {selectFeedPost} from '../../redux/feed/feed.selector'
 
 import "./feedpage.styles.scss";
 
-class Feedpage extends React.Component {
-  contextRef = createRef();
-  render() {
-    return (
-      <div>
-        <Grid centered columns={3}>
-          <Ref innerRef={this.contextRef}>
-            <Grid.Column>
-              <FeedCard />
-              <FeedCard />
-              <FeedCard />
-              <FeedCard />
+const Feedpage = ({post}) => {
+  
+  const contextRef = createRef();
 
-              <Rail position="right">
-                <Sticky context={this.contextRef}>
-                  <Post/>
-                </Sticky>
-              </Rail>
-            </Grid.Column>
-          </Ref>
-        </Grid>
-      </div>
-    );
-  }
-}
-export default Feedpage;
+  return (
+    <div>
+      <Grid centered columns={3}>
+        <Ref innerRef={contextRef}>
+          <Grid.Column>
+            {
+              post.map( item => (<FeedCard item={item}/>))
+            }
+            <Rail position="right">
+              <Sticky context={contextRef}>
+                <PostPicture />
+              </Sticky>
+            </Rail>
+          </Grid.Column>
+        </Ref>
+      </Grid>
+    </div>
+  );
+};
+const mapStateToProps = createStructuredSelector({
+  post: selectFeedPost
+});
+export default connect(mapStateToProps)(Feedpage);

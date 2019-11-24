@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 
 import SearchBox from "../../components/search-box/search-box.component";
-import Picture from "../../components/Picture/Picture.component";
+import Picture from '../../components/Picture/Picture.component'
 
 import { selectPicture } from "../../redux/data/data.selector";
 
