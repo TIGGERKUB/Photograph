@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 18, 2019 at 01:18 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Host: localhost
+-- Generation Time: Nov 24, 2019 at 12:48 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.1.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `comment` (
   `comment_id` int(8) NOT NULL,
   `comment` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `photo_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -45,7 +45,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `followers` (
   `user_id` int(8) NOT NULL,
   `follower_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -57,7 +57,7 @@ CREATE TABLE `followers` (
 CREATE TABLE `following` (
   `user_id` int(8) NOT NULL,
   `following_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -93,7 +93,7 @@ CREATE TABLE `group_member` (
 
 CREATE TABLE `likes` (
   `like_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `photo_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -121,7 +121,7 @@ CREATE TABLE `photo` (
 CREATE TABLE `report` (
   `report_id` int(8) NOT NULL,
   `reason` varchar(255) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL,
   `photo_id` int(8) NOT NULL,
   `reporter` int(8) NOT NULL
@@ -136,7 +136,7 @@ CREATE TABLE `report` (
 CREATE TABLE `user` (
   `user_id` int(8) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(25) NOT NULL,
+  `password` text NOT NULL,
   `email` varchar(60) NOT NULL,
   `first_name` varchar(50) NOT NULL,
   `last_name` varchar(50) NOT NULL,
@@ -145,15 +145,9 @@ CREATE TABLE `user` (
   `birthday` date NOT NULL,
   `phone` varchar(10) NOT NULL,
   `profile_pic` varchar(255) NOT NULL,
-  `profile_caption` varchar(255) NOT NULL
+  `profile_caption` varchar(255) NOT NULL,
+  `created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `first_name`, `last_name`, `gender`, `age`, `birthday`, `phone`, `profile_pic`, `profile_caption`) VALUES
-(1, 'a', 'a', 'a', 'a', 'a', 'a', 0, '2019-11-21', 'sd', 'asd', 'asd');
 
 --
 -- Indexes for dumped tables
@@ -266,7 +260,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
