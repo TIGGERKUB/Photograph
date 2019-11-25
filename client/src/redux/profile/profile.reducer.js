@@ -1,11 +1,11 @@
 import * as actionTypes from './profile.types';
 import { updateObject } from '../../shared/utility';
 
-const initialState = {
+const INITIAL_STATE = {
     username:null,
     no_photo:0,
     no_following:0,
-    no_follwers:0,
+    no_followers:0,
     error:null,
     loading: false,
     followers: [
@@ -42,11 +42,9 @@ const profileSuccess = (state, action) => {
         username:action.username,
         no_photo:action.no_photo,
         no_following:action.no_following,
-        no_followers:action.no_follwers,
         error:null,
-        loading: false
-     } );
-};
+    })
+  }
 
 const profileFail = (state, action) => {
     return updateObject( state, {
@@ -60,7 +58,7 @@ const profileFail = (state, action) => {
 //     return updateObject(state, { authRedirectPath: action.path })
 // }
 
-const profileReducer = ( state = initialState, action ) => {
+const profileReducer = ( state = INITIAL_STATE, action ) => {
     switch ( action.type ) {
         case actionTypes.PROFILE_START: return profileStart(state, action);
         case actionTypes.PROFILE_SUCCESS: return profileSuccess(state, action);

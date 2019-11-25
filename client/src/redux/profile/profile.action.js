@@ -14,7 +14,7 @@ export const profileSuccess = (result) => {
         username:result.username,
         no_photo:result.no_photo,
         no_following:result.no_following,
-        no_follwers:result.no_follwers
+        no_followers:result.no_followers
     };
 };
 
