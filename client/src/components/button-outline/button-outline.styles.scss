@@ -1,7 +1,7 @@
 .outline-button {
     min-width: 80px;
     width: auto;
-    height: 50px;
+    height: 40px;
     letter-spacing: 0.5px;
     line-height: 30px;
     padding: 0 15px 0 15px;
@@ -15,7 +15,7 @@
     display: flex;
     justify-content: center;
     border: 1px solid black;
-    border-radius: 20px;
+    border-radius: 15px;
     outline: none;
 
     &:hover {

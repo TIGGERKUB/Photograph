@@ -16,7 +16,7 @@ import "./profile.styles.scss";
 
 
 const ProfilePage = ({followerLists})=>{
-  
+
     return (
       <Container className="profile-container">
         <Grid>

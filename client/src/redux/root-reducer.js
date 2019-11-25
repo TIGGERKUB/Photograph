@@ -5,6 +5,7 @@ import notificationReducer from './notification/notification.reducer';
 import galleryReducer from './data/data.reducer';
 import feedReducer from './feed/feed.reducer'
 import profileReducer from './profile/profile.reducer';
+import searchReducer from'./search/search.reducer'
 
 import storage from "redux-persist/lib/storage";
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   notification: notificationReducer,
   gallery: galleryReducer,
   feed: feedReducer,
-  profile: profileReducer
+  profile: profileReducer,
+  search: searchReducer
 });
 
 
