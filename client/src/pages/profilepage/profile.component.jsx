@@ -6,8 +6,7 @@ import {createStructuredSelector} from 'reselect'
 import EditProfile from "../../components/profile/edit-profile/edit-profile.component";
 import PicturePlaceholder from '../../components/picture-placeholder/picture-placeholder.component'
 import ProfileHeader from "../../components/profile/profile-header/profile-header.component";
-import ProfileFollower from "../../components/profile/profile-follower/profile-follower.component";
-import ProfileFollwing from "../../components/profile/profile-following/profile-following.component";
+import ProfileFollow from '../../components/profile/profile-follow/profile-follow.component'
 import ProfileBio from "../../components/profile/profile-bio/profile-bio.component";
 import ProfilePane from "../../components/profile/profile-pane/profile-pane.component";
 
@@ -25,14 +24,17 @@ const ProfilePage = ({followerLists})=>{
             <Grid.Row stretched>
               <Grid.Column width={4}>
                 <Grid columns="equal" textAlign="center">
-                  <Grid.Column width={6}>
+                  <Grid.Column width={7}>
                     <ProfileHeader />
                   </Grid.Column>
-                  <Grid.Column width={5}>
-                    <ProfileFollower list={followerLists} total="40 K" />
+                  <Grid.Column width={3}>
+                    <ProfileFollow list={followerLists} total="40 K" label="Followers"/>
                   </Grid.Column>
-                  <Grid.Column width={5}>
-                    <ProfileFollwing list={followerLists} total="100"/>
+                  <Grid.Column width={3}>
+                    <ProfileFollow list={followerLists} total="100" label="Followings"/>
+                  </Grid.Column>
+                  <Grid.Column width={3}>
+                    <ProfileFollow total="20" label="Posts" isPost/>
                   </Grid.Column>
                 </Grid>
               </Grid.Column>

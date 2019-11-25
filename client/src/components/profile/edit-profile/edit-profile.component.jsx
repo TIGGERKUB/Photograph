@@ -26,43 +26,62 @@ const EditProfile = () => {
         <Modal.Header>Edit Profile</Modal.Header>
         <Modal.Content>
           <Upload isUploadProfile="true" />
-          <br/>
-          <form>
+          <br />
+          <Form>
             <Form.Input
               fluid
+              name="username"
               type="text"
-              label="First name"
-              placeholder="First name"
+              label="Username"
+              placeholder="Username"
             />
-            <Form.Input
-              fluid
-              type="text"
-              label="Last name"
-              placeholder="Last name"
-            />
+           <Form.Group widths='equla'>
+              <Form.Input
+                fluid
+                name="firstname"
+                type="text"
+                label="First name"
+                placeholder="First name"
+              />
+              <Form.Input
+                fluid
+                name="lastname"
+                type="text"
+                label="Last name"
+                placeholder="Last name"
+              />
+           </Form.Group>
             <Form.Select
               fluid
+              name="gender"
               label="Gender"
               options={options}
               placeholder="Gender"
             />
             <Form.Input
               fluid
+              name="birth"
               type="date"
               label="Birth Date"
               placeholder="Birth Date"
             />
             <Form.Input
               fluid
+              name="phone"
               type="number"
               label="Phone Number"
               placeholder="Phone Number"
             />
-            <br/>
+            <Form.TextArea
+            name="bio"
+              label="Bio"
+              placeholder="Tell us more about you..."
+            />
+            <br />
             <CustomButton type="submit" isGreen>
               SAVE
             </CustomButton>
-          </form>
+          </Form>
         </Modal.Content>
       </Modal>
     </div>
