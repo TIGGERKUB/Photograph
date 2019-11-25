@@ -10,6 +10,7 @@ import FeedPage from "./pages/feedpage/feedpage.component";
 import SearchPage from "./pages/search-page/search-page.component";
 import ProfilePage from "./pages/profilepage/profile.component";
 import {authCheckState} from "./redux/user/user.actions";
+import setAuthorizationToken from './axios/axios.defaults';
 
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
@@ -17,6 +18,8 @@ import "./App.css";
 class App extends Component {
    componentDidMount () {
     this.props.authCheckState();
+    setAuthorizationToken(localStorage.getItem('token'));
+
   }
 
   render(){
