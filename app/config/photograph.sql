@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Nov 24, 2019 at 12:48 PM
+-- Generation Time: Nov 25, 2019 at 04:32 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.1.28
 
@@ -45,7 +45,7 @@ CREATE TABLE `comment` (
 CREATE TABLE `followers` (
   `user_id` int(8) NOT NULL,
   `follower_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -57,9 +57,16 @@ CREATE TABLE `followers` (
 CREATE TABLE `following` (
   `user_id` int(8) NOT NULL,
   `following_id` int(8) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `following`
+--
+
+INSERT INTO `following` (`user_id`, `following_id`, `timestamp`, `status`) VALUES
+(5, 6, '2019-11-24 20:08:29', 'Accept');
 
 -- --------------------------------------------------------
 
@@ -74,6 +81,14 @@ CREATE TABLE `group_detail` (
   `color` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `group_detail`
+--
+
+INSERT INTO `group_detail` (`group_id`, `user_id`, `group_name`, `color`) VALUES
+(1, 5, '22', '12'),
+(2, 5, '22', '22');
+
 -- --------------------------------------------------------
 
 --
@@ -84,6 +99,13 @@ CREATE TABLE `group_member` (
   `group_id` int(8) NOT NULL,
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `group_member`
+--
+
+INSERT INTO `group_member` (`group_id`, `user_id`) VALUES
+(1, 6);
 
 -- --------------------------------------------------------
 
@@ -112,6 +134,29 @@ CREATE TABLE `photo` (
   `user_id` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `photo`
+--
+
+INSERT INTO `photo` (`photo_id`, `photo`, `caption`, `group_id`, `user_id`) VALUES
+(1, '1', '1', 1, 5),
+(2, '12', '21', 1, 5),
+(3, '3', '3', 2, 6);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `profile`
+-- (See below for the actual view)
+--
+CREATE TABLE `profile` (
+`user_id` int(8)
+,`username` varchar(25)
+,`no_photo` bigint(21)
+,`no_following` bigint(21)
+,`no_followers` bigint(21)
+);
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +171,26 @@ CREATE TABLE `report` (
   `photo_id` int(8) NOT NULL,
   `reporter` int(8) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status`
+--
+
+CREATE TABLE `status` (
+  `status` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `status`
+--
+
+INSERT INTO `status` (`status`) VALUES
+('Accept'),
+('Follow Back'),
+('Reject'),
+('Requested');
 
 -- --------------------------------------------------------
 
@@ -148,6 +213,23 @@ CREATE TABLE `user` (
   `profile_caption` varchar(255) NOT NULL,
   `created` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `first_name`, `last_name`, `gender`, `age`, `birthday`, `phone`, `profile_pic`, `profile_caption`, `created`) VALUES
+(5, 'a', '$2a$10$N74T2pvnIlK4ox50UnnH..B4i2iADy3anMjduBXRR7OrXne08kiFq', 'a@a.com', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-24'),
+(6, 'b', '$2a$10$WdGlP3gHuFmcGM2dPnRs3O.3QXunvnw5sqeaMI0KJirP7P7.AcHc2', 'b@b.com', '', '', '', 0, '0000-00-00', '', '', '', '2019-11-24');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `profile`
+--
+DROP TABLE IF EXISTS `profile`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `profile`  AS  select `u`.`user_id` AS `user_id`,`u`.`username` AS `username`,(select count(`p`.`photo_id`) from `photo` `p` where (`u`.`user_id` = `p`.`user_id`)) AS `no_photo`,(select count(`g`.`following_id`) from `following` `g` where (`g`.`user_id` = `u`.`user_id`)) AS `no_following`,(select count(`r`.`follower_id`) from `followers` `r` where (`r`.`user_id` = `u`.`user_id`)) AS `no_followers` from `user` `u` group by `u`.`user_id` ;
 
 --
 -- Indexes for dumped tables
@@ -175,7 +257,8 @@ ALTER TABLE `followers`
 ALTER TABLE `following`
   ADD PRIMARY KEY (`user_id`,`following_id`),
   ADD KEY `following_fk1` (`user_id`),
-  ADD KEY `following_fk2` (`following_id`);
+  ADD KEY `following_fk2` (`following_id`),
+  ADD KEY `following_fk3` (`status`);
 
 --
 -- Indexes for table `group_detail`
@@ -216,6 +299,12 @@ ALTER TABLE `report`
   ADD KEY `report_fk2` (`reporter`);
 
 --
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`status`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -236,7 +325,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `group_detail`
 --
 ALTER TABLE `group_detail`
-  MODIFY `group_id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `group_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `likes`
@@ -248,7 +337,7 @@ ALTER TABLE `likes`
 -- AUTO_INCREMENT for table `photo`
 --
 ALTER TABLE `photo`
-  MODIFY `photo_id` int(8) NOT NULL AUTO_INCREMENT;
+  MODIFY `photo_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `report`
@@ -260,7 +349,7 @@ ALTER TABLE `report`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables
@@ -285,7 +374,8 @@ ALTER TABLE `followers`
 --
 ALTER TABLE `following`
   ADD CONSTRAINT `following_fk1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `following_fk2` FOREIGN KEY (`following_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `following_fk2` FOREIGN KEY (`following_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `following_fk3` FOREIGN KEY (`status`) REFERENCES `status` (`status`);
 
 --
 -- Constraints for table `group_detail`
@@ -325,3 +415,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+sql12313406`status`

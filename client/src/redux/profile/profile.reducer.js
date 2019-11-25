@@ -6,6 +6,9 @@ const INITIAL_STATE = {
     no_photo:0,
     no_following:0,
     no_followers:0,
+    bio:null,
+    avatar:null,
+    photo:null,
     error:null,
     loading: false,
     followers: [
@@ -42,11 +45,9 @@ const profileSuccess = (state, action) => {
         username:action.username,
         no_photo:action.no_photo,
         no_following:action.no_following,
-        no_followers:action.no_followers,
         error:null,
-        loading: false
-     } );
-};
+    })
+  }
 
 const profileFail = (state, action) => {
     return updateObject( state, {

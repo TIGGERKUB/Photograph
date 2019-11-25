@@ -25,18 +25,18 @@ export const profileFail = (error) => {
     };
 };
 
-export const profileInfo = () => {
+export const profileInfo = (username) => {
     return dispatch => {
         // dispatch(profileStart());
         // const visited = localStorage.getItem('visited');
-        const url = '/profile/'+ 'a';
+        const url = '/profile/'+username;
         axios.get(url)
         .then(response => {
-            console.log();
+            console.log(response);
             // handle success
             //  const result = covertArr(response.data.user);
             //  console.log(result[1][1]);
-            console.log(response.data.user);
+            // console.log(response.data.user);
             dispatch(profileSuccess(response.data.user));
 
 

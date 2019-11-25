@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthorizationToken from '../../axios/axios.defaults';
+import jwt_decode from 'jwt-decode';
 
 import * as actionTypes from './user.types';
 
@@ -9,10 +10,11 @@ export const authStart = () => {
     };
 };
 
-export const authSuccess = (token) => {
+export const authSuccess = (token,username) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
-        token: token
+        token: token,
+        username: username
     };
 };
 
@@ -75,9 +77,14 @@ export const auth = (authData,url) => {
                  const expirationDate = new Date(new Date().getTime() + 864000 * 1000);
                  localStorage.setItem('token', response.data.token);
                  localStorage.setItem('expirationDate', expirationDate);
-                //  localStorage.setItem('visited',response.data.username);
                  setAuthorizationToken(response.data.token);
-                 dispatch(authSuccess(response.data.token));
+                 if(response.data.token){
+                    const result = jwt_decode(response.data.token);
+                    dispatch(authSuccess(response.data.token,result.username));
+                 }
+                //  const username = jwt_decode(response.data.token);
+                //  console.log("username = " + username);
+                //  dispatch(authSuccess(response.data.token,username));
                  //dispatch(checkAuthTimeout(response.data.expiresIn));
                  dispatch(checkAuthTimeout(864000));
             })
@@ -98,6 +105,7 @@ export const auth = (authData,url) => {
 export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
+        
         if (!token) {
             dispatch(logout());
         } else {
@@ -105,7 +113,10 @@ export const authCheckState = () => {
             if (expirationDate <= new Date()) {
                 dispatch(logout());
             } else {
-                dispatch(authSuccess(token));
+                if(token){
+                    const result = jwt_decode(token);
+                    dispatch(authSuccess(token,result.username));
+                 }
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
             }   
         }
