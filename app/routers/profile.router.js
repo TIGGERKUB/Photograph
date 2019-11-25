@@ -6,6 +6,6 @@ const authJwt = require('./verifyJwtToken');
 const profile = express.Router();
 profile.use(cors());
 
-profile.get('/test',[authJwt.verifyToken],profileController.test);
+profile.get('/:id',[authJwt.verifyToken],profileController.profileInfo);
 
 module.exports = profile;

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from './profile.types';
+// import covertArr from '../../shared/objConvertArr';
 
 export const profileStart = () => {
     return {
@@ -7,10 +8,13 @@ export const profileStart = () => {
     };
 };
 
-export const profileSuccess = (token) => {
+export const profileSuccess = (result) => {
     return {
         type: actionTypes.PROFILE_SUCCESS,
-        token: token
+        username:result.username,
+        no_photo:result.no_photo,
+        no_following:result.no_following,
+        no_follwers:result.no_follwers
     };
 };
 
@@ -24,12 +28,18 @@ export const profileFail = (error) => {
 export const profileInfo = () => {
     return dispatch => {
         // dispatch(profileStart());
-        const url = '/profile/test';
-        // axios.defaults.headers.common['authorization-access-token'] = `${localStorage.getItem("token")}`;
+        // const visited = localStorage.getItem('visited');
+        const url = '/profile/'+ 'a';
         axios.get(url)
         .then(response => {
+            console.log();
             // handle success
-            console.log(response);
+            //  const result = covertArr(response.data.user);
+            //  console.log(result[1][1]);
+            console.log(response.data.user);
+            dispatch(profileSuccess(response.data.user));
+
+
         })
         .catch(err => {
             // handle error

@@ -1,0 +1,1 @@
+CREATE VIEW profile AS SELECT u.user_id,u.username,(SELECT COUNT(photo_id) FROM photo p WHERE u.user_id = p.user_id) as no_photo,(SELECT COUNT(following_id) FROM following g WHERE g.user_id = u.user_id) as no_following, (SELECT COUNT(follower_id) FROM followers r WHERE r.user_id = u.user_id) as no_followers FROM user u  GROUP BY u.user_id
