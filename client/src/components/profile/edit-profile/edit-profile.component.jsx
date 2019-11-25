@@ -35,7 +35,7 @@ const EditProfile = () => {
               label="Username"
               placeholder="Username"
             />
-           <Form.Group widths='equla'>
+           <Form.Group widths='equal'>
               <Form.Input
                 fluid
                 name="firstname"
@@ -51,20 +51,22 @@ const EditProfile = () => {
                 placeholder="Last name"
               />
            </Form.Group>
-            <Form.Select
-              fluid
-              name="gender"
-              label="Gender"
-              options={options}
-              placeholder="Gender"
-            />
-            <Form.Input
-              fluid
-              name="birth"
-              type="date"
-              label="Birth Date"
-              placeholder="Birth Date"
-            />
+            <Form.Group widths='equal'>
+              <Form.Select
+                fluid
+                name="gender"
+                label="Gender"
+                options={options}
+                placeholder="Gender"
+              />
+              <Form.Input
+                fluid
+                name="birth"
+                type="date"
+                label="Birth Date"
+                placeholder="Birth Date"
+              />
+            </Form.Group>
             <Form.Input
               fluid
               name="phone"
@@ -75,7 +77,7 @@ const EditProfile = () => {
             <Form.TextArea
             name="bio"
               label="Bio"
-              placeholder="Tell us more about you..."
+              placeholder="Tell everyone more about you..."
             />
             <br />
             <CustomButton type="submit" isGreen>
