@@ -26,7 +26,7 @@ const EditProfile = () => {
         <Modal.Header>Edit Profile</Modal.Header>
         <Modal.Content>
           <Upload isUploadProfile="true" />
-          <br />
+          <br/>
           <form>
             <Form.Input
               fluid

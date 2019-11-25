@@ -4,6 +4,7 @@ import userReducer from './user/user.reducer';
 import notificationReducer from './notification/notification.reducer';
 import galleryReducer from './data/data.reducer';
 import feedReducer from './feed/feed.reducer'
+import profileReducer from './profile/profile.reducer';
 
 import storage from "redux-persist/lib/storage";
 
@@ -17,7 +18,8 @@ const rootReducer = combineReducers({
   user: userReducer,
   notification: notificationReducer,
   gallery: galleryReducer,
-  feed: feedReducer
+  feed: feedReducer,
+  profile: profileReducer
 });
 
 

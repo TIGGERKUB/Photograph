@@ -10,18 +10,15 @@ import {selectFeedPost} from '../../redux/feed/feed.selector'
 
 import "./feedpage.styles.scss";
 
-const Feedpage = ({post}) => {
-  
+const Feedpage = ({post}) => {  
   const contextRef = createRef();
-
+  
   return (
     <div>
       <Grid centered columns={3}>
         <Ref innerRef={contextRef}>
           <Grid.Column>
-            {
-              post.map( item => (<FeedCard item={item}/>))
-            }
+            {post.map(item => (<FeedCard key={item.id} item={item}/>))}
             <Rail position="right">
               <Sticky context={contextRef}>
                 <PostPicture />

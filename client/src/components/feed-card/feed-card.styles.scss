@@ -2,18 +2,23 @@
     background: #fff;
     max-width: 40vw;
     margin: 60px auto;
-    padding-top: 10px;
     box-shadow: 0 5px 10px rgba(154, 160, 185, .05),
         0 15px 40px rgba(166, 173, 201, .2);
 
     .header-container {
-        margin: auto 20px;
+        display: flex;
+        padding: 10px;
         .header {
+            width: 30%;
             display: flex;
-            .dots{
-                color: grey;
-                cursor: pointer;
-            }
+            justify-content: space-around;
+            align-items: center;
+            font-size: 18px;
+        }
+        .dots {
+            margin-left: auto;
+            color: grey;
+            cursor: pointer;
         }
     }
     .footer-container{

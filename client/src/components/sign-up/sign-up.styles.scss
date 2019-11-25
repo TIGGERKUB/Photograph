@@ -1,15 +1,23 @@
-.regist-form{
+.regist-form {
     width: 30vw;
-    padding: 30px 50px;
-    margin: 10vh auto 0;
+    padding: 10px;
     background-color: white;
-    text-align: center;
-    .social-login{
-        display: flex;
-        justify-content: space-between;
+    margin: 10vh auto 0;
+
+    .regist-form-container {
+        padding: 30px 50px;
+        text-align: center;
+
+        .social-login {
+            display: flex;
+            padding: 20px;
+            justify-content: space-between;
+        }
+
+        .button {
+            display: flex;
+            flex-direction: column;
+        }
     }
-    .button {
-        display: flex;
-        flex-direction: column;
-    }
+
 }

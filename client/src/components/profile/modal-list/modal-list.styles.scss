@@ -1,0 +1,19 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .each-list {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+
+        .avatar-and-name {
+            width: 40%;
+            display: flex;
+            justify-content: space-around;
+            align-items:center;
+            font-size: 18px;
+        }
+    }
+}

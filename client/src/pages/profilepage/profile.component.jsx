@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Grid } from "semantic-ui-react";
+import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect'
 
 import EditProfile from "../../components/profile/edit-profile/edit-profile.component";
 import PicturePlaceholder from '../../components/picture-placeholder/picture-placeholder.component'
@@ -9,10 +11,13 @@ import ProfileFollwing from "../../components/profile/profile-following/profile-
 import ProfileBio from "../../components/profile/profile-bio/profile-bio.component";
 import ProfilePane from "../../components/profile/profile-pane/profile-pane.component";
 
+import { selectProfileFollowers } from "../../redux/profile/profile.selector";
+
 import "./profile.styles.scss";
 
-class ProfilePage extends React.Component {
-  render() {
+
+const ProfilePage = ({followerLists})=>{
+  
     return (
       <Container className="profile-container">
         <Grid>
@@ -24,10 +29,10 @@ class ProfilePage extends React.Component {
                     <ProfileHeader />
                   </Grid.Column>
                   <Grid.Column width={5}>
-                    <ProfileFollower />
+                    <ProfileFollower list={followerLists} total="40 K" />
                   </Grid.Column>
                   <Grid.Column width={5}>
-                    <ProfileFollwing />
+                    <ProfileFollwing list={followerLists} total="100"/>
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
@@ -39,7 +44,10 @@ class ProfilePage extends React.Component {
           </Grid.Column>
 
           <Grid.Column width={6}>
-            <PicturePlaceholder file="https://i.ibb.co/CbYjm3k/woodwatch-7hye-LUn6388-unsplash.jpg" isProfile/>
+            <PicturePlaceholder
+              file="https://i.ibb.co/CbYjm3k/woodwatch-7hye-LUn6388-unsplash.jpg"
+              isProfile
+            />
             <EditProfile />
           </Grid.Column>
         </Grid>
@@ -47,5 +55,7 @@ class ProfilePage extends React.Component {
       </Container>
     );
   }
-}
-export default ProfilePage;
+  const mapStateTopProps = createStructuredSelector({
+    followerLists: selectProfileFollowers
+  })
+export default connect(mapStateTopProps)(ProfilePage);

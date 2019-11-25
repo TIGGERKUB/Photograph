@@ -4,7 +4,7 @@ import "./custom-button.styles.scss";
 const CustomButton = ({
   children,
   isFacebookSignIn,
-  isTwitterSignIn,
+  isBlue,
   isGoogleSignIn,
   isGreen,
   inverted,
@@ -13,7 +13,7 @@ const CustomButton = ({
   <button
     className={`${inverted ? "inverted" : ""}
     ${isFacebookSignIn ? "facebook-sign-in" : ""}
-    ${isTwitterSignIn ? "twitter-sign-in" : ""}
+    ${isBlue ? "blue-btn" : ""}
     ${isGoogleSignIn ? "google-sign-in" : ""} 
     ${isGreen ? "green-btn" : ""} custom-button`}
     {...otherProps}

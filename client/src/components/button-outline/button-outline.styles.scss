@@ -22,4 +22,13 @@
         background-color: black;
         color: white;
     }
+    &.following-btn{
+        background-color: transparent;
+        color: #01d28e;
+        border: 1px solid #01d28e;
+        &:hover{
+            background-color: #01d28e;
+            color: white;
+        }
+    }
 }

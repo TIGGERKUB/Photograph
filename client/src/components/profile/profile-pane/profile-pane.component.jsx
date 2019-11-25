@@ -18,8 +18,8 @@ const ProfilePane = ({ collections }) => {
           <Container textAlign="center" className="pane-content">
             <Grid relaxed columns={3}>
               {data.items.map(item => (
-                <Grid.Column>
-                  <Picture key={item.id} item={item} />
+                <Grid.Column key={item.id}>
+                  <Picture item={item} />
                 </Grid.Column>
               ))}
             </Grid>
