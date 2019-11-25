@@ -42,7 +42,7 @@ const profileSuccess = (state, action) => {
         username:action.username,
         no_photo:action.no_photo,
         no_following:action.no_following,
-        no_follwers:action.no_follwers,
+        no_followers:action.no_follwers,
         error:null,
         loading: false
      } );
