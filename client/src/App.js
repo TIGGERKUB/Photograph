@@ -19,6 +19,7 @@ class App extends Component {
    componentDidMount () {
     this.props.authCheckState();
     setAuthorizationToken(localStorage.getItem('token'));
+    
 
   }
 
@@ -35,8 +36,8 @@ class App extends Component {
         <Switch>
           <Route exact path="/feed" component={FeedPage} />
           <Route exact path="/search" component={SearchPage} />
-          <Route exact path="/profile" component={ProfilePage} />
-          <Route exact path="/logout" component={Logout} />
+          <Route exact path="/:username" component={ProfilePage} />
+          <Route exact path="/auth/logout" component={Logout} />
           <Redirect to="/feed" />
         </Switch>
       );
@@ -56,6 +57,7 @@ const mapStateToProps = state => {
     isAuthenticated: state.user.token !== null
   };
 };
+
 
 const mapDispatchToProps = dispatch => {
   return {

@@ -6,6 +6,9 @@ const INITIAL_STATE = {
     no_photo:0,
     no_following:0,
     no_followers:0,
+    bio:null,
+    avatar:null,
+    photo:null,
     error:null,
     loading: false,
     followers: [

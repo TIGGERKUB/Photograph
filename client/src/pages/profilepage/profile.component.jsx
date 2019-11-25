@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Grid } from "semantic-ui-react";
 import {connect} from 'react-redux'
 import {createStructuredSelector} from 'reselect'
@@ -10,13 +10,20 @@ import ProfileFollow from '../../components/profile/profile-follow/profile-follo
 import ProfileBio from "../../components/profile/profile-bio/profile-bio.component";
 import ProfilePane from "../../components/profile/profile-pane/profile-pane.component";
 
-import { selectProfileFollowers } from "../../redux/profile/profile.selector";
+import * as profileSelector from "../../redux/profile/profile.selector";
+import { profileInfo } from '../../redux/profile/profile.action';
 
 import "./profile.styles.scss";
 
 
-const ProfilePage = ({followerLists})=>{
-  
+const ProfilePage = (
+  {match,profileInfo,ProfileUsername,no_photo,no_following,no_followers,bio,avatar,photo,followerLists}
+  )=>{
+  console.log("match.params.username = " + match.params.username);
+  useEffect(() => {
+    profileInfo(match.params.username);
+  }, [match.params.username,profileInfo]);
+
     return (
       <Container className="profile-container">
         <Grid>
@@ -25,16 +32,16 @@ const ProfilePage = ({followerLists})=>{
               <Grid.Column width={4}>
                 <Grid columns="equal" textAlign="center">
                   <Grid.Column width={7}>
-                    <ProfileHeader />
+                    <ProfileHeader name={ProfileUsername}/>
                   </Grid.Column>
                   <Grid.Column width={3}>
-                    <ProfileFollow list={followerLists} total="40 K" label="Followers"/>
+                    <ProfileFollow list={followerLists} total={no_followers} label="Followers"/>
                   </Grid.Column>
                   <Grid.Column width={3}>
-                    <ProfileFollow list={followerLists} total="100" label="Followings"/>
+                    <ProfileFollow list={followerLists} total={no_following} label="Followings"/>
                   </Grid.Column>
                   <Grid.Column width={3}>
-                    <ProfileFollow total="20" label="Posts" isPost/>
+                    <ProfileFollow total={no_photo} label="Posts" isPost/>
                   </Grid.Column>
                 </Grid>
               </Grid.Column>
@@ -58,6 +65,18 @@ const ProfilePage = ({followerLists})=>{
     );
   }
   const mapStateTopProps = createStructuredSelector({
-    followerLists: selectProfileFollowers
+    ProfileUsername:profileSelector.selectProfileUsername,
+    no_photo:profileSelector.selectProfileNoPhoto,
+    no_following:profileSelector.selectProfileNoFollowing,
+    no_followers:profileSelector.selectProfileNoFollwers,
+    bio:profileSelector.selectProfileBio,
+    avatar:profileSelector.selectProfileAvatar,
+    photo:profileSelector.selectProfilePhoto,
+    followerLists: profileSelector.selectProfileFollowers
   })
-export default connect(mapStateTopProps)(ProfilePage);
+
+  const mapDispatchToProps = dispatch => ({
+    profileInfo: (username) => dispatch(profileInfo(username))
+  })
+
+export default connect(mapStateTopProps,mapDispatchToProps)(ProfilePage);

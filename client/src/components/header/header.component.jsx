@@ -10,10 +10,11 @@ import NotificationDropdown from "../notification-dropdown/notification-dropdown
 
 import "./header.styles.scss";
 import { selectNotificationHidden } from "../../redux/notification/notification.selector";
-import {selectCurrentUser} from "../../redux/user/user.selectors";
+import {selectCurrentUser,selectUsername} from "../../redux/user/user.selectors";
+
 import { connect } from "react-redux";
 
-const Header = ({ hidden,isAuthenticated }) => {
+const Header = ({ hidden,isAuthenticated,CurrentUser }) => {
   let head_nav = null;
   if(isAuthenticated){
     head_nav = (
@@ -30,10 +31,10 @@ const Header = ({ hidden,isAuthenticated }) => {
           </div>
         
         {hidden ? null : <NotificationDropdown />}
-        <Link className="option" to="/profile">
+        <Link className="option" to={`/${CurrentUser}`}>
           <AiOutlineUser />
         </Link>
-        <Link className="option logout" to="/logout">
+        <Link className="option logout" to="/auth/logout">
           <FiLogOut/>
         </Link>
         </div>
@@ -49,7 +50,9 @@ const Header = ({ hidden,isAuthenticated }) => {
 };
 const mapStateToProps = createStructuredSelector({
   hidden: selectNotificationHidden,
-  isAuthenticated: selectCurrentUser
+  isAuthenticated: selectCurrentUser,
+  CurrentUser: selectUsername
+
 });
 
 
