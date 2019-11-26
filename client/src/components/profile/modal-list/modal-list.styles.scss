@@ -7,6 +7,8 @@
         display: flex;
         justify-content: space-between;
         padding: 10px;
+        transform: translateZ(0);
+        transition: transform 0.25s ease-out;
 
         .avatar-and-name {
             width: 40%;
@@ -14,6 +16,9 @@
             justify-content: space-between;
             align-items: center;
             font-size: 18px;
+        }
+        &:hover{
+            transform: scale(1.05);
         }
     }
 }

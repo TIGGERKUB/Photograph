@@ -13,10 +13,12 @@ const PicturePlaceholder = ({
   return (
     <div>
       {isProfile ? (
-        <div
-          className="profile-photo"
-          style={{ backgroundImage: `url(${file})` }}
-        />
+       <div className="profile-photo-container">
+          <div
+            className="profile-photo"
+            style={{ backgroundImage: `url(${file})` }}
+          />
+       </div>
       ) : isProfilePlaceholder ? (
         <div className="profile-placeholder">
           <div
