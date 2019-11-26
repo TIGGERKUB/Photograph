@@ -26,7 +26,7 @@ class App extends Component {
   render(){
     let routes = (
       <Switch>
-        <Route exact path="/signup" component={SignUpPage} />
+        <Route exact path="/auth/signup" component={SignUpPage} />
         <Route exact path="/" component={SignInPage} />
         <Redirect to="/" />
       </Switch>

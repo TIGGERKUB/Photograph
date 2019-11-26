@@ -65,7 +65,7 @@ const SignIn = ({login,isAuthenticated,error}) => {
       </div>
       </form>
       <span>Create an account </span>
-      <Link className="signup-link" to="/signup">
+      <Link className="signup-link" to="/auth/signup">
         Sign up
       </Link>
     </div>

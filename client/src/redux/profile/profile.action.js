@@ -1,5 +1,6 @@
 import axios from 'axios';
 import * as actionTypes from './profile.types';
+import jwt_decode from 'jwt-decode';
 // import covertArr from '../../shared/objConvertArr';
 
 export const profileStart = () => {
@@ -29,10 +30,18 @@ export const profileInfo = (username) => {
     return dispatch => {
         // dispatch(profileStart());
         // const visited = localStorage.getItem('visited');
-        const url = '/profile/'+username;
+        let url = '/profile/'+username;
+        if(!username){
+            localStorage.getItem('token');
+            const result = jwt_decode(localStorage.getItem('token'));
+            url = '/profile/'+ result.username;
+        }
         axios.get(url)
         .then(response => {
             console.log(response);
+            if(!response.data.user){
+                console.log("user not found!!");
+            }
             // handle success
             //  const result = covertArr(response.data.user);
             //  console.log(result[1][1]);
