@@ -31,3 +31,8 @@ exports.profileInfo =(req,res) => {
         console.log('Error = ' + err);
     })
 }
+
+exports.edit =(req,res) => {
+    console.log('edit profile');
+}
+

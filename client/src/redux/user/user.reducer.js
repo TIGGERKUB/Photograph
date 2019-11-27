@@ -14,7 +14,7 @@ const authStart = ( state, action ) => {
 };
 
 const authSuccess = (state, action) => {
-    return updateObject( state, { 
+    return updateObject( state, {
         token: action.token,
         username: action.username,
         error: null,
@@ -31,7 +31,7 @@ const authFail = (state, action) => {
 };
 
 const authLogout = (state, action) => {
-    return updateObject(state, { 
+    return updateObject(state, {
         token: null,
         username:null
     });
