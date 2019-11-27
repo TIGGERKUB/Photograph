@@ -24,6 +24,7 @@ const EditProfile = ({ editProfile }) => {
   const handleSubmit = event => {
     event.preventDefault();
     editProfile(info);
+
   };
   const handleChange = event => {
     const { value, name } = event.target;

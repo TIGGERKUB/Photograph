@@ -74,5 +74,5 @@ export const editProfileFailure = error => {
   };
 };
 export const editProfile = info => {
-  console.log(info);
+  
 };
