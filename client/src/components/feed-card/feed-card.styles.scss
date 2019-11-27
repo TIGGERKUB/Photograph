@@ -31,13 +31,13 @@
         text-align: left;
 
         .interaction-container {
-            cursor: pointer;
             font-size: 24px;
 
             .interaction-icon {
                 margin: 0 5px 5px 5px;
                 transform: translateZ(0);
                 transition: transform 0.25s ease-out;
+                cursor: pointer;
 
                 &:hover {
                     transform: scale(1.1);

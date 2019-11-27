@@ -33,9 +33,9 @@ const EditProfile = ({ editProfile }) => {
       <Modal size="tiny" trigger={<ButtonOutline>Edit Profile</ButtonOutline>}>
         <Modal.Header>Edit Profile</Modal.Header>
         <Modal.Content>
-          <Upload isUploadProfile="true" />
-          <br />
           <Form onSubmit={handleSubmit}>
+            <Upload isUploadProfile="true" />
+            <br />
             <Form.Input
               fluid
               name="username"
@@ -76,13 +76,13 @@ const EditProfile = ({ editProfile }) => {
                 placeholder="Birth Date"
               />
               <Form.Input
-                fluid
-                name="phone"
-                value={phone}
-                onChange={handleChange}
-                type="number"
-                label="Phone Number"
-                placeholder="Phone Number"
+              fluid
+              name="phone"
+              value={phone}
+              onChange={handleChange}
+              type="number"
+              label="Phone Number"
+              placeholder="Phone Number"
               />
             </Form.Group>
             <Form.TextArea
