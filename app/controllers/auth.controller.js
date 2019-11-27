@@ -6,7 +6,7 @@ const User = require("../models/User");
 
 exports.signup = (req, res) => {
 	// Save User to Database
-	// console.log("Processing func -> SignUp");
+	 console.log("Processing func -> SignUp");
 	const today = new Date();
 
 	User.create({
@@ -34,7 +34,7 @@ exports.signup = (req, res) => {
 }
 
 exports.signin = (req, res) => {
-	// console.log("Sign-In");
+	 console.log("Sign-In");
 	
 	User.findOne({
 		where: {

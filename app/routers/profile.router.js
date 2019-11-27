@@ -8,6 +8,6 @@ const profile = express.Router();
 profile.use(cors());
 
 profile.get('/:id',[authJwt.verifyToken],profileController.profileInfo);
-profile.post('/profile-img-upload',[uploadPhoto],profileController.edit);
+profile.post('/profile-img-upload',[authJwt.verifyToken,uploadPhoto],profileController.edit);
 
 module.exports = profile;
