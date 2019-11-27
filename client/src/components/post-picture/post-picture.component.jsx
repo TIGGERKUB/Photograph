@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { Modal, Form } from "semantic-ui-react";
 import { IoIosAddCircleOutline } from "react-icons/io";
-import {connect} from 'react-redux'
+import { connect } from "react-redux";
 
 import Upload from "../upload-preview/upload-preview.component";
 import CustomButton from "../custom-button/custom-button.component";
-import {createPost} from '../../redux/feed/feed.action'
+import { createPost } from "../../redux/feed/feed.action";
 
 import "./post-picture.styles.scss";
 
-const PostPicture = ({createPost}) => {
+const PostPicture = ({ createPost }) => {
   const [post, setPost] = useState({
-    caption: ""
+    caption: "",
+    file: null
   });
   const { caption } = post;
   const handleSubmit = event => {
     event.preventDefault();
-    createPost(post)
+    createPost(post);
   };
   const handleChange = event => {
     const { value, name } = event.target;
-    setPost({ [name]: value });
+    setPost({ ...post, [name]: value });
+  };
+  const handleUploadChange = event => {
+    setPost({ ...post, file: event });
   };
 
   return (
@@ -28,8 +32,8 @@ const PostPicture = ({createPost}) => {
       <Modal.Header>New Post</Modal.Header>
       <Modal.Content>
         <Form onSubmit={handleSubmit}>
-          <Upload />
-          <br/>
+          <Upload onUpload={handleUploadChange} />
+          <br />
           <Form.TextArea
             label="Caption"
             placeholder="Write a caption...."
@@ -37,7 +41,7 @@ const PostPicture = ({createPost}) => {
             value={caption}
             onChange={handleChange}
           />
-            <CustomButton type="submit">Post</CustomButton>
+          <CustomButton type="submit">Post</CustomButton>
         </Form>
       </Modal.Content>
     </Modal>
@@ -45,5 +49,5 @@ const PostPicture = ({createPost}) => {
 };
 const mapDispatchToProps = dispatch => ({
   createPost: newPost => dispatch(createPost(newPost))
-})
-export default connect(null,mapDispatchToProps)(PostPicture);
+});
+export default connect(null, mapDispatchToProps)(PostPicture);

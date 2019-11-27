@@ -6,7 +6,7 @@ const User = require("../models/User");
 
 exports.signup = (req, res) => {
 	// Save User to Database
-	console.log("Processing func -> SignUp");
+	// console.log("Processing func -> SignUp");
 	const today = new Date();
 
 	User.create({
@@ -23,7 +23,7 @@ exports.signup = (req, res) => {
 			var token = jwt.sign({ username: user.username }, config.secret, {
 				expiresIn: 86400 // expires in 24 hours
 			  });
-			console.log('registerd!');
+			// console.log('registerd!');
 			res.status(200).json({token:token});
 		}).catch(err => {
 			res.status(500).send('Error -> ' + err);
@@ -34,7 +34,7 @@ exports.signup = (req, res) => {
 }
 
 exports.signin = (req, res) => {
-	console.log("Sign-In");
+	// console.log("Sign-In");
 	
 	User.findOne({
 		where: {
