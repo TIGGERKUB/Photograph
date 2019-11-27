@@ -22,7 +22,6 @@ const SignUp = ({register,isAuthenticated,error}) => {
   const handleSubmit = event => {
     event.preventDefault();
     register(email,username, password);
-    console.log('sad');
   };
   const handleChange = event => {
     const { value, name } = event.target;

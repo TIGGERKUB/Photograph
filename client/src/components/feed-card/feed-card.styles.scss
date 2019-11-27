@@ -8,6 +8,7 @@
     .header-container {
         display: flex;
         padding: 10px;
+
         .header {
             width: 30%;
             display: flex;
@@ -15,22 +16,32 @@
             align-items: center;
             font-size: 18px;
         }
+
         .dots {
             margin-left: auto;
             color: grey;
             cursor: pointer;
         }
     }
-    .footer-container{
+
+    .footer-container {
         padding: 10px;
         display: flex;
         flex-direction: column;
         text-align: left;
-        .interaction-container{
+
+        .interaction-container {
             cursor: pointer;
             font-size: 24px;
-            .interaction-icon{
+
+            .interaction-icon {
                 margin: 0 5px 5px 5px;
+                transform: translateZ(0);
+                transition: transform 0.25s ease-out;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
         }
     }

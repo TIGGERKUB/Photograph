@@ -31,4 +31,14 @@
             color: white;
         }
     }
+    &.request-btn {
+        background-color: transparent;
+        color: #c72c41;
+        border: 1px solid #c72c41;
+
+        &:hover {
+            background-color: #c72c41;
+            color: white;
+        }
+    }
 }

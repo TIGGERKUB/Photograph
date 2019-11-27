@@ -11,6 +11,7 @@ const INITIAL_STATE = {
     photo:null,
     error:null,
     loading: false,
+    status: "request",
     followers: [
     {
       id: 1,

@@ -1,7 +1,6 @@
 import {createSelector} from 'reselect'
 const selectProfile = state => state.profile;
 
-
 export const selectProfileUsername = createSelector(
     [selectProfile],
     profile => profile.username
@@ -34,5 +33,10 @@ export const selectProfilePhoto = createSelector(
 export const selectProfileFollowers = createSelector(
     [selectProfile],
     profile => profile.followers
+)
+
+export const selectProfileStatus = createSelector(
+    [selectProfile],
+    profile => profile.status
 )
 
