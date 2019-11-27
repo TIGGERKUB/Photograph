@@ -17,7 +17,8 @@ const EditProfile = ({ editProfile }) => {
     lastname: "",
     birth: "",
     phone: "",
-    bio: ""
+    bio: "",
+    file: null
   });
   const { username, firstname, lastname, birth, phone, bio } = info;
   const handleSubmit = event => {
@@ -28,13 +29,16 @@ const EditProfile = ({ editProfile }) => {
     const { value, name } = event.target;
     setInfo({ ...info, [name]: value });
   };
+  const handleUploadChange = event => {
+    setInfo({ ...info, file: event });
+  };
   return (
     <div className="profile-edit-btn">
       <Modal size="tiny" trigger={<ButtonOutline>Edit Profile</ButtonOutline>}>
         <Modal.Header>Edit Profile</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit}>
-            <Upload isUploadProfile="true" />
+            <Upload isUploadProfile="true" onUpload={handleUploadChange} />
             <br />
             <Form.Input
               fluid
@@ -76,13 +80,13 @@ const EditProfile = ({ editProfile }) => {
                 placeholder="Birth Date"
               />
               <Form.Input
-              fluid
-              name="phone"
-              value={phone}
-              onChange={handleChange}
-              type="number"
-              label="Phone Number"
-              placeholder="Phone Number"
+                fluid
+                name="phone"
+                value={phone}
+                onChange={handleChange}
+                type="number"
+                label="Phone Number"
+                placeholder="Phone Number"
               />
             </Form.Group>
             <Form.TextArea

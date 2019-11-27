@@ -15,6 +15,9 @@ class Upload extends React.Component {
     this.setState({
       file: URL.createObjectURL(event.target.files[0])
     });
+    //send to parent
+    const toParent = event.target.files[0]
+    this.props.onUpload(toParent)
   }
   render() {
     const {isUploadProfile} = this.props;
