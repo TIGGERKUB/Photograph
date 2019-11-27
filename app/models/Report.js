@@ -9,7 +9,6 @@ module.exports = db.sequelize.define(
                 primaryKey: true,
                 autoIncrement: true
             },
-            
             reason : {
                 type:Sequelize.STRING
             },
@@ -17,11 +16,9 @@ module.exports = db.sequelize.define(
             timestamp: {
                 type: Sequelize.DATE
             },
-            
             status : {
                 type:Sequelize.STRING
             },
-           
             photo_id: {
                 type: Sequelize.INTEGER,
                 referencies : 'photo',
@@ -33,9 +30,7 @@ module.exports = db.sequelize.define(
                 referencies : 'user',
                 referenceKey: 'user_id'
             },
-            
-            
         },
-        { freezeTableName: true , 
+        { freezeTableName: true ,
             timestamps: false}
 );

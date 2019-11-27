@@ -105,7 +105,6 @@ export const auth = (authData,url) => {
 export const authCheckState = () => {
     return dispatch => {
         const token = localStorage.getItem('token');
-        
         if (!token) {
             dispatch(logout());
         } else {
@@ -118,7 +117,7 @@ export const authCheckState = () => {
                     dispatch(authSuccess(token,result.username));
                  }
                 dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
-            }   
+            }
         }
     };
 };

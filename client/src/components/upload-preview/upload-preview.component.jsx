@@ -21,7 +21,7 @@ class Upload extends React.Component {
   }
   render() {
     const {isUploadProfile} = this.props;
-    
+
     return (
       <div>
         {isUploadProfile ? (

@@ -29,7 +29,6 @@ const ProfilePage = ({
     profileInfo(match.params.username);
   }, [match.params.username, profileInfo]);
   const user = match.params.username;
-  
   return (
     <div>
       {currentUser === user ? (
