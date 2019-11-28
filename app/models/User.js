@@ -39,7 +39,7 @@ module.exports = db.sequelize.define(
             profile_pic:{
                 type:Sequelize.STRING
             },
-            profile_caption:{
+            bio:{
                 type:Sequelize.STRING
             },
             created:{

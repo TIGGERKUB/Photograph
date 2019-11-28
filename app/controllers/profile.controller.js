@@ -32,8 +32,8 @@ exports.profileInfo =(req,res) => {
     })
 }
 
-exports.edit =(req,res) => {
-    console.log('edit profile');
+exports.updatePhotoLinkToDB =(req,res) => {
+    console.log('updatePhotoLinkToDB');
 //     User.findOne({
 // 		where: {
 // 			username: req.username
@@ -58,9 +58,13 @@ exports.edit =(req,res) => {
             profile_pic: req.file.location
         }).then(success => {
             console.log('Success Update file link to DB');
-            res.json({
-                image:req.file.key
-            })
+            const imageName = req.file.key;
+            const imageLocation = req.file.location;
+            // Save the file name into database into profile model
+            res.json( {
+                image: imageName,
+                location: imageLocation
+            } );
         }).catch(err => {
             console.log('Can not update file link to DB');
         })
@@ -71,3 +75,29 @@ exports.edit =(req,res) => {
     })
 }
 
+
+exports.updateProfile =(req,res) => {
+    console.log('updateProfile |controllers|');
+    User.findOne({
+		where: {
+			username: req.username
+		}
+	}).then(user => {
+        user.update({
+            first_name:req.body.first_name,
+            last_name:req.body.last_name,
+            birthday:req.body.birthday,
+            phone:req.body.phone,
+            bio:req.body.bio
+        }).then(success => {
+            console.log('Success Update Profile info to DB');
+            res.send('Success Update Profile info to DB');
+        }).catch(err => {
+            console.log('Can not update Profile info to DB');
+        })
+        // console.log('tested');
+    }).catch(err => {
+        res.status(500).send('Error -> ' + err);
+        // console.log('Error = ' + err);
+    })
+}
