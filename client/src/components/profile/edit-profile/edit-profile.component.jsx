@@ -31,7 +31,7 @@ const EditProfile = ({
   const { firstname, lastname, birth, phone, bio } = info;  
   const handleSubmit = event => {
     event.preventDefault();
-    editProfile(info);
+    editProfile(info,Avatar);
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -118,6 +118,6 @@ const mapStateToProps = createStructuredSelector({
   Bio: profileSelector.selectProfileBio
 });
 const mapDispatchToProps = dispatch => ({
-  editProfile: info => dispatch(editProfile(info))
+  editProfile: (info,avatar) => dispatch(editProfile(info,avatar))
 });
 export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

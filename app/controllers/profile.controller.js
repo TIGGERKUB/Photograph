@@ -25,7 +25,7 @@ exports.profileInfo =(req,res) => {
 		}
 	}).then(user => {
         res.json({user:user});
-        // console.log('profileInfo success');
+         console.log(user);
     }).catch(err => {
         res.status(500).send('Error -> ' + err);
         // console.log('Error = ' + err);
