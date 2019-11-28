@@ -45,7 +45,8 @@ export const profileInfo = username => {
         // handle success
         //  const result = covertArr(response.data.user);
         //  console.log(result[1][1]);
-        // console.log(response.data.user);
+         console.log(response.data.user);
+        
         dispatch(profileSuccess(response.data.user));
       })
       .catch(err => {

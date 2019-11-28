@@ -65,7 +65,7 @@ const editProfileSuccess = (state, action) => {
     birthday:action.payload.birth,
     phone:action.payload.phone,
     bio:action.payload.bio,
-    avatar:action.payload.locationPhoto,
+    avatar:action.payload.avatar,
     error: null
   });
 };
