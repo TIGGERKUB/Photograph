@@ -25,7 +25,7 @@ class Upload extends React.Component {
     return (
       <div>
         {isUploadProfile ? (
-          avatar ? (
+          avatar && this.state.file===null ? (
             <PicturePlaceholder file={avatar} isProfilePlaceholder />
           ) : (
             <PicturePlaceholder file={this.state.file} isProfilePlaceholder />

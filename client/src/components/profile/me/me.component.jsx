@@ -51,7 +51,7 @@ const Me = ({
             </Grid.Column>
 
             <Grid.Column width={12}>
-              <ProfileBio bio={bio} />
+              <Container textAlign='right' className="bio-container"><ProfileBio bio={bio} /></Container>
             </Grid.Column>
           </Grid.Row>
         </Grid.Column>

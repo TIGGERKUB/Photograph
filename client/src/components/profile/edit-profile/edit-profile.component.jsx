@@ -21,21 +21,14 @@ const EditProfile = ({
   Avatar
 }) => {
   const [info, setInfo] = useState({
-    firstname: "",
-    lastname: "",
-    birth: "",
-    phone: "",
-    bio: "",
+    firstname: FirstName,
+    lastname: LastName,
+    birth: BirthDay,
+    phone: PhoneNumber,
+    bio: Bio,
     file: null
   });
-  console.log(FirstName);
-  console.log(LastName);
-  console.log(BirthDay);
-  console.log(PhoneNumber);
-  console.log(Avatar);
-  console.log(Bio);
-
-  const { firstname, lastname, birth, phone, bio } = info;
+  const { firstname, lastname, birth, phone, bio } = info;  
   const handleSubmit = event => {
     event.preventDefault();
     editProfile(info);
@@ -67,7 +60,7 @@ const EditProfile = ({
                 onChange={handleChange}
                 type="text"
                 label="First name"
-                placeholder={`${FirstName ? FirstName : "First Name"}`}
+                placeholder={`${firstname ? firstname : "First Name"}`}
               />
               <Form.Input
                 fluid
@@ -76,7 +69,7 @@ const EditProfile = ({
                 onChange={handleChange}
                 type="text"
                 label="Last name"
-                placeholder={`${LastName ? LastName : "Last Name"}`}
+                placeholder={`${lastname ? lastname : "Last Name"}`}
               />
             </Form.Group>
             <Form.Group widths="equal">
@@ -87,7 +80,6 @@ const EditProfile = ({
                 onChange={handleChange}
                 type="date"
                 label="Birth Date"
-                placeholder={`${BirthDay ? BirthDay : "Birth Date"}`}
               />
               <Form.Input
                 fluid
@@ -96,7 +88,7 @@ const EditProfile = ({
                 onChange={handleChange}
                 type="number"
                 label="Phone Number"
-                placeholder={`${PhoneNumber ? PhoneNumber : "Phone Number"}`}
+                placeholder={`${phone ? phone : "Phone Number"}`}
               />
             </Form.Group>
             <Form.TextArea
@@ -105,7 +97,7 @@ const EditProfile = ({
               value={bio}
               onChange={handleChange}
               label="Bio"
-              placeholder={`${Bio ? Bio : "Tell something about you..."}`}
+              placeholder={`${bio ? bio : "Tell something about you..."}`}
             />
             <br />
             <CustomButton type="submit" isGreen>
