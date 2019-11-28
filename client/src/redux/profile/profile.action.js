@@ -12,10 +12,7 @@ export const profileStart = () => {
 export const profileSuccess = result => {
   return {
     type: actionTypes.PROFILE_SUCCESS,
-    username: result.username,
-    no_photo: result.no_photo,
-    no_following: result.no_following,
-    no_followers: result.no_followers
+    payload: result
   };
 };
 
@@ -45,8 +42,7 @@ export const profileInfo = username => {
         // handle success
         //  const result = covertArr(response.data.user);
         //  console.log(result[1][1]);
-         console.log(response.data.user);
-        
+        console.log(response.data.user);
         dispatch(profileSuccess(response.data.user));
       })
       .catch(err => {

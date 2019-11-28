@@ -53,14 +53,14 @@ const Another = ({
             </Grid.Column>
 
             <Grid.Column width={12}>
-              <ProfileBio />
+              <ProfileBio bio={bio}/>
             </Grid.Column>
           </Grid.Row>
         </Grid.Column>
 
         <Grid.Column width={6}>
           <PicturePlaceholder
-            file="https://i.ibb.co/8KQGDn2/guilherme-stecanella-d-H-o-QF9w-Y-unsplash.jpg"
+            file={avatar}
             isProfile
           />
           <div className="status-btn">

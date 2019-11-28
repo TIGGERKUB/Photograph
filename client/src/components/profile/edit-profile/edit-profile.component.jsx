@@ -1,16 +1,25 @@
 import React, { useState } from "react";
 import { Modal, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 
 import ButtonOutline from "../../button-outline/button-outline.component";
 import Upload from "../../upload-preview/upload-preview.component";
 import CustomButton from "../../custom-button/custom-button.component";
 
 import { editProfile } from "../../../redux/profile/profile.action";
-
+import * as profileSelector from "../../../redux/profile/profile.selector";
 import "./edit-profile.styles.scss";
 
-const EditProfile = ({ editProfile }) => {
+const EditProfile = ({
+  editProfile,
+  FirstName,
+  LastName,
+  BirthDay,
+  PhoneNumber,
+  Bio,
+  Avatar
+}) => {
   const [info, setInfo] = useState({
     firstname: "",
     lastname: "",
@@ -19,12 +28,17 @@ const EditProfile = ({ editProfile }) => {
     bio: "",
     file: null
   });
+  console.log(FirstName);
+  console.log(LastName);
+  console.log(BirthDay);
+  console.log(PhoneNumber);
+  console.log(Avatar);
+  console.log(Bio);
 
   const { firstname, lastname, birth, phone, bio } = info;
   const handleSubmit = event => {
     event.preventDefault();
     editProfile(info);
-    // window.location.reload();
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -39,7 +53,11 @@ const EditProfile = ({ editProfile }) => {
         <Modal.Header>Edit Profile</Modal.Header>
         <Modal.Content>
           <Form onSubmit={handleSubmit}>
-            <Upload isUploadProfile="true" onUpload={handleUploadChange} />
+            <Upload
+              isUploadProfile="true"
+              onUpload={handleUploadChange}
+              avatar={Avatar}
+            />
             <br />
             <Form.Group widths="equal">
               <Form.Input
@@ -49,7 +67,7 @@ const EditProfile = ({ editProfile }) => {
                 onChange={handleChange}
                 type="text"
                 label="First name"
-                placeholder="First name"
+                placeholder={`${FirstName ? FirstName : "First Name"}`}
               />
               <Form.Input
                 fluid
@@ -58,7 +76,7 @@ const EditProfile = ({ editProfile }) => {
                 onChange={handleChange}
                 type="text"
                 label="Last name"
-                placeholder="Last name"
+                placeholder={`${LastName ? LastName : "Last Name"}`}
               />
             </Form.Group>
             <Form.Group widths="equal">
@@ -69,7 +87,7 @@ const EditProfile = ({ editProfile }) => {
                 onChange={handleChange}
                 type="date"
                 label="Birth Date"
-                placeholder="Birth Date"
+                placeholder={`${BirthDay ? BirthDay : "Birth Date"}`}
               />
               <Form.Input
                 fluid
@@ -78,7 +96,7 @@ const EditProfile = ({ editProfile }) => {
                 onChange={handleChange}
                 type="number"
                 label="Phone Number"
-                placeholder="Phone Number"
+                placeholder={`${PhoneNumber ? PhoneNumber : "Phone Number"}`}
               />
             </Form.Group>
             <Form.TextArea
@@ -87,7 +105,7 @@ const EditProfile = ({ editProfile }) => {
               value={bio}
               onChange={handleChange}
               label="Bio"
-              placeholder="Tell everyone more about you..."
+              placeholder={`${Bio ? Bio : "Tell something about you..."}`}
             />
             <br />
             <CustomButton type="submit" isGreen>
@@ -99,7 +117,15 @@ const EditProfile = ({ editProfile }) => {
     </div>
   );
 };
+const mapStateToProps = createStructuredSelector({
+  FirstName: profileSelector.selectProfileFirstName,
+  LastName: profileSelector.selectProfileLastName,
+  BirthDay: profileSelector.selectProfileBirthDay,
+  PhoneNumber: profileSelector.selectProfilePhone,
+  Avatar: profileSelector.selectProfileAvatar,
+  Bio: profileSelector.selectProfileBio
+});
 const mapDispatchToProps = dispatch => ({
   editProfile: info => dispatch(editProfile(info))
 });
-export default connect(null, mapDispatchToProps)(EditProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

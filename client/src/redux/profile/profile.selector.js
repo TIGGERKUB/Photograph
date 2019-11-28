@@ -39,4 +39,20 @@ export const selectProfileStatus = createSelector(
     [selectProfile],
     profile => profile.status
 )
+export const selectProfileFirstName = createSelector(
+    [selectProfile],
+    profile => profile.first_name
+)
+export const selectProfileLastName = createSelector(
+  [selectProfile],
+  profile => profile.last_name
+);
+export const selectProfileBirthDay = createSelector(
+  [selectProfile],
+  profile => profile.birthday
+);
+export const selectProfilePhone = createSelector(
+  [selectProfile],
+  profile => profile.phone
+);
 

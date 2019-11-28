@@ -1,11 +1,8 @@
 import React from 'react'
 import './profile-bio.styles.scss'
-const ProfileBio = () => (
+const ProfileBio = ({bio}) => (
   <p className="profile-bio">
-    Hello,<br/>
-    Frontend Developer<br/>
-    Cat lover<br/>
-    Movie lover
+    {bio}
   </p>
 );
 export default ProfileBio;

@@ -51,17 +51,19 @@ const Me = ({
             </Grid.Column>
 
             <Grid.Column width={12}>
-              <ProfileBio />
+              <ProfileBio bio={bio} />
             </Grid.Column>
           </Grid.Row>
         </Grid.Column>
 
         <Grid.Column width={6}>
-          <PicturePlaceholder
-            file="https://i.ibb.co/CbYjm3k/woodwatch-7hye-LUn6388-unsplash.jpg"
-            isProfile
-          />
-          <EditProfile profileUsername ={ProfileUsername}/>
+          {avatar ? (
+            <PicturePlaceholder file={avatar} isProfile />
+          ) : (
+            <PicturePlaceholder isProfilePlaceholder />
+          )}
+
+          <EditProfile />
         </Grid.Column>
       </Grid>
       <ProfilePane />
