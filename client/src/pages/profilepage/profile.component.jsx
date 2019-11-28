@@ -29,6 +29,8 @@ const ProfilePage = ({
     profileInfo(match.params.username);
   }, [match.params.username, profileInfo]);
   const user = match.params.username;
+  console.log(avatar);
+
   return (
     <div>
       {currentUser === user ? (
@@ -69,6 +71,7 @@ const mapStateTopProps = createStructuredSelector({
   followerLists: profileSelector.selectProfileFollowers,
   status: profileSelector.selectProfileStatus,
   currentUser: userSelector.selectUsername
+  
 });
 
 const mapDispatchToProps = dispatch => ({

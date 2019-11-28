@@ -6,6 +6,10 @@ const INITIAL_STATE = {
     no_photo:0,
     no_following:0,
     no_followers:0,
+    first_name: null,
+    last_name: null,
+    birthday: null,
+    phone: null,
     bio:null,
     avatar:null,
     photo:null,
@@ -42,12 +46,19 @@ const profileStart = ( state, action ) => {
 };
 
 const profileSuccess = (state, action) => {
-    return updateObject( state, {
-        username:action.username,
-        no_photo:action.no_photo,
-        no_following:action.no_following,
-        error:null,
-    })
+    return updateObject(state, {
+      username: action.payload.username,
+      no_photo: action.payload.no_photo,
+      no_followers: action.payload.no_followers,
+      no_following: action.payload.no_following,
+      first_name: action.payload.first_name,
+      last_name: action.payload.last_name,
+      birthday: action.payload.birthday,
+      phone: action.payload.phone,
+      bio: action.payload.bio,
+      avatar: action.payload.profile_pic,
+      error: null
+    });
   }
 
 const profileFail = (state, action) => {
@@ -65,7 +76,7 @@ const editProfileSuccess = (state, action) => {
     birthday:action.payload.birth,
     phone:action.payload.phone,
     bio:action.payload.bio,
-    avatar:action.payload.locationPhoto,
+    avatar:action.payload.avatar,
     error: null
   });
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import PicturePlaceholder from '../picture-placeholder/picture-placeholder.component'
+import PicturePlaceholder from "../picture-placeholder/picture-placeholder.component";
 
 import "./upload-preview.styles.scss";
 
@@ -16,16 +16,20 @@ class Upload extends React.Component {
       file: URL.createObjectURL(event.target.files[0])
     });
     //send to parent
-    const toParent = event.target.files[0]
-    this.props.onUpload(toParent)
+    const toParent = event.target.files[0];
+    this.props.onUpload(toParent);
   }
   render() {
-    const {isUploadProfile} = this.props;
+    const { isUploadProfile, avatar } = this.props;
 
     return (
       <div>
         {isUploadProfile ? (
-          <PicturePlaceholder file={this.state.file} isProfilePlaceholder />
+          avatar ? (
+            <PicturePlaceholder file={avatar} isProfilePlaceholder />
+          ) : (
+            <PicturePlaceholder file={this.state.file} isProfilePlaceholder />
+          )
         ) : (
           <PicturePlaceholder file={this.state.file} isPlaceholder />
         )}
