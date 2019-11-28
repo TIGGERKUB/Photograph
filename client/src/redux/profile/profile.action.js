@@ -80,13 +80,13 @@ export const editProfile = (info) => {
     console.log(info);
     dispatch(editProfileStart());
     // uploadPhotoS3andDB and Update ProfileInfo to database
-    uploadPhotoS3andProfileInfo(dispatch,info.file,info);
+    uploadPhotoS3andProfileInfo(info.file,info);
   }
 };
 
 
 
-function uploadPhotoS3andProfileInfo(dispatch,file,info){
+function uploadPhotoS3andProfileInfo(file,info){
   const data = new FormData();
   data.append( 'profileImage',file,file.name );
   console.log('data : '+ data);
@@ -120,7 +120,7 @@ function uploadPhotoS3andProfileInfo(dispatch,file,info){
         console.log( 'fileName', fileName );
         // this.ocShowAlert( 'File Uploaded', '#3089cf' );
         console.log( 'File Uploaded');
-        updateProfileInfo(dispatch,info,locationPhoto);
+        updateProfileInfo(info,locationPhoto);
         // dispatch(editProfileSuccess(info));
           //start update data to database
         }
@@ -132,7 +132,7 @@ function uploadPhotoS3andProfileInfo(dispatch,file,info){
     })
 }
 
-function updateProfileInfo(dispatch,info,locationPhoto){
+function updateProfileInfo(info,locationPhoto){
   console.log('updateProfileInfo |action|');
   const profileData = {
     first_name:info.firstname,
@@ -146,9 +146,11 @@ function updateProfileInfo(dispatch,info,locationPhoto){
   axios.post(url, profileData)
   .then(response => {
     console.log('status : ' + response.data);
-    dispatch(editProfileSuccess(profileData));
+    console.log(profileData);
+    // dispatch(editProfileSuccess(profileData));
   })
   .catch(err => {
     console.log('err : '+err);
   })
+  
 }

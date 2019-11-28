@@ -90,7 +90,8 @@ exports.updateProfile =(req,res) => {
             phone:req.body.phone,
             bio:req.body.bio
         }).then(success => {
-            console.log('Success Update Profile info to DB');
+            // console.log('status : '+success);
+            
             res.send('Success Update Profile info to DB');
         }).catch(err => {
             console.log('Can not update Profile info to DB');
