@@ -27,9 +27,8 @@ const ProfilePage = ({
 }) => {
   useEffect(() => {
     profileInfo(match.params.username);
-  }, [match.params.username, profileInfo]);
+  }, [match.params.username,profileInfo]);
   const user = match.params.username;
-  console.log(avatar);
 
   return (
     <div>

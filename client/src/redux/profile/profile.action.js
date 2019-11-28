@@ -42,7 +42,7 @@ export const profileInfo = username => {
         // handle success
         //  const result = covertArr(response.data.user);
         //  console.log(result[1][1]);
-        console.log(response.data.user);
+        // console.log(response.data.user);
         dispatch(profileSuccess(response.data.user));
       })
       .catch(err => {
@@ -74,7 +74,7 @@ export const editProfileFailure = error => {
 
 export const editProfile = (info,avatar) => {
   return dispatch => {
-    console.log(info);
+    // console.log(info);
     dispatch(editProfileStart());
     if(!info.file){
       updateProfileInfo(dispatch,info,avatar);
@@ -91,7 +91,7 @@ export const editProfile = (info,avatar) => {
 function uploadPhotoS3andProfileInfo(dispatch,file,info){
   const data = new FormData();
   data.append( 'profileImage',file,file.name );
-  console.log('data : '+ data);
+  // console.log('data : '+ data);
   axios.post( '/profile/profile-img-upload', data, {
     headers: {
       'accept': 'application/json',
@@ -148,8 +148,8 @@ function updateProfileInfo(dispatch,info,locationPhoto){
   let url = '/profile/profile-update';
   axios.post(url, profileData)
   .then(response => {
-    console.log('status : ' + response.data);
-    console.log(profileData);
+    // console.log('status : ' + response.data);
+    // console.log(profileData);
     dispatch(editProfileSuccess(profileData));
   })
   .catch(err => {
