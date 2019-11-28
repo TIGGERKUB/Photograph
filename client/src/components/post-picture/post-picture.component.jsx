@@ -18,6 +18,7 @@ const PostPicture = ({ createPost }) => {
   const handleSubmit = event => {
     event.preventDefault();
     createPost(post);
+    window.location.reload()
   };
   const handleChange = event => {
     const { value, name } = event.target;
