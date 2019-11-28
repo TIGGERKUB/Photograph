@@ -61,7 +61,7 @@ const Me = ({
             file="https://i.ibb.co/CbYjm3k/woodwatch-7hye-LUn6388-unsplash.jpg"
             isProfile
           />
-          <EditProfile />
+          <EditProfile profileUsername ={ProfileUsername}/>
         </Grid.Column>
       </Grid>
       <ProfilePane />

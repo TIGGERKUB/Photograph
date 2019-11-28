@@ -12,7 +12,6 @@ import "./edit-profile.styles.scss";
 
 const EditProfile = ({ editProfile }) => {
   const [info, setInfo] = useState({
-    username: "",
     firstname: "",
     lastname: "",
     birth: "",
@@ -20,11 +19,12 @@ const EditProfile = ({ editProfile }) => {
     bio: "",
     file: null
   });
-  const { username, firstname, lastname, birth, phone, bio } = info;
+
+  const { firstname, lastname, birth, phone, bio } = info;
   const handleSubmit = event => {
     event.preventDefault();
     editProfile(info);
-
+    window.location.reload();
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -41,15 +41,6 @@ const EditProfile = ({ editProfile }) => {
           <Form onSubmit={handleSubmit}>
             <Upload isUploadProfile="true" onUpload={handleUploadChange} />
             <br />
-            <Form.Input
-              fluid
-              name="username"
-              value={username}
-              onChange={handleChange}
-              type="text"
-              label="Username"
-              placeholder="Username"
-            />
             <Form.Group widths="equal">
               <Form.Input
                 fluid
