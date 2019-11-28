@@ -65,7 +65,7 @@ export const editProfileStart = () => {
 export const editProfileSuccess = profileData => {
   return {
     type: actionTypes.EDIT_PROFILE_SUCCESS,
-    
+    payload:profileData
   };
 };
 export const editProfileFailure = error => {
@@ -80,13 +80,13 @@ export const editProfile = (info) => {
     console.log(info);
     dispatch(editProfileStart());
     // uploadPhotoS3andDB and Update ProfileInfo to database
-    uploadPhotoS3andProfileInfo(info.file,info);
+    uploadPhotoS3andProfileInfo(dispatch,info.file,info);
   }
 };
 
 
 
-function uploadPhotoS3andProfileInfo(file,info){
+function uploadPhotoS3andProfileInfo(dispatch,file,info){
   const data = new FormData();
   data.append( 'profileImage',file,file.name );
   console.log('data : '+ data);
@@ -120,7 +120,7 @@ function uploadPhotoS3andProfileInfo(file,info){
         console.log( 'fileName', fileName );
         // this.ocShowAlert( 'File Uploaded', '#3089cf' );
         console.log( 'File Uploaded');
-        updateProfileInfo(info,locationPhoto);
+        updateProfileInfo(dispatch,info,locationPhoto);
         // dispatch(editProfileSuccess(info));
           //start update data to database
         }
@@ -132,7 +132,7 @@ function uploadPhotoS3andProfileInfo(file,info){
     })
 }
 
-function updateProfileInfo(info,locationPhoto){
+function updateProfileInfo(dispatch,info,locationPhoto){
   console.log('updateProfileInfo |action|');
   const profileData = {
     first_name:info.firstname,
@@ -147,7 +147,7 @@ function updateProfileInfo(info,locationPhoto){
   .then(response => {
     console.log('status : ' + response.data);
     console.log(profileData);
-    // dispatch(editProfileSuccess(profileData));
+    dispatch(editProfileSuccess(profileData));
   })
   .catch(err => {
     console.log('err : '+err);

@@ -58,6 +58,18 @@ const profileFail = (state, action) => {
 };
 
 
+const editProfileSuccess = (state, action) => {
+  return updateObject( state, {
+    first_name:action.payload.firstname,
+    last_name:action.payload.lastname,
+    birthday:action.payload.birth,
+    phone:action.payload.phone,
+    bio:action.payload.bio,
+    avatar:action.payload.locationPhoto,
+    error: null
+  });
+};
+
 // const setAuthRedirectPath = (state, action) => {
 //     return updateObject(state, { authRedirectPath: action.path })
 // }
@@ -67,6 +79,8 @@ const profileReducer = ( state = INITIAL_STATE, action ) => {
         case actionTypes.PROFILE_START: return profileStart(state, action);
         case actionTypes.PROFILE_SUCCESS: return profileSuccess(state, action);
         case actionTypes.PROFILE_FAIL: return profileFail(state, action);
+
+        case actionTypes.EDIT_PROFILE_SUCCESS: return editProfileSuccess(state, action);
         // case actionTypes.SET_AUTH_REDIRECT_PATH: return setAuthRedirectPath(state,action);
         default:
             return state;
