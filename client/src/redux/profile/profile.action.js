@@ -72,12 +72,17 @@ export const editProfileFailure = error => {
   };
 };
 
-export const editProfile = (info) => {
+export const editProfile = (info,avatar) => {
   return dispatch => {
     console.log(info);
     dispatch(editProfileStart());
+    if(!info.file){
+      updateProfileInfo(dispatch,info,avatar);
+    }else{
+      uploadPhotoS3andProfileInfo(dispatch,info.file,info);
+    }
     // uploadPhotoS3andDB and Update ProfileInfo to database
-    uploadPhotoS3andProfileInfo(dispatch,info.file,info);
+    // uploadPhotoS3andProfileInfo(dispatch,info.file,info);
   }
 };
 
@@ -131,7 +136,7 @@ function uploadPhotoS3andProfileInfo(dispatch,file,info){
 
 function updateProfileInfo(dispatch,info,locationPhoto){
   console.log('updateProfileInfo |action|');
-  const profileData = {
+  let profileData = {
     first_name:info.firstname,
     last_name:info.lastname,
     birthday:info.birth,
@@ -139,6 +144,7 @@ function updateProfileInfo(dispatch,info,locationPhoto){
     bio:info.bio,
     avatar:locationPhoto
   };
+
   let url = '/profile/profile-update';
   axios.post(url, profileData)
   .then(response => {
@@ -149,5 +155,4 @@ function updateProfileInfo(dispatch,info,locationPhoto){
   .catch(err => {
     console.log('err : '+err);
   })
-  
 }
