@@ -22,7 +22,19 @@ const INITIAL_STATE = {
       avatar:
         "https://i.ibb.co/djnsQnF/aleksander-borzenets-t-Tfh-Dsh-DEI-unsplash.jpg",
       username: "__popound",
-      status: "following"
+      status: "following",
+      comment:[
+        {
+          comment_id: 1,
+          username: "asdsd",
+          comment:"sadadadasd"
+        },
+        {
+          comment_id: 2,
+          username: "sad",
+          comment:"asdad"
+        }
+      ]
     },
     {
       id: 2,

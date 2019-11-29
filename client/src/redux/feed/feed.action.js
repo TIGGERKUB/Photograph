@@ -18,7 +18,8 @@ export const createPostFailure = error => {
     }
 }
 export const createPost = newPost => {
-    console.log(newPost)
+    console.log(newPost);
+    
 }
 
 export const addLike = item => ({

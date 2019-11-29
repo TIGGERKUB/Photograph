@@ -10,5 +10,5 @@ auth.use(cors());
 
 auth.post('/signup', [verifySignUp.checkDuplicateUserNameOrEmail], authController.signup);
 auth.post('/signin', authController.signin);
-  
+
 module.exports = auth;

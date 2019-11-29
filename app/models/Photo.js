@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require("../database/config");
+const db = require("../config/db.config");
 
 module.exports = db.sequelize.define(
     'photo',
@@ -9,7 +9,6 @@ module.exports = db.sequelize.define(
                 primaryKey: true,
                 autoIncrement: true
             },
-            
             photo : {
                 type:Sequelize.STRING
             },
@@ -17,20 +16,17 @@ module.exports = db.sequelize.define(
             caption : {
                 type:Sequelize.STRING
             },
-           
-            group_id: {
-                type: Sequelize.INTEGER,
-                referencies : 'group_detail',
-                referenceKey: 'group_id'
-            },
+            // group_id: {
+            //     type: Sequelize.INTEGER,
+            //     referencies : 'group_detail',
+            //     referenceKey: 'group_id'
+            // },
             user_id: {
                 type: Sequelize.INTEGER,
                 referencies : 'user',
                 referenceKey: 'user_id'
             },
-            
-            
         },
-        { freezeTableName: true , 
+        { freezeTableName: true ,
             timestamps: false}
 );

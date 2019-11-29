@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import Upload from "../upload-preview/upload-preview.component";
 import CustomButton from "../custom-button/custom-button.component";
-import { createPost } from "../../redux/feed/feed.action";
+import { createPost } from "../../redux/profile/profile.action";
 
 import "./post-picture.styles.scss";
 
@@ -18,7 +18,7 @@ const PostPicture = ({ createPost }) => {
   const handleSubmit = event => {
     event.preventDefault();
     createPost(post);
-    window.location.reload()
+    // window.location.reload()
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -48,6 +48,7 @@ const PostPicture = ({ createPost }) => {
     </Modal>
   );
 };
+
 const mapDispatchToProps = dispatch => ({
   createPost: newPost => dispatch(createPost(newPost))
 });

@@ -10,5 +10,7 @@ profile.use(cors());
 profile.get('/:id',[authJwt.verifyToken],profileController.profileInfo);
 profile.post('/profile-img-upload',[authJwt.verifyToken,uploadPhoto],profileController.updatePhotoLinkToDB);
 profile.post('/profile-update',[authJwt.verifyToken],profileController.updateProfile);
+profile.post('/create-post-img-upload',[authJwt.verifyToken,uploadPhoto],profileController.testPost);
+profile.post('/create-post',[authJwt.verifyToken],profileController.createPost);
 
 module.exports = profile;

@@ -76,23 +76,46 @@ export const editProfile = (info,avatar) => {
   return dispatch => {
     console.log(info);
     dispatch(editProfileStart());
-    if(!info.file){
-      updateProfileInfo(dispatch,info,avatar);
+    if(info.file){
+      uploadPhotoS3andProfileInfo(dispatch,info,'edit');
     }else{
-      uploadPhotoS3andProfileInfo(dispatch,info.file,info);
+      updateProfileInfo(dispatch,info,avatar,'edit');
     }
     // uploadPhotoS3andDB and Update ProfileInfo to database
     // uploadPhotoS3andProfileInfo(dispatch,info.file,info);
   }
 };
 
+export const createPostSuccess = postData => {
+  return {
+    type: actionTypes.CREATE_POST_SUCCESS,
+    payload:postData
+  };
+};
+
+export const createPost = newPost => {
+  return dispatch => {
+    console.log(newPost);
+    uploadPhotoS3andProfileInfo(dispatch,newPost,'postPhoto');
+  }
+}
 
 
-function uploadPhotoS3andProfileInfo(dispatch,file,info){
+
+
+
+
+function uploadPhotoS3andProfileInfo(dispatch,info,task){
   const data = new FormData();
-  data.append( 'profileImage',file,file.name );
+  data.append( 'profileImage',info.file,info.file.name );
   console.log('data : '+ data);
-  axios.post( '/profile/profile-img-upload', data, {
+  let url = null;
+  if(task === 'edit'){
+    url = '/profile/profile-img-upload';
+  }else{
+    url = '/profile/create-post-img-upload';
+  }
+  axios.post( url, data, {
     headers: {
       'accept': 'application/json',
       'Accept-Language': 'en-US,en;q=0.8',
@@ -122,7 +145,7 @@ function uploadPhotoS3andProfileInfo(dispatch,file,info){
         console.log( 'fileName', fileName );
         // this.ocShowAlert( 'File Uploaded', '#3089cf' );
         console.log( 'File Uploaded');
-        updateProfileInfo(dispatch,info,locationPhoto);
+        updateProfileInfo(dispatch,info,locationPhoto,task);
         // dispatch(editProfileSuccess(info));
           //start update data to database
         }
@@ -134,25 +157,40 @@ function uploadPhotoS3andProfileInfo(dispatch,file,info){
     })
 }
 
-function updateProfileInfo(dispatch,info,locationPhoto){
+function updateProfileInfo(dispatch,info,locationPhoto,task){
   console.log('updateProfileInfo |action|');
-  let profileData = {
-    first_name:info.firstname,
-    last_name:info.lastname,
-    birthday:info.birth,
-    phone:info.phone,
-    bio:info.bio,
-    avatar:locationPhoto
-  };
+  let profileData = null;
+  let url =null;
+  if(task === 'edit'){
+    profileData = {
+      first_name:info.firstname,
+      last_name:info.lastname,
+      birthday:info.birth,
+      phone:info.phone,
+      bio:info.bio,
+      avatar:locationPhoto
+    };
+    url = '/profile/profile-update';
+  }else{
+    profileData = {
+      photo:locationPhoto,
+      caption:info.caption
+    };
+    url = '/profile/create-post';
+  }
 
-  let url = '/profile/profile-update';
   axios.post(url, profileData)
   .then(response => {
     console.log('status : ' + response.data);
-    console.log(profileData);
-    dispatch(editProfileSuccess(profileData));
+    console.log(response.data.photo);
+    if(task === 'edit'){
+      dispatch(editProfileSuccess(profileData));
+    }else{
+      dispatch(createPostSuccess(profileData));
+    }
   })
   .catch(err => {
     console.log('err : '+err);
   })
 }
+

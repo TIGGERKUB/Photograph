@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Photo = require("../models/Photo");
 const ProfileView = require("../models/Profile.View");
 
 exports.test = (req, res) => {
@@ -25,7 +26,6 @@ exports.profileInfo =(req,res) => {
 		}
 	}).then(user => {
         res.json({user:user});
-         console.log(user);
     }).catch(err => {
         res.status(500).send('Error -> ' + err);
         // console.log('Error = ' + err);
@@ -101,4 +101,44 @@ exports.updateProfile =(req,res) => {
         res.status(500).send('Error -> ' + err);
         // console.log('Error = ' + err);
     })
+}
+
+exports.createPost =(req,res) => {
+    console.log('createPost |controllers|');
+    User.findOne({
+		where: {
+			username: req.username
+		}
+	}).then(user => {
+        Photo.create({
+            photo :   req.body.photo,
+            caption : req.body.caption,
+            user_id : user.user_id
+        }).then(success => {
+            // console.log('status : '+success);
+
+            console.log('Success Create Post Photo info to DB');
+            Photo.findAll({
+                where: {
+                    user_id: user.user_id
+                }
+            }).then(photo => {
+                res.json({photo:photo})
+            })
+
+        }).catch(err => {
+            console.log('Can not Create Post Photo info to DB');
+        })
+        // console.log('tested');
+    }).catch(err => {
+        res.status(500).send('Error -> ' + err);
+        // console.log('Error = ' + err);
+    })
+}
+
+exports.testPost = (req, res) => {
+    console.log('testPost |controllers|');
+    res.json( {
+        location: req.file.location
+    } );
 }
