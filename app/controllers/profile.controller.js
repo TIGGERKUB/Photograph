@@ -26,6 +26,10 @@ exports.profileInfo =(req,res) => {
 		}
 	}).then(user => {
         res.json({user:user});
+<<<<<<< HEAD
+=======
+        //  console.log(user);
+>>>>>>> a4820ddf3a72c9fdc85521c73eef9001a4898ec6
     }).catch(err => {
         res.status(500).send('Error -> ' + err);
         // console.log('Error = ' + err);

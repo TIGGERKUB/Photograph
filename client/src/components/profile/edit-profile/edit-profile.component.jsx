@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Form } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
 
 import ButtonOutline from "../../button-outline/button-outline.component";
 import Upload from "../../upload-preview/upload-preview.component";
@@ -18,7 +20,8 @@ const EditProfile = ({
   BirthDay,
   PhoneNumber,
   Bio,
-  Avatar
+  Avatar,
+  history
 }) => {
   const [info, setInfo] = useState({
     firstname: FirstName,
@@ -26,12 +29,26 @@ const EditProfile = ({
     birth: BirthDay,
     phone: PhoneNumber,
     bio: Bio,
-    file: null
+    file: null,
+    firstnameError: "",
+    lastnameError: ""
   });
-  const { firstname, lastname, birth, phone, bio } = info;  
+  const {
+    firstname,
+    lastname,
+    birth,
+    phone,
+    bio,
+    firstnameError,
+    lastnameError
+  } = info;
   const handleSubmit = event => {
     event.preventDefault();
-    editProfile(info,Avatar);
+    const isValid = validate();
+    if (isValid) {
+      editProfile(info, Avatar);
+      history.push("/");
+    }
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -39,6 +56,27 @@ const EditProfile = ({
   };
   const handleUploadChange = event => {
     setInfo({ ...info, file: event });
+  };
+
+  const validate = () => {
+    let firstnameError = "";
+    let lastnameError = "";
+
+    if (!firstname.match(/^[a-zA-Z]+$/)) {
+      firstnameError = "Letters only";
+    }
+    if (!lastname.match(/^[a-zA-Z]+$/)) {
+      lastnameError = "Letters only";
+    }
+    if (firstnameError || lastnameError) {
+      setInfo({
+        ...info,
+        firstnameError,
+        lastnameError
+      });
+      return false;
+    }
+    return true;
   };
   return (
     <div className="profile-edit-btn">
@@ -53,24 +91,56 @@ const EditProfile = ({
             />
             <br />
             <Form.Group widths="equal">
-              <Form.Input
-                fluid
-                name="firstname"
-                value={firstname}
-                onChange={handleChange}
-                type="text"
-                label="First name"
-                placeholder={`${firstname ? firstname : "First Name"}`}
-              />
-              <Form.Input
-                fluid
-                name="lastname"
-                value={lastname}
-                onChange={handleChange}
-                type="text"
-                label="Last name"
-                placeholder={`${lastname ? lastname : "Last Name"}`}
-              />
+              {firstnameError ? (
+                <Form.Input
+                  fluid
+                  name="firstname"
+                  value={firstname}
+                  onChange={handleChange}
+                  type="text"
+                  label="First name"
+                  placeholder={`${firstname ? firstname : "First Name"}`}
+                  error={{
+                    content: firstnameError,
+                    pointing: "below"
+                  }}
+                />
+              ) : (
+                <Form.Input
+                  fluid
+                  name="firstname"
+                  value={firstname}
+                  onChange={handleChange}
+                  type="text"
+                  label="First name"
+                  placeholder={`${firstname ? firstname : "First Name"}`}
+                />
+              )}
+              {lastnameError ? (
+                <Form.Input
+                  fluid
+                  name="lastname"
+                  value={lastname}
+                  onChange={handleChange}
+                  type="text"
+                  label="Last name"
+                  placeholder={`${lastname ? lastname : "Last Name"}`}
+                  error={{
+                    content: lastnameError,
+                    pointing: "below"
+                  }}
+                />
+              ) : (
+                <Form.Input
+                  fluid
+                  name="lastname"
+                  value={lastname}
+                  onChange={handleChange}
+                  type="text"
+                  label="Last name"
+                  placeholder={`${lastname ? lastname : "Last Name"}`}
+                />
+              )}
             </Form.Group>
             <Form.Group widths="equal">
               <Form.Input
@@ -118,6 +188,9 @@ const mapStateToProps = createStructuredSelector({
   Bio: profileSelector.selectProfileBio
 });
 const mapDispatchToProps = dispatch => ({
-  editProfile: (info,avatar) => dispatch(editProfile(info,avatar))
+  editProfile: (info, avatar) => dispatch(editProfile(info, avatar))
 });
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default compose(
+  withRouter,
+  connect(mapStateToProps, mapDispatchToProps)
+)(EditProfile);

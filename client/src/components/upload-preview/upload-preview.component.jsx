@@ -25,7 +25,7 @@ class Upload extends React.Component {
     return (
       <div>
         {isUploadProfile ? (
-          avatar && this.state.file===null ? (
+          avatar && this.state.file === null ? (
             <PicturePlaceholder file={avatar} isProfilePlaceholder />
           ) : (
             <PicturePlaceholder file={this.state.file} isProfilePlaceholder />
@@ -34,7 +34,11 @@ class Upload extends React.Component {
           <PicturePlaceholder file={this.state.file} isPlaceholder />
         )}
         <br />
-        <input type="file" onChange={this.handleChange} />
+        {isUploadProfile ? (
+          <input type="file" onChange={this.handleChange} />
+        ) : (
+          <input type="file" onChange={this.handleChange} required />
+        )}
       </div>
     );
   }
