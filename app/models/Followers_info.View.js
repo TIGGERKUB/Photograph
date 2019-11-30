@@ -8,6 +8,9 @@ module.exports = db.sequelize.define(
       type: Sequelize.INTEGER,
       primaryKey: true
     },
+    user_username: {
+      type: Sequelize.STRING,
+    },
     follower_id: {
       type: Sequelize.INTEGER
     },

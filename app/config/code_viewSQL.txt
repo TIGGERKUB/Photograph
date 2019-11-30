@@ -1,8 +1,10 @@
-CREATE VIEW profile AS SELECT u.user_id,u.username,(SELECT COUNT(photo_id) FROM photo p WHERE u.user_id = p.user_id) as no_photo,(SELECT COUNT(following_id) FROM following g WHERE g.user_id = u.user_id) as no_following, (SELECT COUNT(follower_id) FROM followers r WHERE r.user_id = u.user_id) as no_followers FROM user u  GROUP BY u.user_id
+CREATE VIEW profile AS SELECT u.user_id,u.username,u.first_name,u.last_name,u.profile_pic,u.birthday,u.bio,u.phone,(SELECT COUNT(photo_id) FROM photo p WHERE u.user_id = p.user_id) as no_photo,(SELECT COUNT(following_id) FROM following g WHERE g.user_id = u.user_id AND g.status = 'Following') as no_following, (SELECT COUNT(follower_id) FROM followers r WHERE r.user_id = u.user_id) as no_followers FROM user u  GROUP BY u.user_id
 
 
 
-CREATE VIEW following_info AS SELECT f.user_id,f.following_id,(SELECT u.username FROM user u WHERE u.user_id = f.following_id) as following_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.following_id) as following_avatar FROM following f
+CREATE VIEW following_info AS SELECT f.user_id,(SELECT u.username FROM user u WHERE u.user_id = f.user_id) as user_username,f.following_id,(SELECT u.username FROM user u WHERE u.user_id = f.following_id) as following_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.following_id) as following_avatar ,f.status FROM following f
 
 
-CREATE VIEW followers_info AS SELECT f.user_id,f.follower_id,(SELECT u.username FROM user u WHERE u.user_id = f.follower_id) as follower_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.follower_id) as follower_avatar FROM followers f
+
+CREATE VIEW followers_info AS SELECT f.user_id,(SELECT u.username FROM user u WHERE u.user_id = f.user_id) as user_username,f.follower_id,(SELECT u.username FROM user u WHERE u.user_id = f.follower_id) as follower_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.follower_id) as follower_avatar FROM followers f
+
