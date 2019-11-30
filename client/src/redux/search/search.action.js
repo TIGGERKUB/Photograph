@@ -7,7 +7,7 @@ export const onSearchChange = character => ({
 })
 
 export const searchSuccess = allUser => ({
-    type: searchActionTypes.SEARCH_START,
+    type: searchActionTypes.SEARCH_SUCCESS,
     payload: allUser
 })
 
