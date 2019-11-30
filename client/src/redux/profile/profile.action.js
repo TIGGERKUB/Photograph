@@ -43,10 +43,10 @@ export const profileInfo = username => {
         // handle success
         //  const result = covertArr(response.data.user);
         //  console.log(result[1][1]);
-        console.log(response.data.photo);
-        console.log(response.data.followers);
-        console.log(response.data.following);
-        console.log(response.data.status);
+        // console.log(response.data.photo);
+        // console.log(response.data.followers);
+        // console.log(response.data.following);
+        // console.log(response.data.status);
         dispatch(profileSuccess(response.data));
 
       })
@@ -111,10 +111,15 @@ export const clearStateSuccess = () => {
   };
 };
 
-
 export const clearState = () => {
   return dispatch => {
     dispatch(clearStateSuccess());
+  }
+}
+
+export const followRequest = () => {
+  return{
+    type: actionTypes.FOLLOW_REQUEST
   }
 }
 

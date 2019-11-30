@@ -20,7 +20,7 @@ const SearchPage = ({ collections, users, character }) => {
   const userFiltered = users.filter(user =>
     _.toLower(user.username).includes(character)
   );
-
+  
   return (
     <div>
       <SearchBox />

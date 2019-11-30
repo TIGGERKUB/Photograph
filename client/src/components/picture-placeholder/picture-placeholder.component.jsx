@@ -43,10 +43,12 @@ const PicturePlaceholder = ({
           />
         </div>
       ) : isAvatar ? (
-        <div
-          className="avatar"
-          style={{ backgroundImage: `url(${item.avatar})` }}
-        />
+        <div className="avatar-placeholder">
+          <div
+            className="avatar"
+            style={{ backgroundImage: `url(${item.avatar})` }}
+          />
+        </div>
       ) : isFollowingAvatar ? (
         <div className="avatar-placeholder">
           <div
