@@ -146,15 +146,6 @@ export const checkStatus = status => {
 //   }
 // }
 
-
-
-
-
-
-
-
-
-
 function uploadPhotoS3andProfileInfo(dispatch,info,task){
   const data = new FormData();
   data.append( 'profileImage',info.file,info.file.name );

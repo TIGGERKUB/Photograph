@@ -21,8 +21,7 @@ const Another = ({
   followerLists,
   status
 }) => {
-  console.log(avatar);
-  
+  console.log(status);
   
   return (
     <Container className="profile-container">

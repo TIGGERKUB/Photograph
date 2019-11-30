@@ -59,11 +59,9 @@ const profileSuccess = (state, action) => {
       phone: action.payload.user.phone,
       bio: action.payload.user.bio,
       avatar: action.payload.user.profile_pic,
-
       photo:action.payload.photo,
       following:action.payload.following,
       followers:action.payload.followers,
-
       error: null
     });
   }
