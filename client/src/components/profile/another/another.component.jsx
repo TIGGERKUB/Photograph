@@ -22,6 +22,8 @@ const Another = ({
   followerLists,
   status
 }) => {
+  console.log(status);
+  
   return (
     <Container className="profile-container">
       <Grid>

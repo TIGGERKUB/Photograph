@@ -187,6 +187,7 @@ const mapStateToProps = createStructuredSelector({
   Avatar: profileSelector.selectProfileAvatar,
   Bio: profileSelector.selectProfileBio
 });
+
 const mapDispatchToProps = dispatch => ({
   editProfile: (info, avatar) => dispatch(editProfile(info, avatar))
 });

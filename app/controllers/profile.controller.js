@@ -1,6 +1,8 @@
 const User = require("../models/User");
 const Photo = require("../models/Photo");
 const ProfileView = require("../models/Profile.View");
+const Followers = require("../models/Followers_info.View");
+const Following = require("../models/Following_info.View");
 
 exports.test = (req, res) => {
     // console.log('test');
@@ -25,16 +27,34 @@ exports.profileInfo =(req,res) => {
 			username: getUsername
 		}
 	}).then(user => {
-        res.json({user:user});
-<<<<<<< HEAD
-=======
-        //  console.log(user);
->>>>>>> a4820ddf3a72c9fdc85521c73eef9001a4898ec6
+        // console.log(user);
+        Photo.findAll({
+            where: {
+                user_id: user.user_id
+            }
+        }).then(photo => {
+            Following.findAll({
+                where: {
+                    user_id: user.user_id
+                }
+            }).then(following => {
+                Followers.findAll({
+                    where: {
+                        user_id: user.user_id
+                    }
+                }).then(followers => { 
+                    console.log("followers : ",followers);
+                    res.json({user:user,photo:photo,following:following,followers:followers})
+                })
+            })
+        })
+        
     }).catch(err => {
         res.status(500).send('Error -> ' + err);
         // console.log('Error = ' + err);
     })
 }
+
 
 exports.updatePhotoLinkToDB =(req,res) => {
     console.log('updatePhotoLinkToDB');
@@ -146,3 +166,36 @@ exports.testPost = (req, res) => {
         location: req.file.location
     } );
 }
+
+
+// exports.statusFriend = (req, res) => {
+//     console.log("statusFriend |controller|");
+//     if(req.username = req.params.id){
+        
+//     }
+   
+//    User.findAll({
+// 	   where: {
+//            username: req.body.username,
+           
+// 	   }
+//    }).then(user => {
+// 	   if (!user) {
+// 		   return res.status(404).send('User Not Found.');
+// 	   }
+
+// 	   var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
+// 	   if (!passwordIsValid) {
+// 		   return res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password!" });
+// 	   }
+	   
+// 	   var token = jwt.sign({ username: user.username }, config.secret, {
+// 		 expiresIn: 86400 // expires in 24 hours
+// 	   });
+	   
+// 	   res.status(200).json({token:token});
+	   
+//    }).catch(err => {
+// 	   res.status(500).send('Error -> ' + err);
+//    });
+// }

@@ -34,6 +34,9 @@ export const selectProfileFollowers = createSelector(
     [selectProfile],
     profile => profile.followers
 )
+export const selectProfileFollowing = createSelector(
+    [selectProfile],
+    profile => profile.following
 
 export const selectProfileStatus = createSelector(
     [selectProfile],

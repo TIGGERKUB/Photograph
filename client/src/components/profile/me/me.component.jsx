@@ -1,5 +1,7 @@
 import React from "react";
 import { Container, Grid } from "semantic-ui-react";
+import {connect} from 'react-redux'
+import {createStructuredSelector} from 'reselect'
 
 import EditProfile from "../edit-profile/edit-profile.component";
 import PicturePlaceholder from "../../picture-placeholder/picture-placeholder.component";
@@ -7,6 +9,8 @@ import ProfileHeader from "../profile-header/profile-header.component";
 import ProfileFollow from "../profile-follow/profile-follow.component";
 import ProfileBio from "../profile-bio/profile-bio.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
+
+import * as selectProfile from '../../../redux/profile/profile.selector'
 
 import "./me.styles.scss";
 
@@ -18,7 +22,7 @@ const Me = ({
   bio,
   avatar,
   photo,
-  followerLists
+  followers,following
 }) => {
   return (
     <Container className="profile-container">
@@ -32,14 +36,14 @@ const Me = ({
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <ProfileFollow
-                    list={followerLists}
+                    list={followers}
                     total={no_followers}
                     label="Followers"
                   />
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <ProfileFollow
-                    list={followerLists}
+                    list={following}
                     total={no_following}
                     label="Following"
                   />
@@ -70,4 +74,8 @@ const Me = ({
     </Container>
   );
 };
-export default Me;
+const mapStateToProps = createStructuredSelector({
+  followers: selectProfile.selectProfileFollowers,
+  following: selectProfile.selectProfileFollowing
+})
+export default connect(napStateToProps)(Me);

@@ -9,10 +9,10 @@ export const profileStart = () => {
   };
 };
 
-export const profileSuccess = result => {
+export const profileSuccess = (info) => {
   return {
     type: actionTypes.PROFILE_SUCCESS,
-    payload: result
+    payload:info
   };
 };
 
@@ -39,11 +39,14 @@ export const profileInfo = username => {
         if (!response.data.user) {
           console.log("user not found!!");
         }
+
         // handle success
         //  const result = covertArr(response.data.user);
         //  console.log(result[1][1]);
-        // console.log(response.data.user);
-        dispatch(profileSuccess(response.data.user));
+        console.log(response.data.photo);
+        console.log(response.data.followers);
+        console.log(response.data.following);
+        dispatch(profileSuccess(response.data));
       })
       .catch(err => {
         // handle error
@@ -100,6 +103,53 @@ export const createPost = newPost => {
   }
 }
 
+export const clearStateSuccess = () => {
+  return {
+    type: actionTypes.CLEAR_PROFILE_STATE
+  };
+};
+
+
+export const clearState = () => {
+  return dispatch => {
+    dispatch(clearStateSuccess());
+  }
+}
+
+
+
+export const checkStatus = status => {
+  return {
+    type: actionTypes.CHECK_STATUS_FRIEND
+  };
+};
+
+// export const status = (friend) => {
+//   return dispatch => {
+//     let url = "/profile/status/" + friend;
+
+//     let statusFriend = null;
+//     const result = jwt_decode(localStorage.getItem("token"));
+//     if(friend === result.username){
+//       statusFriend = 'following'
+//     }else{
+//       axios.get(url)
+//       .then(response => {
+//         console.log(response.data);
+//         dispatch(checkStatus(response.data));
+//       })
+//       .catch(err => {
+//         // handle error
+//         console.log("error = " + err);
+//       });
+//     }
+//   }
+// }
+
+
+
+
+
 
 
 
@@ -107,7 +157,6 @@ export const createPost = newPost => {
 
 function uploadPhotoS3andProfileInfo(dispatch,info,task){
   const data = new FormData();
-<<<<<<< HEAD
   data.append( 'profileImage',info.file,info.file.name );
   console.log('data : '+ data);
   let url = null;
@@ -117,11 +166,6 @@ function uploadPhotoS3andProfileInfo(dispatch,info,task){
     url = '/profile/create-post-img-upload';
   }
   axios.post( url, data, {
-=======
-  data.append( 'profileImage',file,file.name );
-  // console.log('data : '+ data);
-  axios.post( '/profile/profile-img-upload', data, {
->>>>>>> a4820ddf3a72c9fdc85521c73eef9001a4898ec6
     headers: {
       'accept': 'application/json',
       'Accept-Language': 'en-US,en;q=0.8',
@@ -187,19 +231,14 @@ function updateProfileInfo(dispatch,info,locationPhoto,task){
 
   axios.post(url, profileData)
   .then(response => {
-<<<<<<< HEAD
     console.log('status : ' + response.data);
-    console.log(response.data.photo);
+    console.log(response.data);
     if(task === 'edit'){
+
       dispatch(editProfileSuccess(profileData));
     }else{
-      dispatch(createPostSuccess(profileData));
+      dispatch(createPostSuccess(response.data));
     }
-=======
-    // console.log('status : ' + response.data);
-    // console.log(profileData);
-    dispatch(editProfileSuccess(profileData));
->>>>>>> a4820ddf3a72c9fdc85521c73eef9001a4898ec6
   })
   .catch(err => {
     console.log('err : '+err);

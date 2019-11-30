@@ -33,4 +33,5 @@ const ProfileFollow = ({ list, total, label, isPost }) => {
     </div>
   );
 };
+
 export default ProfileFollow;

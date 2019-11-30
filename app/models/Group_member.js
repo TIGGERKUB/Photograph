@@ -1,6 +1,5 @@
 const Sequelize = require('sequelize');
-const db = require("../database/config");
-
+const db = require("../config/db.config");
 module.exports = db.sequelize.define(
     'group_member',
         {

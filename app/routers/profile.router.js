@@ -13,4 +13,9 @@ profile.post('/profile-update',[authJwt.verifyToken],profileController.updatePro
 profile.post('/create-post-img-upload',[authJwt.verifyToken,uploadPhoto],profileController.testPost);
 profile.post('/create-post',[authJwt.verifyToken],profileController.createPost);
 
+
+// profile.get('/profile/status/:id',[authJwt.verifyToken],profileController.statusFriend);
+
+
 module.exports = profile;
+
