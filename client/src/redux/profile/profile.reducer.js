@@ -18,29 +18,6 @@ const INITIAL_STATE = {
     status: null,
     followers:null,
     following:null
-  //   followers: [
-  //   {
-  //     id: 1,
-  //     avatar:
-  //       "https://i.ibb.co/djnsQnF/aleksander-borzenets-t-Tfh-Dsh-DEI-unsplash.jpg",
-  //     username: "__popound",
-  //     status: "following",
-  //   },
-  //   {
-  //     id: 2,
-  //     avatar:
-  //       "https://i.ibb.co/yk0xD2q/murilo-bahia-VUn-Kf-R2-REGw-unsplash.jpg",
-  //     username: "pong.ptw",
-  //     status: "none"
-  //   },
-  //   {
-  //     id: 3,
-  //     avatar: "https://i.ibb.co/TL05KP7/park-street-Sg9-BGgv-E5rk-unsplash.jpg",
-  //     username: "issa_dia",
-  //     status: "following"
-  //   }
-  // ]
-    // authRedirectPath: '/'
 };
 
 const profileStart = ( state, action ) => {
@@ -59,7 +36,6 @@ const profileSuccess = (state, action) => {
       phone: action.payload.user.phone,
       bio: action.payload.user.bio,
       avatar: action.payload.user.profile_pic,
-
       photo:action.payload.photo,
       following:action.payload.following,
       followers:action.payload.followers,
@@ -132,6 +108,7 @@ const profileReducer = ( state = INITIAL_STATE, action ) => {
         case actionTypes.CREATE_POST_SUCCESS: return createPostSuccess(state, action);
 
         case actionTypes.CLEAR_PROFILE_STATE: return clearStateSuccess(state, action);
+        case actionTypes.FOLLOW_REQUEST: return {...state,status:"Requested"}
         default:
             return state;
     }

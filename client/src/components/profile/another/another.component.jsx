@@ -7,6 +7,7 @@ import ProfileHeader from "../profile-header/profile-header.component";
 import ProfileFollow from "../profile-follow/profile-follow.component";
 import ButtonOutline from "../../button-outline/button-outline.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
+import ProfileBio from '../profile-bio/profile-bio.component'
 
 import "./another.styles.scss";
 
@@ -21,8 +22,6 @@ const Another = ({
   followerLists,
   status
 }) => {
-  console.log(avatar);
-  
   
   return (
     <Container className="profile-container">
@@ -55,7 +54,7 @@ const Another = ({
             </Grid.Column>
 
             <Grid.Column width={12}>
-              <div className="bio-container"><span style={{fontSize:18,letterSpacing:0.5}}>{bio}</span></div>
+              <ProfileBio bio={bio} />
             </Grid.Column>
           </Grid.Row>
         </Grid.Column>
@@ -67,9 +66,9 @@ const Another = ({
             <PicturePlaceholder isProfilePlaceholder />
           )}
           <div className="status-btn">
-            {status === "following" ? (
+            {status === "Following" ? (
               <ButtonOutline isFollowing>{status}</ButtonOutline>
-            ) : status === "request" ? (
+            ) : status === "Requested" ? (
               <ButtonOutline isRequest>Requested</ButtonOutline>
             ) : (
               <ButtonOutline>follow</ButtonOutline>
@@ -77,7 +76,7 @@ const Another = ({
           </div>
         </Grid.Column>
       </Grid>
-      {status === "following" ? <ProfilePane /> : <PrivatePane />}
+      {status === "Following" ? <ProfilePane /> : <PrivatePane />}
     </Container>
   );
 };

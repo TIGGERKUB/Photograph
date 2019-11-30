@@ -62,12 +62,17 @@ const EditProfile = ({
     let firstnameError = "";
     let lastnameError = "";
 
-    if (!firstname.match(/^[a-zA-Z]+$/)) {
-      firstnameError = "Letters only";
+    if (firstname) {
+      if (!firstname.match(/^[a-zA-Z]+$/)) {
+        firstnameError = "Letters only";
+      }
     }
-    if (!lastname.match(/^[a-zA-Z]+$/)) {
-      lastnameError = "Letters only";
+    if (lastname) {
+      if (!lastname.match(/^[a-zA-Z]+$/)) {
+        lastnameError = "Letters only";
+      }
     }
+
     if (firstnameError || lastnameError) {
       setInfo({
         ...info,
