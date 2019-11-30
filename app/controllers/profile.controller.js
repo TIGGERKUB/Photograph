@@ -27,7 +27,7 @@ exports.profileInfo =(req,res) => {
 			username: getUsername
 		}
 	}).then(user => {
-        // console.log(user);
+        // // console.log(user);
         Photo.findAll({
             where: {
                 user_id: user.user_id
@@ -35,7 +35,8 @@ exports.profileInfo =(req,res) => {
         }).then(photo => {
             Following.findAll({
                 where: {
-                    user_id: user.user_id
+                    user_id: user.user_id,
+                    status: 'Following'
                 }
             }).then(following => {
                 Followers.findAll({
@@ -43,8 +44,31 @@ exports.profileInfo =(req,res) => {
                         user_id: user.user_id
                     }
                 }).then(followers => { 
-                    console.log("followers : ",followers);
-                    res.json({user:user,photo:photo,following:following,followers:followers})
+                    Following.findOne({
+                        where: {
+                            user_username: req.username,
+                            following_username: user.username
+                        }
+                    }).then(getStatus => {
+                        let statusFriend = null;
+                        if(req.username === user.username){
+                            statusFriend = 'Following'
+                        }else if(getStatus.status === 'Following'){
+                            statusFriend = getStatus.status
+                        }else if(getStatus.status === 'Requested'){
+                            statusFriend = getStatus.status
+                        }else{
+                            statusFriend = 'no no no'
+                        }
+                        // console.log(statusFriend)
+                        // console.log(req.username)
+                        // console.log(user.username)
+                        // console.log(getStatus)
+                        
+                        res.json({user:user,photo:photo,following:following,followers:followers,status:statusFriend})
+                    }).catch(err => {
+                        res.json({user:user,photo:photo,following:following,followers:followers,status:'no_relationship'})
+                    })
                 })
             })
         })

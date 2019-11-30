@@ -63,7 +63,7 @@ const profileSuccess = (state, action) => {
       photo:action.payload.photo,
       following:action.payload.following,
       followers:action.payload.followers,
-
+      status: action.payload.status,
       error: null
     });
   }

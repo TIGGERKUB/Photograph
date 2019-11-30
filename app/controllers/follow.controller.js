@@ -2,22 +2,30 @@ const User = require("../models/User");
 const Followers = require("../models/Followers");
 const Following = require("../models/Following");
 
-exports.Following = (req, res) => {
+const Followers_View = require("../models/Followers_info.View");
+const Following_View  = require("../models/Following_info.View");
+
+exports.requestedFriend = (req, res) => {
     // console.log('test');.
+    const currentUser = req.username;
+    const anotherUser = req.body.username;
     User.findOne({
 		where: {
-			username: req.username
-		}
-	}).then(user => {
-        Following.findAll({
+			username: anotherUser
+        }
+    }).then(another_user => {
+        Following.create({
             where: {
-                user_id: user.user_id
+                user_id: currentUser,
+                following_id:anotherUser,
+                status:'Requested'
             }
-        }).then(following => {
-            res.json({following:following})
+        }).then(created => {
+            res.send('Requested Success');
+        }).catch(err => {
+            res.status(500).send("Fail! Error -> " + err);
         })
-    }).catch(err => {
-        res.status(500).send('Error -> ' + err);
-        // console.log('Error = ' + err);
-    })       
+            
+    })    
 }
+

@@ -46,7 +46,9 @@ export const profileInfo = username => {
         console.log(response.data.photo);
         console.log(response.data.followers);
         console.log(response.data.following);
+        console.log(response.data.status);
         dispatch(profileSuccess(response.data));
+
       })
       .catch(err => {
         // handle error
@@ -118,11 +120,6 @@ export const clearState = () => {
 
 
 
-export const checkStatus = status => {
-  return {
-    type: actionTypes.CHECK_STATUS_FRIEND
-  };
-};
 
 // export const status = (friend) => {
 //   return dispatch => {
