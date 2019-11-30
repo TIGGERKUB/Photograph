@@ -1,7 +1,11 @@
 import NotificationActionTypes from "./notification.types";
 const INITIAL_STATE = {
-  hidden: true
+  hidden: true,
+  allRequested: null
 };
+
+
+
 const notificationReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case NotificationActionTypes.NOTIFICATION_HIDDEN:
@@ -9,6 +13,11 @@ const notificationReducer = (state = INITIAL_STATE, action) => {
         ...state,
         hidden: !state.hidden
       };
+    case NotificationActionTypes.ALLREQUEST_SUCCESS: 
+      return {
+        ...state,
+        allRequested:action.payload.allRequested
+      }
     default:
       return state;
   }

@@ -1,5 +1,4 @@
 import axios from "axios";
-import jwt_decode from "jwt-decode";
 import * as actionTypes from "./follow.types";
 
 export const sendRequested = (anotherUser) => {
@@ -44,7 +43,7 @@ export const acceptRequested = (anotherUser) => {
   }
 }
 
-export const sendRequested = (anotherUser) => {
+export const unfollow = (anotherUser) => {
   return dispatch => {
     let url ='/follow/unfollow/' + anotherUser;
     axios.post(url)
