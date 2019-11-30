@@ -6,24 +6,49 @@ import ButtonOutline from "../../button-outline/button-outline.component";
 
 import "./modal-list.styles.scss";
 
-const ModalList = ({ items }) => {
+const ModalList = ({ isFollowing, items }) => {
+  
   return (
     <div className="list-container">
-      {items.map(item => (
-        <Link to={`/${item.username}`} style={{ color: "black" }} key={item.id}>
-          <div className="each-list">
-            <div className="avatar-and-name">
-              <PicturePlaceholder item={item} isAvatar />
-              <span>{item.username}</span>
-            </div>
-            {item.status === "following" ? (
-              <ButtonOutline isFollowing>{item.status}</ButtonOutline>
-            ) : (
-              <ButtonOutline>follow</ButtonOutline>
-            )}
-          </div>
-        </Link>
-      ))}
+      {isFollowing
+        ? items.map(item => (
+            <Link
+              to={`/${item.following_username}`}
+              style={{ color: "black" }}
+              key={item.following_id}
+            >
+              <div className="each-list">
+                <div className="avatar-and-name">
+                  <PicturePlaceholder item={item} isFollowingAvatar />
+                  <span>{item.following_username}</span>
+                </div>
+                {item.status === "following" ? (
+                  <ButtonOutline isFollowing>{item.status}</ButtonOutline>
+                ) : (
+                  <ButtonOutline>follow</ButtonOutline>
+                )}
+              </div>
+            </Link>
+          ))
+        : items.map(item => (
+            <Link
+              to={`/${item.follower_username}`}
+              style={{ color: "black" }}
+              key={item.follower_id}
+            >
+              <div className="each-list">
+                <div className="avatar-and-name">
+                  <PicturePlaceholder item={item} isFollowerAvatar />
+                  <span>{item.follower_username}</span>
+                </div>
+                {item.status === "following" ? (
+                  <ButtonOutline isFollowing>{item.status}</ButtonOutline>
+                ) : (
+                  <ButtonOutline>follow</ButtonOutline>
+                )}
+              </div>
+            </Link>
+          ))}
     </div>
   );
 };

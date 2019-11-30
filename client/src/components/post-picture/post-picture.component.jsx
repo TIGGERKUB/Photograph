@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Modal, Form } from "semantic-ui-react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { connect } from "react-redux";
+import {withRouter} from 'react-router-dom'
+import {compose} from 'redux'
 
 import Upload from "../upload-preview/upload-preview.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -9,7 +11,7 @@ import { createPost } from "../../redux/profile/profile.action";
 
 import "./post-picture.styles.scss";
 
-const PostPicture = ({ createPost }) => {
+const PostPicture = ({ createPost,history }) => {
   const [post, setPost] = useState({
     caption: "",
     file: null
@@ -18,7 +20,7 @@ const PostPicture = ({ createPost }) => {
   const handleSubmit = event => {
     event.preventDefault();
     createPost(post);
-    // window.location.reload()
+    history.push("/")
   };
   const handleChange = event => {
     const { value, name } = event.target;
@@ -52,4 +54,4 @@ const PostPicture = ({ createPost }) => {
 const mapDispatchToProps = dispatch => ({
   createPost: newPost => dispatch(createPost(newPost))
 });
-export default connect(null, mapDispatchToProps)(PostPicture);
+export default compose(withRouter,connect(null, mapDispatchToProps))(PostPicture);
