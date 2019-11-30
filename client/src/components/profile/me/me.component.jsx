@@ -10,7 +10,7 @@ import ProfileFollow from "../profile-follow/profile-follow.component";
 import ProfileBio from "../profile-bio/profile-bio.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
 
-import * as selectProfile from '../../../redux/profile/profile.selector'
+import {selectProfileFollowing,selectProfileFollowers}from '../../../redux/profile/profile.selector'
 
 import "./me.styles.scss";
 
@@ -75,7 +75,7 @@ const Me = ({
   );
 };
 const mapStateToProps = createStructuredSelector({
-  followers: selectProfile.selectProfileFollowers,
-  following: selectProfile.selectProfileFollowing
+  followers: selectProfileFollowers,
+  following: selectProfileFollowing
 })
-export default connect(napStateToProps)(Me);
+export default connect(mapStateToProps)(Me);
