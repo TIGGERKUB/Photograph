@@ -175,7 +175,7 @@ const EditProfile = ({
               placeholder={`${bio ? bio : "Tell something about you..."}`}
             />
             <br />
-            <CustomButton type="submit" isGreen>
+            <CustomButton type="submit" isGreen style={{margin:'auto'}}>
               SAVE
             </CustomButton>
           </Form>

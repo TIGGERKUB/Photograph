@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Grid } from "semantic-ui-react";
+import { Container, Grid, Modal, Divider } from "semantic-ui-react";
 
-import PrivatePane from '../private-pane/private-pane.component'
+import PrivatePane from "../private-pane/private-pane.component";
 import PicturePlaceholder from "../../picture-placeholder/picture-placeholder.component";
 import ProfileHeader from "../profile-header/profile-header.component";
 import ProfileFollow from "../profile-follow/profile-follow.component";
 import ButtonOutline from "../../button-outline/button-outline.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
-import ProfileBio from '../profile-bio/profile-bio.component'
+import ProfileBio from "../profile-bio/profile-bio.component";
 
 import "./another.styles.scss";
 
@@ -22,7 +22,6 @@ const Another = ({
   followerLists,
   status
 }) => {
-  
   return (
     <Container className="profile-container">
       <Grid>
@@ -67,7 +66,18 @@ const Another = ({
           )}
           <div className="status-btn">
             {status === "Following" ? (
-              <ButtonOutline isFollowing>{status}</ButtonOutline>
+              <Modal
+                size="mini"
+                trigger={<ButtonOutline isFollowing>{status}</ButtonOutline>}
+              >
+                <Modal.Content>
+                  <PicturePlaceholder file={avatar} isProfile />
+                  <Divider/>
+                  <ButtonOutline isUnfollow style={{ margin: "auto" }}>
+                    Unfollow
+                  </ButtonOutline>
+                </Modal.Content>
+              </Modal>
             ) : status === "Requested" ? (
               <ButtonOutline isRequest>Requested</ButtonOutline>
             ) : (

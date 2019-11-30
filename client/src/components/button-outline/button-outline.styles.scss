@@ -41,4 +41,14 @@
             color: white;
         }
     }
+    &.unfollow{
+        background-color: transparent;
+        color: red;
+        border: 1px solid red;
+
+        &:hover {
+            background-color: red;
+            color: white;
+        }
+    }
 }

@@ -1,6 +1,8 @@
 import NotificationActionTypes from "./notification.types";
+
 const INITIAL_STATE = {
-  hidden: true
+  hidden: true,
+  notificationBox:[]
 };
 const notificationReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
