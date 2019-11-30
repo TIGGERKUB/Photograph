@@ -7,7 +7,6 @@ import EditProfile from "../edit-profile/edit-profile.component";
 import PicturePlaceholder from "../../picture-placeholder/picture-placeholder.component";
 import ProfileHeader from "../profile-header/profile-header.component";
 import ProfileFollow from "../profile-follow/profile-follow.component";
-import ProfileBio from "../profile-bio/profile-bio.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
 
 import {selectProfileFollowing,selectProfileFollowers}from '../../../redux/profile/profile.selector'
@@ -55,7 +54,7 @@ const Me = ({
             </Grid.Column>
 
             <Grid.Column width={12}>
-              <Container textAlign='right' className="bio-container"><ProfileBio bio={bio} /></Container>
+              <div className="bio-container"><span style={{fontSize:18,letterSpacing:0.5}}>{bio}</span></div>
             </Grid.Column>
           </Grid.Row>
         </Grid.Column>
@@ -66,7 +65,6 @@ const Me = ({
           ) : (
             <PicturePlaceholder isProfilePlaceholder />
           )}
-
           <EditProfile />
         </Grid.Column>
       </Grid>

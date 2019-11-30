@@ -8,17 +8,19 @@ const PicturePlaceholder = ({
   isProfilePlaceholder,
   isPlaceholder,
   isAvatar,
-  item
+  item,
+  isFollowingAvatar,
+  isFollowerAvatar
 }) => {
   return (
     <div>
       {isProfile ? (
-       <div className="profile-photo-container">
+        <div className="profile-photo-container">
           <div
             className="profile-photo"
             style={{ backgroundImage: `url(${file})` }}
           />
-       </div>
+        </div>
       ) : isProfilePlaceholder ? (
         <div className="profile-placeholder">
           <div
@@ -45,6 +47,20 @@ const PicturePlaceholder = ({
           className="avatar"
           style={{ backgroundImage: `url(${item.avatar})` }}
         />
+      ) : isFollowingAvatar ? (
+        <div className="avatar-placeholder">
+          <div
+            className="avatar"
+            style={{ backgroundImage: `url(${item.following_avatar})` }}
+          />
+        </div>
+      ) : isFollowerAvatar ? (
+        <div className="avatar-placeholder">
+          <div
+            className="avatar"
+            style={{ backgroundImage: `url(${item.follower_avatar})` }}
+          />
+        </div>
       ) : null}
     </div>
   );

@@ -26,7 +26,11 @@ const ProfileFollow = ({ list, total, label, isPost }) => {
         >
           <Modal.Header>{label}</Modal.Header>
           <Modal.Content scrolling>
-            <ModalList items={list} />
+            {label === "Following" ? (
+              <ModalList items={list} isFollowing />
+            ) : (
+              <ModalList items={list} />
+            )}
           </Modal.Content>
         </Modal>
       )}
