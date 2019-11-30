@@ -11,7 +11,6 @@ import PicturePlaceholder from "../picture-placeholder/picture-placeholder.compo
 import "./feed-card.styles.scss";
 
 const FeedCard = ({ item,addLike,isLike}) => {
-  console.log(item);
   
   return (
     <div className="card-container">

@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Grid, Modal, Divider } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 import PrivatePane from "../private-pane/private-pane.component";
 import PicturePlaceholder from "../../picture-placeholder/picture-placeholder.component";
@@ -8,6 +9,12 @@ import ProfileFollow from "../profile-follow/profile-follow.component";
 import ButtonOutline from "../../button-outline/button-outline.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
 import ProfileBio from "../profile-bio/profile-bio.component";
+
+import {
+  sendRequested,
+  cancelRequested,
+  unfollow
+} from "../../../redux/follow/follow.action";
 
 import "./another.styles.scss";
 
@@ -20,7 +27,10 @@ const Another = ({
   avatar,
   photo,
   followerLists,
-  status
+  status,
+  sendRequest,
+  cancelRequest,
+  unfollow
 }) => {
   return (
     <Container className="profile-container">
@@ -72,16 +82,27 @@ const Another = ({
               >
                 <Modal.Content>
                   <PicturePlaceholder file={avatar} isProfile />
-                  <Divider/>
-                  <ButtonOutline isUnfollow style={{ margin: "auto" }}>
+                  <Divider />
+                  <ButtonOutline
+                    isUnfollow
+                    style={{ margin: "auto" }}
+                    onClick={() => unfollow(ProfileUsername)}
+                  >
                     Unfollow
                   </ButtonOutline>
                 </Modal.Content>
               </Modal>
             ) : status === "Requested" ? (
-              <ButtonOutline isRequest>Requested</ButtonOutline>
+              <ButtonOutline
+                isRequest
+                onClick={() => cancelRequest(ProfileUsername)}
+              >
+                Requested
+              </ButtonOutline>
             ) : (
-              <ButtonOutline>follow</ButtonOutline>
+              <ButtonOutline onClick={() => sendRequest(ProfileUsername)}>
+                follow
+              </ButtonOutline>
             )}
           </div>
         </Grid.Column>
@@ -90,4 +111,9 @@ const Another = ({
     </Container>
   );
 };
-export default Another;
+const mapDispatchToProps = dispatch => ({
+  sendRequest: anotherUser => dispatch(sendRequested(anotherUser)),
+  cancelRequest: anotherUser => dispatch(cancelRequested(anotherUser)),
+  unfollow: anotherUser => dispatch(unfollow(anotherUser))
+});
+export default connect(null, mapDispatchToProps)(Another);

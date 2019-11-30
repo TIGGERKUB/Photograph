@@ -1,5 +1,5 @@
 const NotificationActionTypes = {
   NOTIFICATION_HIDDEN: "NOTIFICATION_HIDDEN",
-  ADD_REQUEST_TO_BOX: "ADD_REQUEST_TO_BOX"
+  ALL_REQUEST_SUCCESS: "ALL_REQUEST_SUCCESS"
 };
 export default NotificationActionTypes;

@@ -9,7 +9,10 @@ module.exports = db.sequelize.define(
       primaryKey: true
     },
     user_username: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING
+    },
+    user_avatar: {
+      type: Sequelize.STRING
     },
     following_id: {
       type: Sequelize.INTEGER

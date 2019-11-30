@@ -53,7 +53,7 @@ const PicturePlaceholder = ({
         <div className="avatar-placeholder">
           <div
             className="avatar"
-            style={{ backgroundImage: `url(${item.following_avatar})` }}
+            style={{ backgroundImage: `url(${item.user_avatar})` }}
           />
         </div>
       ) : isFollowerAvatar ? (

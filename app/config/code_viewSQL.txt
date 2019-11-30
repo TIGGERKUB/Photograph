@@ -2,7 +2,7 @@ CREATE VIEW profile AS SELECT u.user_id,u.username,u.first_name,u.last_name,u.pr
 
 
 
-CREATE VIEW following_info AS SELECT f.user_id,(SELECT u.username FROM user u WHERE u.user_id = f.user_id) as user_username,f.following_id,(SELECT u.username FROM user u WHERE u.user_id = f.following_id) as following_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.following_id) as following_avatar ,f.status FROM following f
+CREATE VIEW following_info AS SELECT f.user_id,(SELECT u.username FROM user u WHERE u.user_id = f.user_id) as user_username,(SELECT u.profile_pic FROM user u WHERE u.user_id = f.user_id) as user_avatar,f.following_id,(SELECT u.username FROM user u WHERE u.user_id = f.following_id) as following_username, (SELECT u.profile_pic FROM user u WHERE u.user_id = f.following_id) as following_avatar ,f.status FROM following f
 
 
 

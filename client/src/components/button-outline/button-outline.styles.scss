@@ -1,5 +1,5 @@
 .outline-button {
-    min-width: 80px;
+    min-width: 40px;
     width: auto;
     height: 40px;
     letter-spacing: 0.5px;
@@ -51,4 +51,36 @@
             color: white;
         }
     }
+}
+.on-notification-box{
+     width: 60px;
+     letter-spacing: 0.5px;
+     padding: 0 15px 0 15px;
+     font-size: 12px;
+     height: 30px;
+     background-color: #1089ff;
+     color: white;
+     text-transform: uppercase;
+     font-family: 'Open Sans Condensed';
+     font-weight: bolder;
+     cursor: pointer;
+     display: flex;
+     justify-content: center;
+     outline: none;
+     border: none;
+     border-radius: 8px;
+     margin-right: 5px;
+
+     &:hover {
+         background-color: #0075f6;
+     }
+     &.cancel{
+        background-color: transparent;
+        color: red;
+        border: 1px solid red;
+        &:hover{
+            background-color: red;
+            color: white;
+        }
+     }
 }

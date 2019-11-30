@@ -12,6 +12,6 @@ follow.post('/requested-friend/:username', [authJwt.verifyToken,getUserID], foll
 follow.post('/cancel-requested/:username', [authJwt.verifyToken,getUserID], followController.cancelRequestedFriend);
 follow.post('/accept-requested/:username', [authJwt.verifyToken,getUserID], followController.acceptRequest);
 follow.post('/unfollow/:username', [authJwt.verifyToken,getUserID], followController.unfollow);
-
+follow.post('/all-requested/:username', [authJwt.verifyToken,getUserID], followController.allRequested);
 
 module.exports = follow;

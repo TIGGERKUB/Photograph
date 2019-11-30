@@ -4,3 +4,7 @@ export const selectNotificationHidden = createSelector(
   [selectNotification],
   notification => notification.hidden
 );
+export const selectNoticationAllRequest = createSelector(
+  [selectNotification],
+  notification => notification.allRequested
+)

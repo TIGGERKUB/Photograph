@@ -1,10 +1,9 @@
 .notification-dropdown {
     position: absolute;
-    width: 240px;
+    width: 300px;
     height: 340px;
     display: flex;
     flex-direction: column;
-    padding: 20px;
     border: 1px solid black;
     background-color: white;
     top: 90px;
@@ -12,7 +11,6 @@
     z-index: 5;
 
     .empty-message {
-        font-size: 18px;
         margin: 50px auto;
     }
 
@@ -21,6 +19,22 @@
         display: flex;
         flex-direction: column;
         overflow: auto;
+        .each-notification {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            .avatar-name {
+                width: 30%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 18px;
+            }
+            .btn-notification-box{
+                display: flex;
+            }
+        }
     }
 
 }
