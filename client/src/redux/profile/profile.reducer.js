@@ -21,7 +21,7 @@ const INITIAL_STATE = {
 };
 
 const profileStart = ( state, action ) => {
-    return updateObject( state, { error: null, loading: true, } );
+    return updateObject( state, { error: null, loading: true } );
 };
 
 const profileSuccess = (state, action) => {
