@@ -30,12 +30,12 @@ const SignIn = ({ login, isAuthenticated, error }) => {
     setUserCredentials({ ...userCredential, [name]: value });
   };
   const validate = () => {
-    let errorMessage = "";
-    // if (error) {
-    //   errorMessage = "Invalid username or password";
-    //   setUserCredentials({ ...userCredential, errorMessage });
-    //   return false;
-    // }
+  //   let errorMessage = "";
+  //   if (error) {
+  //     errorMessage = "Invalid username or password";
+  //     setUserCredentials({ ...userCredential, errorMessage });
+  //     return false;
+  //   }
     return true;
   };
   let authRedirect = null;

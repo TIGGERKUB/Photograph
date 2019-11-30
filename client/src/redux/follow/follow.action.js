@@ -55,3 +55,4 @@ export const unfollow = (anotherUser) => {
     });
   }
 }
+

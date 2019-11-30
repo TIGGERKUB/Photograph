@@ -9,9 +9,8 @@ const PicturePlaceholder = ({
   isPlaceholder,
   isAvatar,
   item,
-  isFollowingAvatar,
-  isFollowerAvatar
 }) => {
+  
   return (
     <div>
       {isProfile ? (
@@ -46,21 +45,7 @@ const PicturePlaceholder = ({
         <div className="avatar-placeholder">
           <div
             className="avatar"
-            style={{ backgroundImage: `url(${item.avatar})` }}
-          />
-        </div>
-      ) : isFollowingAvatar ? (
-        <div className="avatar-placeholder">
-          <div
-            className="avatar"
-            style={{ backgroundImage: `url(${item.user_avatar})` }}
-          />
-        </div>
-      ) : isFollowerAvatar ? (
-        <div className="avatar-placeholder">
-          <div
-            className="avatar"
-            style={{ backgroundImage: `url(${item.follower_avatar})` }}
+            style={{ backgroundImage: `url(${item})` }}
           />
         </div>
       ) : null}
