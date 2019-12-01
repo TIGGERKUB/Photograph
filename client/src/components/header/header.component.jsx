@@ -13,8 +13,9 @@ import { selectNotificationHidden } from "../../redux/notification/notification.
 import {selectCurrentUser,selectUsername} from "../../redux/user/user.selectors";
 
 import { connect } from "react-redux";
+import { allUser } from "../../redux/search/search.action";
 
-const Header = ({ hidden,isAuthenticated,CurrentUser }) => {
+const Header = ({ hidden,isAuthenticated,CurrentUser,allUser }) => {
   let head_nav = null;
   if(isAuthenticated){
     head_nav = (
@@ -23,7 +24,7 @@ const Header = ({ hidden,isAuthenticated,CurrentUser }) => {
           Photograph
         </Link>
         <div className="options">
-          <Link className="option" to="/search">
+          <Link className="option" to="/search" onClick={()=>allUser()}>
             <IoIosSearch />
           </Link>
           <div className="option">
@@ -54,5 +55,7 @@ const mapStateToProps = createStructuredSelector({
   CurrentUser: selectUsername
 
 });
-
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+  allUser: () => dispatch(allUser())
+});
+export default connect(mapStateToProps,mapDispatchToProps)(Header);
