@@ -17,10 +17,7 @@ import {
 
 import "./search-page.styles.scss";
 
-const SearchPage = ({ collections, users, character, allUser }) => {
-  useEffect(() => {
-    return allUser()
-  }, [allUser]);
+const SearchPage = ({ collections, users, character }) => {
 
   const userFiltered = users.filter(user =>
     _.toLower(user.username).includes(character)
@@ -53,7 +50,5 @@ const mapStateToProps = createStructuredSelector({
   users: selectSearchUsers,
   character: selectSearchCharacter
 });
-const mapDispatchToProps = dispatch => ({
-  allUser: () => dispatch(allUser())
-});
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+
+export default connect(mapStateToProps)(SearchPage);
