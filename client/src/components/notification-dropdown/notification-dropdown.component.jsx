@@ -17,11 +17,11 @@ const NotificationDropdown = ({ users, allRequested, acceptRequest }) => {
   return (
     <div className="notification-dropdown">
       <div className="notification-items">
-        {users.length ? (
+        {users ? (
           users.map(item => (
             <div className="each-notification" key={item.user_id}>
               <div className="avatar-name">
-                <PicturePlaceholder item={item} isFollowingAvatar />
+                <PicturePlaceholder item={item.user_avatar} isAvatar />
                 <span>{item.user_username}</span>
               </div>
               <div className="btn-notification-box">
