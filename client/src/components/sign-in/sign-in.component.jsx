@@ -12,32 +12,32 @@ import "./sign-in.styles.scss";
 const SignIn = ({ login, isAuthenticated, error }) => {
   const [userCredential, setUserCredentials] = useState({
     username: "",
-    password: "",
-    errorMessage: ""
+    password: ""
   });
 
-  const { username, password, errorMessage } = userCredential;
+  const { username, password } = userCredential;
   const handleSubmit = event => {
     event.preventDefault();
-    const isValid = validate();
-    if (isValid) {
-      login(username, password);
+    if (error) {
+      alert(error);
+      window.location.reload();
     }
+    login(username, password);
   };
   const handleChange = event => {
     const { value, name } = event.target;
 
     setUserCredentials({ ...userCredential, [name]: value });
   };
-  const validate = () => {
+  // const validate = () => {
   //   let errorMessage = "";
   //   if (error) {
   //     errorMessage = "Invalid username or password";
   //     setUserCredentials({ ...userCredential, errorMessage });
   //     return false;
   //   }
-    return true;
-  };
+  //   return true;
+  // };
   let authRedirect = null;
   if (isAuthenticated) {
     authRedirect = <Redirect to="/feed" />;
@@ -47,7 +47,6 @@ const SignIn = ({ login, isAuthenticated, error }) => {
       {authRedirect}
       <h2 className="login-brand">Photograph</h2>
       <form onSubmit={handleSubmit}>
-        <span style={{color:'red'}}>{errorMessage}</span>
         <FormInput
           type="text"
           name="username"

@@ -44,9 +44,8 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
     let usernameError = "";
     let emailError = "";
     let passwordError = "";
-
-    if (username.length < 2) {
-      usernameError = "Username must be more than 1 character";
+    if (username.length < 5) {
+      usernameError = "Username must be more than 5 character";
     }
     if (!email.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
       emailError = "Invalid email";
@@ -68,26 +67,25 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
     return true;
   };
 
-  let errorMessage = null;
-  if (error) {
-    errorMessage = <p>{error.message}</p>;
-  }
-
   let authRedirect = null;
   if (isAuthenticated) {
     // authRedirect = console.log('isAuthenticated : ' +isAuthenticated);
     authRedirect = <Redirect to="/feed" />;
     // authRedirect.history.push("/feed");
   }
+  let errorMessage = null;
+  if(error){
+    errorMessage = alert(error);
+  }
+
   return (
     <div className="regist-form">
       <Link to="/">
         <IoIosArrowRoundBack style={{ fontSize: 32 }} />
       </Link>
       <div className="regist-form-container">
-        {errorMessage}
         {authRedirect}
-
+        {errorMessage}
         <h2>Sign Up</h2>
         <span>or sign in with social network</span>
         <div className="social-login">
@@ -99,6 +97,7 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
           </CustomButton>
         </div>
         <Divider horizontal>Or</Divider>
+        {/* {error ? <span style={{color:'red'}}>{error}</span>:null} */}
         <form onSubmit={handleSubmit}>
           <FormInput
             type="text"

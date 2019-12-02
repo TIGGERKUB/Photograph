@@ -18,7 +18,7 @@ const ModalList = ({ isSearch,isFollowing, items }) => {
             >
               <div className="each-list">
                 <div className="avatar-and-name">
-                  <PicturePlaceholder item={item.user_avatar} isAvatar />
+                  <PicturePlaceholder item={item.following_avatar} isAvatar />
                   <span>{item.following_username}</span>
                 </div>
               </div>

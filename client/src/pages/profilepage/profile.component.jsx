@@ -22,6 +22,7 @@ const ProfilePage = ({
   avatar,
   photo,
   followerLists,
+  followingLists,
   status,
   currentUser
 }) => {
@@ -41,7 +42,6 @@ const ProfilePage = ({
           bio={bio}
           avatar={avatar}
           photo={photo}
-          followerLists={followerLists}
         />
       ) : (
         <Another
@@ -53,6 +53,7 @@ const ProfilePage = ({
           avatar={avatar}
           photo={photo}
           followerLists={followerLists}
+          followingLists={followingLists}
           status={status}
         />
       )}
@@ -68,6 +69,7 @@ const mapStateTopProps = createStructuredSelector({
   avatar: profileSelector.selectProfileAvatar,
   photo: profileSelector.selectProfilePhoto,
   followerLists: profileSelector.selectProfileFollowers,
+  followingLists: profileSelector.selectProfileFollowing,
   status: profileSelector.selectProfileStatus,
   currentUser: userSelector.selectUsername
   

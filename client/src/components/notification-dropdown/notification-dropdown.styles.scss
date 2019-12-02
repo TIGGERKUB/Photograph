@@ -2,6 +2,7 @@
     position: absolute;
     width: 300px;
     height: 340px;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     border: 1px solid black;
@@ -18,20 +19,22 @@
         height: 240px;
         display: flex;
         flex-direction: column;
-        overflow: auto;
+
         .each-notification {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px;
+
             .avatar-name {
-                width: 30%;
+                width: 42%;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 font-size: 18px;
             }
-            .btn-notification-box{
+
+            .btn-notification-box {
                 display: flex;
             }
         }

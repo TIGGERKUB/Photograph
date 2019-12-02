@@ -27,6 +27,7 @@ const Another = ({
   avatar,
   photo,
   followerLists,
+  followingLists,
   status,
   sendRequest,
   cancelRequest,
@@ -51,7 +52,7 @@ const Another = ({
                 </Grid.Column>
                 <Grid.Column width={3}>
                   <ProfileFollow
-                    list={followerLists}
+                    list={followingLists}
                     total={no_following}
                     label="Following"
                   />

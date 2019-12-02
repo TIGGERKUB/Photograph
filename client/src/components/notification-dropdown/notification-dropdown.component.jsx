@@ -3,17 +3,23 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import PicturePlaceholder from "../picture-placeholder/picture-placeholder.component";
 import { selectNoticationAllRequest } from "../../redux/notification/notification.selector";
+import { toggleNotificationHidden } from "../../redux/notification/notification.action";
 import { allRequested } from "../../redux/notification/notification.action";
 import { acceptRequested } from "../../redux/follow/follow.action";
 import "./notification-dropdown.styles.scss";
 import ButtonOutline from "../button-outline/button-outline.component";
 
-const NotificationDropdown = ({ users, allRequested, acceptRequest }) => {
+const NotificationDropdown = ({
+  users,
+  allRequested,
+  acceptRequest,
+  toggleNotificationHidden
+}) => {
   useEffect(() => {
     allRequested();
   }, [allRequested]);
   console.log(users);
-  
+
   return (
     <div className="notification-dropdown">
       <div className="notification-items">
@@ -27,7 +33,8 @@ const NotificationDropdown = ({ users, allRequested, acceptRequest }) => {
               <div className="btn-notification-box">
                 <ButtonOutline
                   onNotificationBox
-                  onClick={() => acceptRequest(item.user_username)}
+                  onClick={() => {acceptRequest(item.user_username)
+                  toggleNotificationHidden()}}
                 >
                   Accept
                 </ButtonOutline>
@@ -51,7 +58,8 @@ const mapStateToProps = createStructuredSelector({
 });
 const mapDispatchToProps = dispatch => ({
   allRequested: () => dispatch(allRequested()),
-  acceptRequest: anotherUser => dispatch(acceptRequested(anotherUser))
+  acceptRequest: anotherUser => dispatch(acceptRequested(anotherUser)),
+  toggleNotificationHidden: () => dispatch(toggleNotificationHidden())
 });
 export default connect(
   mapStateToProps,
