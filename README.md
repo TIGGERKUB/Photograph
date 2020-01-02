@@ -1,5 +1,19 @@
 # Photograph
-Installation's Guide
+  Nowadays, people want to create their own story through pictures and share it
+with close friends or family. That is one of the reasons why a lot of Instagram users
+have to create another account to set up privacy and choose the persons they want
+to see their private posts. The problem with this process is that having several
+accounts is a cause of space redundancy in a database.
+  Therefore, our group is going to create a web-application inspired by
+Instagram with new added features. In the application, the users can create groups
+and choose who can see their posts.
+  For instance a user can create a group named close friends. He/she can then
+select the people belonging to that group. Now the user can choose to post either in
+that « close friends » group or he/she can just make the post public and therefore it
+can be seen by all the users. This is a way to save space in a database while storing
+user’s informations.
+
+# Installation's Guide
 1. Go to my project repository then, copy the HTTPS link.
 
 ![image](https://user-images.githubusercontent.com/38415653/71662078-d0c82f00-2d82-11ea-89fb-9742a0debb69.png)
