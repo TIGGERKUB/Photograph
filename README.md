@@ -1,23 +1,40 @@
 # Photograph
 Installation's Guide
 1. Go to my project repository then, copy the HTTPS link.
-![image](https://user-images.githubusercontent.com/38415653/71660996-5944d080-2d7f-11ea-98c2-cddaa0bbf5cc.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662078-d0c82f00-2d82-11ea-89fb-9742a0debb69.png)
+
 2. git clone in your terminal, where you want the project to be.
-![image](https://user-images.githubusercontent.com/38415653/71661031-7ed1da00-2d7f-11ea-8a09-53a525c6dd17.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662117-efc6c100-2d82-11ea-8915-7bbd0a6b1dde.png)
+
 3. After clone the project, it will be there
-![image](https://user-images.githubusercontent.com/38415653/71661083-b0e33c00-2d7f-11ea-85db-83621118868c.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662138-09680880-2d83-11ea-8938-b9665956b201.png)
+
 4. Open the project folder, install npm packages
-![image](https://user-images.githubusercontent.com/38415653/71661134-dc662680-2d7f-11ea-9d68-e7e413a68f53.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662204-3ae0d400-2d83-11ea-8fa7-10414897ddb0.png)
+
 5. Enter the client folder and install npm packages too.
-![image](https://user-images.githubusercontent.com/38415653/71661164-f869c800-2d7f-11ea-9b87-1b01a467b620.png)
-![image](https://user-images.githubusercontent.com/38415653/71661215-1a634a80-2d80-11ea-9122-8306b9962792.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662238-5350ee80-2d83-11ea-830f-20865294e7b1.png)
+![image](https://user-images.githubusercontent.com/38415653/71662259-695eaf00-2d83-11ea-8959-708dd0246698.png)
+
 6. Open XAMPP and start Apache and MySQL
-![image](https://user-images.githubusercontent.com/38415653/71661244-3830af80-2d80-11ea-955c-9335994b4a3b.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662283-82fff680-2d83-11ea-9f61-ae0ce9627fb3.png)
+
 7. Go to MySQL database, then create photograph database and import the database called “photograph.sql” that we already provide in “app/config/photograph” directory
-![image](https://user-images.githubusercontent.com/38415653/71661291-5c8c8c00-2d80-11ea-8a8f-55e2ba9f354d.png)
-![image](https://user-images.githubusercontent.com/38415653/71661326-71691f80-2d80-11ea-8958-d5741f1310d0.png)
-![image](https://user-images.githubusercontent.com/38415653/71661369-8776e000-2d80-11ea-82a8-d3755c76d8c2.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662319-9c08a780-2d83-11ea-8711-430f0147387b.png)
+![image](https://user-images.githubusercontent.com/38415653/71662341-ad51b400-2d83-11ea-8ae5-cc55e8d1ce7b.png)
+![image](https://user-images.githubusercontent.com/38415653/71662360-c35f7480-2d83-11ea-805e-040836e7a12a.png)
+
 8. The web-application is ready to run now. In your terminal, go back to root directory.
-![image](https://user-images.githubusercontent.com/38415653/71661409-aa08f900-2d80-11ea-8cf5-135f6d8896a6.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662377-da9e6200-2d83-11ea-8756-6b387570d116.png)
+
 9. Type “npm run dev”. The web-application will automatically appear.
-![image](https://user-images.githubusercontent.com/38415653/71661907-4089ea00-2d82-11ea-9141-4ffcb8fc5340.png)
+
+![image](https://user-images.githubusercontent.com/38415653/71662418-06214c80-2d84-11ea-9cf9-45e1bff6a698.png)
