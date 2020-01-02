@@ -24,11 +24,12 @@ const ProfilePage = ({
   followerLists,
   followingLists,
   status,
-  currentUser
+  currentUser,
+  loading
 }) => {
   useEffect(() => {
     profileInfo(match.params.username);
-  }, [match.params.username,profileInfo]);
+  }, [match.params.username, profileInfo]);
   const user = match.params.username;
 
   return (
@@ -55,6 +56,7 @@ const ProfilePage = ({
           followerLists={followerLists}
           followingLists={followingLists}
           status={status}
+          loading={loading}
         />
       )}
     </div>
@@ -71,8 +73,8 @@ const mapStateTopProps = createStructuredSelector({
   followerLists: profileSelector.selectProfileFollowers,
   followingLists: profileSelector.selectProfileFollowing,
   status: profileSelector.selectProfileStatus,
-  currentUser: userSelector.selectUsername
-  
+  currentUser: userSelector.selectUsername,
+  loading: profileSelector.selectProfileLoading
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,10 +2,10 @@ import axios from 'axios';
 
 export default function setAuthorizationToken(token) {
     if(token){
-        console.log("created headers ");
+        //create header
         axios.defaults.headers.common['authorization-access-token'] = `${token}`;
     }else{
-        console.log("deleted headers");
+        //delete header
         delete axios.defaults.headers.common['authorization-access-token'];
     }
 }

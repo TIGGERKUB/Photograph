@@ -2,10 +2,9 @@ import _ from "lodash";
 import searchActionTypes from "./search.types";
 
 const INITIAL_STATE = {
-  users: null,
+  users: [],
   searchField: ""
 };
-
 
 const searchReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {

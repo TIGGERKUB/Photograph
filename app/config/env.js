@@ -1,9 +1,9 @@
 const env = {
-  database: 'photograph',
-  username: 'root',
-  password: '',
-  host: 'localhost',
-  dialect: 'mysql',
+  database: "photograph",
+  username: "root",
+  password: "",
+  host: "localhost",
+  dialect: "mysql",
   pool: {
     max: 5,
     min: 0,

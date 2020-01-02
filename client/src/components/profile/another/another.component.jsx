@@ -9,6 +9,7 @@ import ProfileFollow from "../profile-follow/profile-follow.component";
 import ButtonOutline from "../../button-outline/button-outline.component";
 import ProfilePane from "../profile-pane/profile-pane.component";
 import ProfileBio from "../profile-bio/profile-bio.component";
+import Spinner from "../../spinner/spinner.component";
 
 import {
   sendRequested,
@@ -31,85 +32,105 @@ const Another = ({
   status,
   sendRequest,
   cancelRequest,
-  unfollow
+  unfollow,
+  loading
 }) => {
   return (
-    <Container className="profile-container">
-      <Grid>
-        <Grid.Column width={10}>
-          <Grid.Row stretched>
-            <Grid.Column width={4}>
-              <Grid columns="equal" textAlign="center">
-                <Grid.Column width={7}>
-                  <ProfileHeader name={ProfileUsername} />
+    <div>
+      {loading === true ? (
+        <Spinner />
+      ) : (
+        <Container className="profile-container">
+          <Grid>
+            <Grid.Column width={10}>
+              <Grid.Row stretched>
+                <Grid.Column width={4}>
+                  <Grid columns="equal" textAlign="center">
+                    <Grid.Column width={7}>
+                      <ProfileHeader name={ProfileUsername} />
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <ProfileFollow
+                        list={followerLists}
+                        total={no_followers}
+                        label="Followers"
+                      />
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <ProfileFollow
+                        list={followingLists}
+                        total={no_following}
+                        label="Following"
+                      />
+                    </Grid.Column>
+                    <Grid.Column width={3}>
+                      <ProfileFollow total={no_photo} label="Posts" isPost />
+                    </Grid.Column>
+                  </Grid>
                 </Grid.Column>
-                <Grid.Column width={3}>
-                  <ProfileFollow
-                    list={followerLists}
-                    total={no_followers}
-                    label="Followers"
-                  />
+
+                <Grid.Column width={12}>
+                  <ProfileBio bio={bio} />
                 </Grid.Column>
-                <Grid.Column width={3}>
-                  <ProfileFollow
-                    list={followingLists}
-                    total={no_following}
-                    label="Following"
-                  />
-                </Grid.Column>
-                <Grid.Column width={3}>
-                  <ProfileFollow total={no_photo} label="Posts" isPost />
-                </Grid.Column>
-              </Grid>
+              </Grid.Row>
             </Grid.Column>
 
-            <Grid.Column width={12}>
-              <ProfileBio bio={bio} />
-            </Grid.Column>
-          </Grid.Row>
-        </Grid.Column>
-
-        <Grid.Column width={6}>
-          {avatar ? (
-            <PicturePlaceholder file={avatar} isProfile />
-          ) : (
-            <PicturePlaceholder isProfilePlaceholder />
-          )}
-          <div className="status-btn">
-            {status === "Following" ? (
-              <Modal
-                size="mini"
-                trigger={<ButtonOutline isFollowing>{status}</ButtonOutline>}
-              >
-                <Modal.Content>
-                  <PicturePlaceholder file={avatar} isProfile />
-                  <Divider />
-                  <ButtonOutline
-                    isUnfollow
-                    style={{ margin: "auto" }}
-                    onClick={() => unfollow(ProfileUsername)}
+            <Grid.Column width={6}>
+              {avatar ? (
+                <PicturePlaceholder file={avatar} isProfile />
+              ) : (
+                <PicturePlaceholder isProfilePlaceholder />
+              )}
+              <div className="status-btn">
+                {status === "Following" ? (
+                  <Modal
+                    size="mini"
+                    trigger={
+                      <ButtonOutline isFollowing>{status}</ButtonOutline>
+                    }
                   >
-                    Unfollow
+                    <Modal.Content>
+                      <PicturePlaceholder file={avatar} isProfile />
+                      <Divider />
+                      <ButtonOutline
+                        isUnfollow
+                        style={{ margin: "auto" }}
+                        onClick={async () => {
+                          await unfollow(ProfileUsername);
+                          window.location.reload();
+                        }}
+                      >
+                        Unfollow
+                      </ButtonOutline>
+                    </Modal.Content>
+                  </Modal>
+                ) : status === "Requested" ? (
+                  <ButtonOutline
+                    isRequest
+                    onClick={async () => {
+                      await cancelRequest(ProfileUsername);
+                      window.location.reload();
+                    }}
+                  >
+                    Requested
                   </ButtonOutline>
-                </Modal.Content>
-              </Modal>
-            ) : status === "Requested" ? (
-              <ButtonOutline
-                isRequest
-                onClick={() => cancelRequest(ProfileUsername)}
-              >
-                Requested
-              </ButtonOutline>
-            ) : (
-              <ButtonOutline onClick={() => sendRequest(ProfileUsername)}>
-                follow
-              </ButtonOutline>
-            )}
-          </div>
-        </Grid.Column>
-      </Grid>
-      {status === "Following" ? <ProfilePane /> : <PrivatePane />}
-    </Container>
+                ) : (
+                  <ButtonOutline
+                    onClick={async () => {
+                      await sendRequest(ProfileUsername);
+                      window.location.reload();
+                    }}
+                  >
+                    follow
+                  </ButtonOutline>
+                )}
+              </div>
+            </Grid.Column>
+          </Grid>
+          {status === "Following" ? <ProfilePane /> : <PrivatePane />}
+        </Container>
+      )}
+    </div>
   );
 };
 const mapDispatchToProps = dispatch => ({

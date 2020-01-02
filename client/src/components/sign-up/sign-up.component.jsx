@@ -69,13 +69,7 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
 
   let authRedirect = null;
   if (isAuthenticated) {
-    // authRedirect = console.log('isAuthenticated : ' +isAuthenticated);
     authRedirect = <Redirect to="/feed" />;
-    // authRedirect.history.push("/feed");
-  }
-  let errorMessage = null;
-  if(error){
-    errorMessage = alert(error);
   }
 
   return (
@@ -85,7 +79,6 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
       </Link>
       <div className="regist-form-container">
         {authRedirect}
-        {errorMessage}
         <h2>Sign Up</h2>
         <span>or sign in with social network</span>
         <div className="social-login">
@@ -97,7 +90,7 @@ const SignUp = ({ signup, isAuthenticated, error }) => {
           </CustomButton>
         </div>
         <Divider horizontal>Or</Divider>
-        {/* {error ? <span style={{color:'red'}}>{error}</span>:null} */}
+        {error ? <span style={{color:'red'}}>{error}</span>:null}
         <form onSubmit={handleSubmit}>
           <FormInput
             type="text"

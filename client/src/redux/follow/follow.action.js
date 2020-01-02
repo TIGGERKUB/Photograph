@@ -1,9 +1,9 @@
 import axios from "axios";
 
 export const sendRequested = (anotherUser) => {
-  return dispatch => {
+  return async dispatch => {
     let url ='/follow/requested-friend/' + anotherUser;
-    axios.post(url)
+    await axios.post(url)
     .then(response => {
       console.log(response.data);
     })
@@ -15,9 +15,9 @@ export const sendRequested = (anotherUser) => {
 }
 
 export const cancelRequested = (anotherUser) => {
-  return dispatch => {
+  return async dispatch => {
     let url ='/follow/cancel-requested/' + anotherUser;
-    axios.post(url)
+    await axios.post(url)
     .then(response => {
       console.log(response.data);
     })
@@ -29,9 +29,9 @@ export const cancelRequested = (anotherUser) => {
 }
 
 export const acceptRequested = (anotherUser) => {
-  return dispatch => {
+  return async dispatch => {
     let url ='/follow/accept-requested/' + anotherUser;
-    axios.post(url)
+    await axios.post(url)
     .then(response => {
       console.log(response.data);
     })
@@ -43,9 +43,9 @@ export const acceptRequested = (anotherUser) => {
 }
 
 export const unfollow = (anotherUser) => {
-  return dispatch => {
+  return async dispatch => {
     let url ='/follow/unfollow/' + anotherUser;
-    axios.post(url)
+    await axios.post(url)
     .then(response => {
       console.log(response.data);
     })

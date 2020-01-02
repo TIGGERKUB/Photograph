@@ -44,32 +44,32 @@ export const checkAuthTimeout = (expirationTime) => {
 };
 
 export const login = (username,password) => {
-    return dispatch => {
+    return async dispatch => {
         const authData = {
             username: username,
             password: password
         };
         const url = '/auth/signin';
-        dispatch(auth(authData,url));
+        await dispatch(auth(authData,url));
     }
 }
 
 export const register = (email,username,password) => {
-    return dispatch => {
+    return async dispatch => {
         const authData = {
             email: email,
             username: username,
             password: password
         };
         const url = '/auth/signup';
-        dispatch(auth(authData,url));
+        await dispatch(auth(authData,url));
     }
 }
 
 export const auth = (authData,url) => {
-    return dispatch => {
+    return async dispatch => {
         dispatch(authStart());
-        axios.post(url, authData)
+        await axios.post(url, authData)
             .then(response => {
                 console.log(response);
                 // console.log(response);
@@ -95,28 +95,21 @@ export const auth = (authData,url) => {
     };
 };
 
-// export const setAuthRedirectPath = (path) => {
-//     return {
-//         type: actionTypes.SET_AUTH_REDIRECT_PATH,
-//         path: path
-//     };
-// };
-
 export const authCheckState = () => {
-    return dispatch => {
+    return async dispatch => {
         const token = localStorage.getItem('token');
         if (!token) {
-            dispatch(logout());
+           await dispatch(logout());
         } else {
             const expirationDate = new Date(localStorage.getItem('expirationDate'));
             if (expirationDate <= new Date()) {
-                dispatch(logout());
+                await dispatch(logout());
             } else {
                 if(token){
-                    const result = jwt_decode(token);
-                    dispatch(authSuccess(token,result.username));
+                    const result = await jwt_decode(token);
+                    await dispatch(authSuccess(token,result.username));
                  }
-                dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
+               await dispatch(checkAuthTimeout((expirationDate.getTime() - new Date().getTime()) / 1000 ));
             }
         }
     };

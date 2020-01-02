@@ -2,7 +2,7 @@ import NotificationActionTypes from "./notification.types";
 
 const INITIAL_STATE = {
   hidden: true,
-  allRequested: null
+  allRequested: []
 };
 
 const notificationReducer = (state = INITIAL_STATE, action) => {

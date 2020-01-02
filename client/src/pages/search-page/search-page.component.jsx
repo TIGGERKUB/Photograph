@@ -8,16 +8,20 @@ import SearchBox from "../../components/search-box/search-box.component";
 import Picture from "../../components/Picture/Picture.component";
 import ModalList from "../../components/profile/modal-list/modal-list.component";
 
-import { allUser } from "../../redux/search/search.action";
 import { selectPicture } from "../../redux/data/data.selector";
 import {
   selectSearchUsers,
-  selectSearchCharacter
+  selectSearchCharacter,
+  selectSearchLoading
 } from "../../redux/search/search.selector";
+import { allUser } from "../../redux/search/search.action";
 
 import "./search-page.styles.scss";
 
-const SearchPage = ({ collections, users, character }) => {
+const SearchPage = ({ collections, users, character, allUser }) => {
+  useEffect(() => {
+    allUser();
+  }, [allUser]);
 
   const userFiltered = users.filter(user =>
     _.toLower(user.username).includes(character)
@@ -28,7 +32,7 @@ const SearchPage = ({ collections, users, character }) => {
       <SearchBox />
       {character === "" ? null : (
         <div className="list-container">
-          <ModalList items={userFiltered} isSearch/>
+          <ModalList items={userFiltered} isSearch />
         </div>
       )}
       <h2 className="title-popular">Popular</h2>
@@ -48,7 +52,12 @@ const SearchPage = ({ collections, users, character }) => {
 const mapStateToProps = createStructuredSelector({
   collections: selectPicture,
   users: selectSearchUsers,
-  character: selectSearchCharacter
+  character: selectSearchCharacter,
+  loading: selectSearchLoading
 });
 
-export default connect(mapStateToProps)(SearchPage);
+const mapDispatchToProps = dispatch => ({
+  allUser: () => dispatch(allUser())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);

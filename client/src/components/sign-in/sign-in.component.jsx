@@ -18,10 +18,6 @@ const SignIn = ({ login, isAuthenticated, error }) => {
   const { username, password } = userCredential;
   const handleSubmit = event => {
     event.preventDefault();
-    if (error) {
-      alert(error);
-      window.location.reload();
-    }
     login(username, password);
   };
   const handleChange = event => {
@@ -29,15 +25,7 @@ const SignIn = ({ login, isAuthenticated, error }) => {
 
     setUserCredentials({ ...userCredential, [name]: value });
   };
-  // const validate = () => {
-  //   let errorMessage = "";
-  //   if (error) {
-  //     errorMessage = "Invalid username or password";
-  //     setUserCredentials({ ...userCredential, errorMessage });
-  //     return false;
-  //   }
-  //   return true;
-  // };
+  
   let authRedirect = null;
   if (isAuthenticated) {
     authRedirect = <Redirect to="/feed" />;
@@ -46,6 +34,7 @@ const SignIn = ({ login, isAuthenticated, error }) => {
     <div className="login-form">
       {authRedirect}
       <h2 className="login-brand">Photograph</h2>
+      {error?<span style={{color:"red"}}>{error}</span>:null}
       <form onSubmit={handleSubmit}>
         <FormInput
           type="text"

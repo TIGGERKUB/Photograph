@@ -1,7 +1,6 @@
 import axios from "axios";
 import * as actionTypes from "./profile.types";
 import jwt_decode from "jwt-decode";
-// import covertArr from '../../shared/objConvertArr';
 
 export const profileStart = () => {
   return {
@@ -24,29 +23,19 @@ export const profileFail = error => {
 };
 
 export const profileInfo = username => {
-  return dispatch => {
-    // dispatch(profileStart());
-    // const visited = localStorage.getItem('visited');
+  return async dispatch => {
+    dispatch(profileStart())
     let url = "/profile/" + username;
     if (!username) {
       localStorage.getItem("token");
       const result = jwt_decode(localStorage.getItem("token"));
       url = "/profile/" + result.username;
     }
-    axios.get(url)
+    await axios.get(url)
       .then(response => {
-        //console.log(response);
         if (!response.data.user) {
           console.log("user not found!!");
         }
-
-        // handle success
-        //  const result = covertArr(response.data.user);
-        //  console.log(result[1][1]);
-        // console.log(response.data.photo);
-        // console.log(response.data.followers);
-        // console.log(response.data.following);
-        // console.log(response.data.status);
         dispatch(profileSuccess(response.data));
 
       })
@@ -78,16 +67,13 @@ export const editProfileFailure = error => {
 };
 
 export const editProfile = (info,avatar) => {
-  return dispatch => {
-    // console.log(info);
-    dispatch(editProfileStart());
+  return async dispatch => {
+    await dispatch(editProfileStart());
     if(info.file){
-      uploadPhotoS3andProfileInfo(dispatch,info,'edit');
+      await uploadPhotoS3andProfileInfo(dispatch,info,'edit');
     }else{
-      updateProfileInfo(dispatch,info,avatar,'edit');
+      await updateProfileInfo(dispatch,info,avatar,'edit');
     }
-    // uploadPhotoS3andDB and Update ProfileInfo to database
-    // uploadPhotoS3andProfileInfo(dispatch,info.file,info);
   }
 };
 
@@ -99,9 +85,9 @@ export const createPostSuccess = postData => {
 };
 
 export const createPost = newPost => {
-  return dispatch => {
+  return async dispatch => {
     console.log(newPost);
-    uploadPhotoS3andProfileInfo(dispatch,newPost,'postPhoto');
+    await uploadPhotoS3andProfileInfo(dispatch,newPost,'postPhoto');
   }
 }
 
@@ -112,8 +98,8 @@ export const clearStateSuccess = () => {
 };
 
 export const clearState = () => {
-  return dispatch => {
-    dispatch(clearStateSuccess());
+  return async dispatch => {
+    await dispatch(clearStateSuccess());
   }
 }
 
@@ -122,31 +108,6 @@ export const followRequest = () => {
     type: actionTypes.FOLLOW_REQUEST
   }
 }
-
-
-
-
-// export const status = (friend) => {
-//   return dispatch => {
-//     let url = "/profile/status/" + friend;
-
-//     let statusFriend = null;
-//     const result = jwt_decode(localStorage.getItem("token"));
-//     if(friend === result.username){
-//       statusFriend = 'following'
-//     }else{
-//       axios.get(url)
-//       .then(response => {
-//         console.log(response.data);
-//         dispatch(checkStatus(response.data));
-//       })
-//       .catch(err => {
-//         // handle error
-//         console.log("error = " + err);
-//       });
-//     }
-//   }
-// }
 
 function uploadPhotoS3andProfileInfo(dispatch,info,task){
   const data = new FormData();

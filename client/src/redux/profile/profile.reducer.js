@@ -40,7 +40,8 @@ const profileSuccess = (state, action) => {
       following:action.payload.following,
       followers:action.payload.followers,
       status: action.payload.status,
-      error: null
+      error: null,
+      loading:false
     });
   }
 

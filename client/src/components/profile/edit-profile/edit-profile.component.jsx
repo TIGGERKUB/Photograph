@@ -23,6 +23,7 @@ const EditProfile = ({
   Avatar,
   history
 }) => {
+  
   const [info, setInfo] = useState({
     firstname: FirstName,
     lastname: LastName,
@@ -42,12 +43,12 @@ const EditProfile = ({
     firstnameError,
     lastnameError
   } = info;
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault();
     const isValid = validate();
     if (isValid) {
-      editProfile(info, Avatar);
-      history.push("/");
+      await editProfile(info, Avatar);
+      window.location.reload();
     }
   };
   const handleChange = event => {

@@ -8,3 +8,7 @@ export const selectSearchCharacter = createSelector(
     [selectSearch],
     search => search.searchField
 )
+export const selectSearchLoading = createSelector(
+    [selectSearch],
+    search => search.loading
+)

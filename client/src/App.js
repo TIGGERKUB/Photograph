@@ -1,6 +1,12 @@
-import React,{ Component }  from "react";
-import { Switch, Route, BrowserRouter,withRouter,Redirect } from "react-router-dom";
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import {
+  Switch,
+  Route,
+  BrowserRouter,
+  withRouter,
+  Redirect
+} from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "./components/header/header.component";
 import SignInPage from "./pages/sign-in-page/sign-in-page.component";
@@ -9,20 +15,20 @@ import Logout from "./components/logout/logout.component";
 import FeedPage from "./pages/feedpage/feedpage.component";
 import SearchPage from "./pages/search-page/search-page.component";
 import ProfilePage from "./pages/profilepage/profile.component";
-import {authCheckState} from "./redux/user/user.actions";
-import setAuthorizationToken from './axios/axios.defaults';
+
+import { authCheckState } from "./redux/user/user.actions";
+import setAuthorizationToken from "./axios/axios.defaults";
 
 import "semantic-ui-css/semantic.min.css";
 import "./App.css";
 
 class App extends Component {
-
-   componentDidMount () {
+  componentDidMount() {
     this.props.authCheckState();
-    setAuthorizationToken(localStorage.getItem('token'));
+    setAuthorizationToken(localStorage.getItem("token"));
   }
 
-  render(){
+  render() {
     let routes = (
       <Switch>
         <Route exact path="/auth/signup" component={SignUpPage} />
@@ -30,7 +36,7 @@ class App extends Component {
         <Redirect to="/" />
       </Switch>
     );
-    if ( this.props.isAuthenticated ) {
+    if (this.props.isAuthenticated) {
       routes = (
         <Switch>
           <Route exact path="/feed" component={FeedPage} />
@@ -47,26 +53,20 @@ class App extends Component {
         <Header />
         {routes}
       </BrowserRouter>
-    )
+    );
   }
 }
-  
+
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.user.token !== null
   };
 };
 
-
 const mapDispatchToProps = dispatch => {
   return {
-    authCheckState: () => dispatch(authCheckState() )
+    authCheckState: () => dispatch(authCheckState())
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

@@ -6,15 +6,15 @@ export const onSearchChange = character => ({
     payload: character
 })
 
-export const searchSuccess = allUser => ({
+export const searchSuccess = targetUser => ({
     type: searchActionTypes.SEARCH_SUCCESS,
-    payload: allUser
+    payload: targetUser
 })
 
 export const allUser = () => {
-    return dispatch => {
+    return async dispatch => {
       let url ='/search/all-user';
-      axios.get(url)
+      await axios.get(url)
       .then(response => {
         console.log(response.data);
         dispatch(searchSuccess(response.data.user));

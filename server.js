@@ -1,7 +1,6 @@
 var express = require("express");
 var cors = require('cors');
 var bodyParser = require("body-parser");
-// var connection = require("./database/connection");
 var port = process.env.PORT || 5000
 
 var app = express();
@@ -20,6 +19,6 @@ app.use('/profile',Profile);
 app.use('/follow',Follow);
 app.use('/search',Search);
 
-var server=app.listen(port, () => {
+app.listen(port, () => {
     console.log("We have started our server on port : " +port);
 });

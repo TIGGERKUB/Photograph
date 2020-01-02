@@ -14,10 +14,10 @@ export const allRequestedSuccess = allRequested => {
 };
 
 export const allRequested = () => {
-  return dispatch => {
-    const result = jwt_decode(localStorage.getItem("token"));
+  return async dispatch => {
+    const result = await jwt_decode(localStorage.getItem("token"));
     let url ='/follow/all-requested/' + result.username;
-    axios.post(url)
+    await axios.post(url)
     .then(response => {
       console.log(response.data);
       dispatch(allRequestedSuccess(response.data));
