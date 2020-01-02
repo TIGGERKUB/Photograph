@@ -51,7 +51,7 @@ user’s informations.
 
 ![image](https://user-images.githubusercontent.com/38415653/71662377-da9e6200-2d83-11ea-8756-6b387570d116.png)
 
-9. Create "config.js" file in app/config directory and fill in your AWS S3 key and bucket
+9. Create "config.js" file in app/config directory and fill in your AWS S3 key and bucket name
 
 ![image](https://user-images.githubusercontent.com/38415653/71664248-e4779380-2d8a-11ea-8404-59289dfe0c92.png)
 
