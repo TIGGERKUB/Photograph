@@ -5,14 +5,15 @@ const multerS3 = require( 'multer-s3' );
 const multer = require('multer');
 const path = require( 'path' );
 const url = require('url');
+const config = require('../config/config.js');
 
 /**
  * PROFILE IMAGE STORING STARTS
  */
 const s3 = new aws.S3({
- accessKeyId: 'AKIAWMSMPJL7YQQ327WX',
- secretAccessKey: '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',
- Bucket: 'pongtest5555'
+ accessKeyId: config.accessKeyId,
+ secretAccessKey: config.secretAccessKey,
+ Bucket: config.Bucket
 });
 /**
  * Single Upload
