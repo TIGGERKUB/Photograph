@@ -51,6 +51,10 @@ user’s informations.
 
 ![image](https://user-images.githubusercontent.com/38415653/71662377-da9e6200-2d83-11ea-8756-6b387570d116.png)
 
-9. Type “npm run dev”. The web-application will automatically appear.
+9. Create "config.js" file in app/config directory and fill in your AWS S3 key and bucket
+
+![image](https://user-images.githubusercontent.com/38415653/71664248-e4779380-2d8a-11ea-8404-59289dfe0c92.png)
+
+10. Type “npm run dev”. The web-application will automatically appear.
 
 ![image](https://user-images.githubusercontent.com/38415653/71662418-06214c80-2d84-11ea-9cf9-45e1bff6a698.png)
